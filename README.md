@@ -10,7 +10,7 @@ bundle install --path=vendor/bundle
 ```
 ```
 Verändern der Datei yourpath\Eventsystem\config\database.yml
-Starten des Servers über:
+Starten des Servers über Konsole:
 bundle exec rails server
 ```
 ```
