@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
 #ruby "2.3.3"
 
@@ -43,6 +43,7 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
   gem "web-console", ">= 3.3.0"
+  # gem "rubocop-rails", require: false
 end
 
 group :test do
@@ -54,7 +55,6 @@ group :test do
 end
 
 #Some stuff for Evensystem
-gem "rubocop-rails", require: true
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
