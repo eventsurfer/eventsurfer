@@ -156,9 +156,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.4.0)
-    rubocop-rails_config (0.2.6)
+    rubocop-rails (1.5.0)
       railties (>= 3.0)
-      rubocop (~> 0.56)
+      rubocop (~> 0.53)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
     sass (3.5.7)
@@ -221,7 +221,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
   rails (~> 5.2.0)
-  rubocop-rails_config
+  rubocop-rails
   sass-rails (~> 5.0)
   selenium-webdriver
   turbolinks (~> 5)
@@ -230,4 +230,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.4
+   1.17.1
