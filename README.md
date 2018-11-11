@@ -11,7 +11,7 @@ Install bundle:
 gem install bundle
 ```
 
-Initialieren des Programms:
+Initialisieren des Programms:
 ```
 git clone https://github.com/florianfynnweber/menschenmachenmenschensachen.git
 bundle install --path=vendor/bundle
@@ -19,7 +19,7 @@ bundle install --path=vendor/bundle
 
 Verändern der Datei *yourpath\Eventsystem\config\database.yml*
 
-Starten des Servers über Konsole:
+Starten des Servers über die Konsole:
 ```
 bundle exec rails server
 ```
@@ -30,12 +30,12 @@ Starten der Webconsole:
 bundle exec rails console
 ```
 
-Genieren einer Migration:
+Generieren einer Migration:
 ```
 bundle exec rails generate migration nameofmigration
 ```
 
-Migririeren von Änderungen:
+Migrieren von Änderungen:
 ```
 bundle exec rails db:migrate
 ```
