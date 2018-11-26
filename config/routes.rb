@@ -3,9 +3,18 @@ Rails.application.routes.draw do
   # Administration
   namespace :admin do
     resources :users do
-      post 'punsh'
+      post 'punch'
       get 'users', to: "users#index"
     end
   end
 
+  # Show events
+  resources :events do
+    post 'punch'
+    get "events", to: "events#index"
+  end
+
+
+  #Default page
+  root "events#index"
 end
