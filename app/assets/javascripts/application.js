@@ -17,3 +17,4 @@
 //= require boostrap.min.js
 //= require jquery.min.js
 //= require popper.min.js
+//= require Chart.bundle.min.js
