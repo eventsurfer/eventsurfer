@@ -14,3 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require boostrap.min.js
+//= require jquery.min.js
+//= require popper.min.js

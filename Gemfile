@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
-#ruby "2.3.3"
+# ruby "2.3.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "rails", "~> 5.2.0"
@@ -24,7 +26,7 @@ gem "jbuilder", "~> 2.5"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 # Use ActiveModel has_secure_password
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
@@ -44,6 +46,13 @@ group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
   gem "web-console", ">= 3.3.0"
   gem "rubocop-rails", require: false
+  gem "listen"
+  gem "spring"
+  gem "spring-watcher-listen"
+  gem "brakeman"
+  gem "capistrano-rails"
+  gem "capistrano-bundler"
+
 end
 
 group :test do
@@ -54,7 +63,7 @@ group :test do
   gem "chromedriver-helper"
 end
 
-#Some stuff for Evensystem
+# Some stuff for Evensystem
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

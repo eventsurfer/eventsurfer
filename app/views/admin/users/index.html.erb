@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+  <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Enabled</th>
+    <th>Regstrierung</th>
+    <th>Password</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name%></td>
+        <td><%= user.email %></td>
+        <td><%= user.enabled %></td>
+        <td><%= user.regestration_date %></td>
+        <td><%= user.psswrd %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
