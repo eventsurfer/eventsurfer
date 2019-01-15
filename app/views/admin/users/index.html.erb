@@ -1,27 +1,29 @@
 <table class="table">
   <thead>
-  <th>Id</th>
+  <tr>
+    <th>Id</th>
     <th>Name</th>
     <th>Email</th>
     <th>Enabled</th>
     <th>Regstrierung</th>
     <th>Password</th>
+  </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name%></td>
-        <td><%= user.email %></td>
-        <td><%= user.enabled %></td>
-        <td><%= user.regestration_date %></td>
-        <td><%= user.psswrd %></td>
-        <td>
-          <%= link_to('Bearbeiten',
-                      edit_admin_user_path(user),
-                      class: "btn btn-secondary ", style: "background-color: ") %>
-        </td>
-      </tr>
-    <% end %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.enabled %></td>
+      <td><%= user.regestration_date %></td>
+      <td><%= user.psswrd %></td>
+      <td>
+        <%= link_to('Bearbeiten',
+                    edit_admin_user_path(user),
+                    class: "btn btn-secondary ", style: "background-color: ") %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
