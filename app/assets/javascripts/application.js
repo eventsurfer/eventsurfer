@@ -18,3 +18,5 @@
 //= require jquery.min.js
 //= require popper.min.js
 //= require Chart.bundle.min.js
+//= require Chart.bundle
+//= require chartkick
