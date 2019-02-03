@@ -30,14 +30,14 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  begin
-    def user_params
-      params.require(:user).permit(:name,
-                                   :email,
-                                   :psswrd,
-                                   :enabled,
-                                   :admin
-      )
+    begin
+      def user_params
+        params.require(:user).permit(:name,
+                                     :email,
+                                     :psswrd,
+                                     :enabled,
+                                     :admin
+        )
+      end
     end
-  end
 end
