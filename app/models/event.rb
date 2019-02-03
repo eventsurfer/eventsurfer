@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  has_many :tickets
+  has_many :performances
 end
