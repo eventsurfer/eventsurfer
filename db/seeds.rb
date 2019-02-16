@@ -15,6 +15,8 @@ def fake_name()
     return Faker::LordOfTheRings.character
   when 2
     return Faker::HeyArnold.character
+  else
+    # type code here
   end
 end
 

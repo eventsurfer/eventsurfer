@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       collection do
+        get 'new', to:"users#new"
+        post 'new', to:"users#create"
         get "index", to:"users#index"
+        get ":id/edit", to:"users#edit"
+        post ":id/edit", to:"users#update"
+        get ":id/delete", to:"users#destroy"
+        get ":id/show", to: "users#show"
+        get "show", to: "users#show"
       end
     end
   end
