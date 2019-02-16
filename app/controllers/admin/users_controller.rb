@@ -49,14 +49,14 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  begin
-    def user_params
-      params.require(:user).permit(:name,
-                                   :email,
-                                   :enabled,
-                                   :rank,
-                                   :admin
-      )
+    begin
+      def user_params
+        params.require(:user).permit(:name,
+                                     :email,
+                                     :enabled,
+                                     :rank,
+                                     :admin
+        )
+      end
     end
-  end
 end
