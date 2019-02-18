@@ -36,7 +36,8 @@ gem "delayed_job_active_record"
 gem "two_factor_authentication"
 gem "bootstrap-sass"
 gem "jquery-turbolinks"
-gem 'recaptcha', require: 'recaptcha/rails'
+
+
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
 
