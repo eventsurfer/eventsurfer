@@ -28,14 +28,17 @@ gem "jbuilder", "~> 2.5"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
 # User framework authentification
-gem "devise"
-gem "faker"
+gem "devise"                      #framework for user authentification
+gem "faker"                       #framework to generate test data
 gem "jquery-rails"
-gem "devise_zxcvbn"
-gem "delayed_job_active_record"
+gem "devise_zxcvbn"               #plugin for devise
+gem "delayed_job_active_record"   #for delayed jobs in ruby on rails
 gem "two_factor_authentication"
 gem "bootstrap-sass"
 gem "jquery-turbolinks"
+
+
+gem 'ionicons-rails'      #ionicons icons
 
 
 # Use ActiveStorage variant
