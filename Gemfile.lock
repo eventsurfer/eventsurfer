@@ -108,6 +108,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.13.0)
+      devise (>= 4.2.0, < 5.0)
+      rails (>= 4.2.0, < 6.0)
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
@@ -312,6 +315,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   delayed_job_active_record
   devise
+  devise-security
   devise_zxcvbn
   faker
   jbuilder (~> 2.5)
