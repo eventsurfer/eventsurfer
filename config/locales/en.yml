@@ -31,3 +31,17 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      day_and_month: "%D.%m."
+      default: "%d.%m.%Y"
+      long: "%e. %B %Y"
+      month_only: "%B"
+      short: "%e. %b"
+      shortest: "%D.%m.%Y"
+      week_only: "%-V"
+      weekday: "%A (%-d.)"
+      weekday_short: "%a"
+      weeknumber: "%Y - %B - Woche %-V"
+      year_and_month: "%Y-%m"
+
