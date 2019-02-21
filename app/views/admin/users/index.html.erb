@@ -1,3 +1,5 @@
+
+
 <table class="table">
   <thead>
   <tr>
@@ -6,18 +8,18 @@
     <th>Email</th>
     <th>Enabled</th>
     <th>Regstrierung</th>
-    <th>Password</th>
+    <th>Admin</th>
   </tr>
   </thead>
   <tbody>
   <% @users.each do |user| %>
-    <tr>
+    <tr data-name="<%= user.name %>" data-id="<%= user.id %>" data-email="<%=user.email  %>" data-enabled="<%=user.enabled %>" data-admin="<%=user.admin %>" data-created_at="<%=  %>">
       <td><%= user.id %></td>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.enabled %></td>
-      <td><%= user.regestration_date %></td>
-      <td><%= user.psswrd %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.admin %></td>
       <td>
         <%= link_to('Bearbeiten',
                     edit_admin_user_path(user),
@@ -25,5 +27,15 @@
       </td>
     </tr>
   <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= link_to('Add',
+                    new_admin_user_path,
+                    class: "btn btn-secondary ", style: "background-color: ") %></td>
+  </tr>
   </tbody>
 </table>
