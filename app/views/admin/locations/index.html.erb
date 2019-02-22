@@ -1,15 +1,18 @@
 <h2>Locations</h2>
 <table class="table table-striped table-sm" id="location-indextable">
+  <th>Name</th>
   <th>Street</th>
   <th>Street Number</th>
   <th>City</th>
   <th>Country</th>
   <% @locations.each do |location| %>
-    <tr data-id="<%= location.id %>" data-street="<%= location.street %>" data-streetNumber="<%= location.street_number %>" data-city="<%= location.city %>" data-country="<%= location.country %>" data-postcode="<%= location.postcode %>" data-createdAt="<%= I18n.l(location.created_at.to_date, format: :default) %>" data-updatedAt="<%= I18n.l(location.updated_at.to_date, format: :default) %>" data-changedBy="<%= if location.changed_by == "null"
-                                                                                                                                                                                                                                                                                                                                                           location.changed_by
-                                                                                                                                                                                                                                                                                                                                                         else
-                                                                                                                                                                                                                                                                                                                                                           "No Data"
-                                                                                                                                                                                                                                                                                                                                                         end %>">
+
+    <tr data-id="<%= location.id %>" data-name="<%= location.name %>" data-street="<%= location.street %>" data-streetNumber="<%= location.street_number %>" data-city="<%= location.city %>" data-country="<%= location.country %>" data-postcode="<%= location.postcode %>" data-createdAt="<%= I18n.l(location.created_at.to_date, format: :default) %>" data-updatedAt="<%= I18n.l(location.updated_at.to_date, format: :default) %>" data-changedBy="<%= if location.changed_by == "null"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                location.changed_by
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              else
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                "No Data"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>">
+      <td><%= location.name %></td>
       <td><%= location.street %></td>
       <td><%= location.street_number %></td>
       <td><%= location.city %></td>

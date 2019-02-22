@@ -54,7 +54,8 @@ class Admin::LocationsController < ApplicationController
                                      :country,
                                      :city,
                                      :street_number,
-                                     :changed_by
+                                     :changed_by,
+                                     :name
         )
       end
     end
