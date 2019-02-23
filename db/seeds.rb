@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name:"admin",email: 'admin@example.com', encrypted_password: 'adminadmin', admin:true, enabled:true)
+  User.create!(name:"admin",email: 'admin@example.com', password: 'adminadmin', admin:true, enabled:true)
 end
 
 def fake_name()
