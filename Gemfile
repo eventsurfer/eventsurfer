@@ -33,13 +33,13 @@ gem "faker"                       # framework to generate test data
 gem "jquery-rails"
 gem "devise_zxcvbn"               # plugin for devise
 gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
-gem "two_factor_authentication"
+# gem "two_factor_authentication"
 gem "bootstrap-sass"
 gem "jquery-turbolinks"
 
 
 gem "ionicons-rails"      # ionicons icons
-gem 'city-state'          #get all countries with name and towns
+gem "city-state"          # get all countries with name and towns
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"

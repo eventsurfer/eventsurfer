@@ -15,7 +15,4 @@ class Location < ApplicationRecord
     end
     return arr.sort
   end
-
-
 end
-
