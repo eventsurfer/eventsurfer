@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::LocationsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @locations = Location.all
   end
@@ -21,6 +21,7 @@ class Admin::LocationsController < ApplicationController
 
   def edit
     @location = Location.find(params[:id])
+    @countries = Location.getAllCountries
   end
 
   def destroy
@@ -44,12 +45,16 @@ class Admin::LocationsController < ApplicationController
     end
   end
 
+  def show
+    @location = Location.find(params[:id])
+    redirect_to "/admin/locations/"
+  end
 
   private
 
     begin
       def location_params
-        params.require(:user).permit(:street,
+        params.require(:location).permit(:street,
                                      :postcode,
                                      :country,
                                      :city,

@@ -1,5 +1,5 @@
 <h2>Locations</h2>
-<table class="table table-striped table-sm" id="location-indextable">
+<table class="table table-striped table-sm table-active table-hover" id="location-indextable">
   <th>Name</th>
   <th>Street</th>
   <th>Street Number</th>
@@ -11,7 +11,8 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                 location.changed_by
                                                                                                                                                                                                                                                                                                                                                                                                                                                               else
                                                                                                                                                                                                                                                                                                                                                                                                                                                                 "No Data"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>" data-link="<%= edit_admin_location_path(location.id) %>">
+
       <td><%= location.name %></td>
       <td><%= location.street %></td>
       <td><%= location.street_number %></td>
@@ -20,3 +21,10 @@
     </tr>
   <% end %>
 </table>
+
+
+<script>
+  $("tr[data-link]").click(function () {
+      window.location = $(this).data("link");
+  })
+</script>

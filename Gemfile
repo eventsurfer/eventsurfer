@@ -39,7 +39,7 @@ gem "jquery-turbolinks"
 
 
 gem "ionicons-rails"      # ionicons icons
-
+gem 'city-state'          #get all countries with name and towns
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
