@@ -16,11 +16,12 @@ Rails.application.routes.draw do
       end
     end
     resources :locations do
+
       collection do
-        get "new", to:"locations#new"
-        post "new", to:"locations#create"
         get "index", to:"locations#index"
         get ":id/edit", to:"locations#edit"
+        get "new", to:"locations#new"
+        post "new", to:"locations#create"
         post ":id/edit", to:"locations#update"
         get ":id/delete", to:"locations#destroy"
         get ":id/show", to:"locations#show"

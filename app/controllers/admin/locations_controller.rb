@@ -8,12 +8,13 @@ class Admin::LocationsController < ApplicationController
 
   def new
     @location = Location.new
+    @countries = Location.getAllCountries
   end
 
   def create
     @location = Location.new(location_params)
     if @location.save
-      redirect_to(admin_location_path)
+      redirect_to(admin_locations_path)
     else
       render :new
     end
@@ -28,7 +29,7 @@ class Admin::LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if (@location.destroy)
       flash[:success] = "Location was deleted successful"
-      redirect_to(admin_location_path)
+      redirect_to(admin_locations_path)
     else
       flash[:danger] = "Something went wrong"
     end

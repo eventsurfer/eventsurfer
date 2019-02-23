@@ -37,7 +37,6 @@ gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
 gem "bootstrap-sass"
 gem "jquery-turbolinks"
 
-
 gem "ionicons-rails"      # ionicons icons
 gem "city-state"          # get all countries with name and towns
 
