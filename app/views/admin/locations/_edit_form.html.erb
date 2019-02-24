@@ -1,0 +1,39 @@
+<%= form_for :location do |form| %>
+  <div class="form-group">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field(:name, class: "form-control", :minlength => 1, :maxlenght => 100, :require => true, :placeholder => "location name") %>
+  </div>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= form.label :street %>
+      <%= form.text_field(:street, class: "form-control", :minlength => 1, :placeholder => "street", :require => true) %>
+    </div>
+    <div class="form-group">
+      <%= form.label :street_number %>
+      <%= form.text_field :street_number, class: "form-control", :minlength => 1, :placeholder => "street number", :require => true %>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= form.label :postcode %>
+      <%= form.text_field(:postcode, class: "form-control", :minlength => 1, placeholder: "postcode", :require => true) %>
+    </div>
+    <div class="form-group">
+      <%= form.label :city %>
+      <%= form.text_field :city, class: "form-control", :minlength => 1, :placeholder => "city", :require => true %>
+    </div>
+    <div class="form-group">
+      <%= form.label :country %>
+      <%= form.select :country, @countries, class: "form-control custom-select", :placeholder => "Choose the country", :require => true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div>
+      <%= form.submit("change", class: "btn btn-primary") %>
+    </div>
+  </div>
+
+
+
+
+<% end %>

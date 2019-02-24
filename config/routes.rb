@@ -15,6 +15,19 @@ Rails.application.routes.draw do
         get "show", to: "users#show"
       end
     end
+    resources :locations do
+
+      collection do
+        get "index", to:"locations#index"
+        get ":id/edit", to:"locations#edit"
+        get "new", to:"locations#new"
+        post "new", to:"locations#create"
+        post ":id/edit", to:"locations#update"
+        get ":id/delete", to:"locations#destroy"
+        get ":id/show", to:"locations#show"
+        get "/", to:"locations#index"
+      end
+    end
   end
 
 
