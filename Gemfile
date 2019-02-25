@@ -34,8 +34,6 @@ gem "jquery-rails"
 gem "devise_zxcvbn"               #plugin for devise
 gem "delayed_job_active_record"   #for delayed jobs in ruby on rails
 #gem "two_factor_authentication"
-gem "bootstrap-sass"
-gem "jquery-turbolinks"
 
 gem "font-ionicons-rails"      # ionicons icons
 gem "city-state"          # get all countries with name and towns
