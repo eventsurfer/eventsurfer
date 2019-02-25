@@ -13,10 +13,8 @@
 
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'bootstrap/theme';
-@import 'ionicons';
+@import "ionicons";
 
 .alert-alert {
   @extend .alert-warning;
@@ -24,4 +22,15 @@
 
 .alert-notice {
   @extend .alert-info;
+}
+.searchbar{
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+
 }
