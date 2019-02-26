@@ -1,0 +1,11 @@
+<h1>Index Events</h1>
+<table>
+  <th>Name</th>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.performances %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

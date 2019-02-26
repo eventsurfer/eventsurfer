@@ -124,12 +124,13 @@ GEM
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
     ffi (1.9.25-x86-mingw32)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
-    ionicons-rails (2.0.0)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -320,7 +321,7 @@ DEPENDENCIES
   devise
   devise_zxcvbn
   faker
-  ionicons-rails
+  font-ionicons-rails
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
