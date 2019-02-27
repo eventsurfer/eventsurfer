@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
+
   def index
     @events = Event.all
+    @event_performances = PerformanceEvent.all
   end
 
   def new
@@ -11,7 +15,7 @@ class Admin::EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @location.save
-      redirect_to(admin_event_path)
+      redirect_to(admin_events_path)
     else
       render :new
     end
@@ -25,7 +29,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     if (@event.update(event_params))
       flash[:success] = "Event was edited successful"
-      redirect_to(admin_event_path)
+      redirect_to(admin_events_path)
     else
       flash[:danger] = "Something went wrong"
       # redirect_to(edit_admin_event_path(params[:id]))
@@ -44,13 +48,21 @@ class Admin::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @performances = PerformanceEvent.find_by(:event_id => params[:id])
   end
 
   private
 
   begin
     def event_params
-      params.require(:event).permit(
+      params.require(:event).permit(:start,
+                                    :stop,
+                                    :description,
+                                    :name,
+                                    :hoster_name,
+                                    :website,
+                                    :prize,
+                                    :hotline
       )
     end
   end

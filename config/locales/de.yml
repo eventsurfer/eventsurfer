@@ -66,7 +66,7 @@ de:
       long: "%e. %B %Y"
       month_only: "%B"
       short: "%e. %b"
-      shortest: "%D.%m.%Y"
+      shortest: "%d.%m.%Y"
       week_only: "%-V"
       weekday: "%A (%-d.)"
       weekday_short: "%a"

@@ -36,7 +36,7 @@ Rails.application.routes.draw do
         post "new", to: "events#create"
         get ":id/delete", to:"events#destroy"
         get ":id/show", to:"events#show"
-        get "/", to:"event#index"
+        get "/", to:"events#index"
       end
     end
   end
