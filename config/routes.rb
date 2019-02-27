@@ -28,6 +28,19 @@ Rails.application.routes.draw do
         get "/", to:"locations#index"
       end
     end
+
+    resources :tickets do
+      collection do
+        get "index", to:"tickets#index"
+        get ":id/edit", to:"tickets#edit"
+        post ":id/edit", to:"tickets#update"
+        get "new", to:"tickets#new"
+        post "new", to:"tickets#update"
+        get ":id/delete", to:"tickets#destroy"
+        get ":id/show", to:"tickets#show"
+        get "/", to:"tickets#index"
+      end
+    end
   end
 
 
