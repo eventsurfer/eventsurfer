@@ -14,7 +14,7 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    if @location.save
+    if @event.save
       redirect_to(admin_events_path)
     else
       render :new
@@ -40,7 +40,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     if (@event.destroy)
       flash[:success] = "Event was destroyed successful"
-      redirect_to admin_event_path
+      redirect_to admin_events_path
     else
       flash[:danger] = "Something went wrong "
     end
