@@ -48,22 +48,22 @@ class Admin::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @performances = PerformanceEvent.find_by(:event_id => params[:id])
+    @performances = PerformanceEvent.find_by(event_id: params[:id])
   end
 
   private
 
-  begin
-    def event_params
-      params.require(:event).permit(:start,
-                                    :stop,
-                                    :description,
-                                    :name,
-                                    :hoster_name,
-                                    :website,
-                                    :prize,
-                                    :hotline
-      )
+    begin
+      def event_params
+        params.require(:event).permit(:start,
+                                      :stop,
+                                      :description,
+                                      :name,
+                                      :hoster_name,
+                                      :website,
+                                      :prize,
+                                      :hotline
+        )
+      end
     end
-  end
 end

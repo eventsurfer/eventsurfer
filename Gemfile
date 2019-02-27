@@ -31,9 +31,9 @@ gem "bcrypt", "~> 3.1.7"
 gem "devise"                      # framework for user authentification
 gem "faker"                       # framework to generate test data
 gem "jquery-rails"
-gem "devise_zxcvbn"               #plugin for devise
-gem "delayed_job_active_record"   #for delayed jobs in ruby on rails
-#gem "two_factor_authentication"
+gem "devise_zxcvbn"               # plugin for devise
+gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
+# gem "two_factor_authentication"
 gem "bootstrap-sass"
 gem "jquery-turbolinks"
 
