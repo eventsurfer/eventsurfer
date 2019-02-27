@@ -28,6 +28,12 @@ Rails.application.routes.draw do
         get "/", to:"locations#index"
       end
     end
+
+    resources :dashboards do
+      collection do
+        get "index", to: "dashboards#index"
+      end
+    end
   end
 
 
