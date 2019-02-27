@@ -31,6 +31,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "devise"                      # framework for user authentification
 gem "faker"                       # framework to generate test data
 gem "jquery-rails"
+
 gem "devise_zxcvbn"               # plugin for devise
 gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
 # gem "two_factor_authentication"
@@ -52,6 +53,10 @@ gem "chartkick"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
+
+#bootstrap
+gem "jquery-rails"
+gem "bootstrap"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
@@ -83,6 +88,7 @@ end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
