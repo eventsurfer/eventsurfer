@@ -16,7 +16,6 @@ Rails.application.routes.draw do
       end
     end
     resources :locations do
-
       collection do
         get "index", to:"locations#index"
         get ":id/edit", to:"locations#edit"
@@ -26,6 +25,18 @@ Rails.application.routes.draw do
         get ":id/delete", to:"locations#destroy"
         get ":id/show", to:"locations#show"
         get "/", to:"locations#index"
+      end
+    end
+    resources :events do
+      collection do
+        get "index", to:"events#index"
+        get ":id/edit", to:"events#edit"
+        post ":id/edit", to:"events#update"
+        get "new", to:"events#new"
+        post "new", to: "events#create"
+        get ":id/delete", to:"events#destroy"
+        get ":id/show", to:"events#show"
+        get "/", to:"events#index"
       end
     end
   end

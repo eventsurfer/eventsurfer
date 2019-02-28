@@ -31,9 +31,12 @@ gem "bcrypt", "~> 3.1.7"
 gem "devise"                      # framework for user authentification
 gem "faker"                       # framework to generate test data
 gem "jquery-rails"
-gem "devise_zxcvbn"               #plugin for devise
-gem "delayed_job_active_record"   #for delayed jobs in ruby on rails
-#gem "two_factor_authentication"
+
+gem "devise_zxcvbn"               # plugin for devise
+gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
+# gem "two_factor_authentication"
+gem "bootstrap-sass"
+gem "jquery-turbolinks"
 
 gem "font-ionicons-rails"      # ionicons icons
 gem "city-state"          # get all countries with name and towns
@@ -85,4 +88,9 @@ end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+gem "bootstrap"
+gem "jquery-rails"
