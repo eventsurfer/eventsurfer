@@ -8,6 +8,7 @@ AllCops:
   - 'config/**/*'
   - 'bin/**/*'
   - 'vendor/**/*'
+  - 'vednor/**/*'
   - 'public/**/*'
   - 'tmp/**/*'
   - 'coverage/**/*'
