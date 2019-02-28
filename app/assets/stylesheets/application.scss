@@ -14,7 +14,8 @@
  */
 
 @import "bootstrap";
-@import "ionicons";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .alert-alert {
   @extend .alert-warning;
