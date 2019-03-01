@@ -1,1 +1,18 @@
 <h1>hi</h1>
+<table class="table">
+  <th>id</th>
+  <th>valid_id</th>
+  <th>valid</th>
+  <th>created_at</th>
+  <th>updated_At</th>
+  <%= @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.id %></td>
+      <td><%= ticket.valid_id %></td>
+      <td><%= ticket.valid_ %></td>
+      <td><%= I18n.l(ticket.created_at, format: :shortest) %></td>
+      <td><%= I18n.l(ticket.updated_at, format: :shortest )%></td>
+    </tr>
+
+  <% end %>
+</table>

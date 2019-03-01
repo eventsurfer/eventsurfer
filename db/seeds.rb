@@ -44,3 +44,29 @@ if (Location.all.size < 40)
     Location.create(name: name, street: street, street_number: number.to_s, country: country, city: city, postcode: postcode.to_s)
   end
 end
+#Event.delete_all
+if (Event.all.size<10)
+  5.times do
+    name = Faker::FunnyName.name
+    start = Faker::Date.between(Date.today, Date.today.next_month)
+    stop = Faker::Date.between(start, Date.today.next_month)
+    hoster_name = Faker::Name.name
+    website = Faker::StarWars.planets
+    hotline = Faker::PhoneNumber.cell_phone_with_country_code
+    description = Faker::Quotes
+  end
+end
+#Performnace.delete_all
+if (Performance.all.size < 20)
+  10.times do
+    prize = Random.rand(1,5).to_f
+    start = Faker::Date.between(Date.today, Date.today.next_month)
+    stop = Faker::Date.between(start, Date.today.next_year)
+    stop_seeling = Faker::Date.between(start, stop)
+    number_of_tickets = Random.rand(50,100)
+    Performance.create(prize: prize, start: start, stop: stop, stop_seeling: stop_seeling, number_of_tickets: number_of_tickets)
+  end
+end
+if (PerformanceEvent.all.size < 40 )
+
+end
