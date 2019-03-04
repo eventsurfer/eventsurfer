@@ -64,9 +64,19 @@ if (Performance.all.size < 20)
     stop = Faker::Date.between(start, Date.today.next_year)
     stop_seeling = Faker::Date.between(start, stop)
     number_of_tickets = Random.rand(50,100)
+    number_of_tickets.times do
+      Ticket.create(validate_id="ffffff")
+    end
     Performance.create(prize: prize, start: start, stop: stop, stop_seeling: stop_seeling, number_of_tickets: number_of_tickets)
   end
 end
 if (PerformanceEvent.all.size < 40 )
+  10.times do
+    PerformanceEvent.create(event_id: Event.all[Random.rand(0,Event.all.size)], performance_id: Performance.all[0,Performance.all.size])
+  end
+end
+if (Ticket.all.size < 200)
+  10.times do
 
+  end
 end
