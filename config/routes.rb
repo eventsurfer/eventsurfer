@@ -59,6 +59,20 @@ Rails.application.routes.draw do
         get "/", to:"tickets#index"
       end
     end
+
+    resources :performances do
+      collection do
+        get "index", to: "performances#index"
+        get ":id/edit", to: "performances#edit"
+        post ":id/edit", to: "performances#update"
+        get "new", to: "performances#new"
+        post "new", to: "performances#create"
+        get ":id/delete", to: "performances#destroy"
+        get ":id/show", to: "performances#show"
+        get "/", to: "performances#index"
+      end
+    end
+
     get "/", to:"dashboards#index"
   end
 
