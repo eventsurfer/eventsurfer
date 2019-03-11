@@ -87,7 +87,7 @@
   <!-- Sidebar -->
   <ul class="sidebar navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="<%= admin_dashboards_path %>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </a>
@@ -118,6 +118,7 @@
       <div class="dropdown-menu" aria-labelledby="eventsDropdown">
         <a class="dropdown-item" href="<%= admin_events_path %>">Show all events</a>
         <a class="dropdown-item" href="<%= new_admin_event_path %>">Create event</a>
+        <a class="dropdown-item" href="<%= admin_event_path(1) %>"></a>
       </div>
     </li>
     <li class="nav-item dropdown">
