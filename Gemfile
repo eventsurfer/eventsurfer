@@ -27,19 +27,17 @@ gem "jbuilder", "~> 2.5"
 # gem "redis", "~> 4.0"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
-# User framework authentification
-gem "devise"                      # framework for user authentification
-gem "faker"                       # framework to generate test data
+
+gem "devise" # framework for user authentification
+gem "devise-security" # security plugin for devise
+gem "faker" # framework to generate test data
 gem "jquery-rails"
-
-gem "devise_zxcvbn"               # plugin for devise
-gem "delayed_job_active_record"   # for delayed jobs in ruby on rails
+gem "devise_zxcvbn" # plugin for devise
+gem "delayed_job_active_record" # for delayed jobs in ruby on rails
 # gem "two_factor_authentication"
-gem "bootstrap-sass"
-gem "jquery-turbolinks"
 
-gem "font-ionicons-rails"      # ionicons icons
-gem "city-state"          # get all countries with name and towns
+gem "font-awesome-sass"
+gem "city-state" # get all countries with name and towns
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
@@ -54,7 +52,7 @@ gem "chartkick"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 
-#bootstrap
+# bootstrap
 gem "jquery-rails"
 gem "bootstrap"
 
@@ -88,9 +86,4 @@ end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
-gem "bootstrap"
-gem "jquery-rails"

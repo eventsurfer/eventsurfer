@@ -111,6 +111,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise-security (0.13.0)
+      devise (>= 4.2.0, < 5.0)
+      rails (>= 4.2.0, < 6.0)
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
@@ -121,8 +124,8 @@ GEM
     ffi (1.9.25)
     ffi (1.9.25-x64-mingw32)
     ffi (1.9.25-x86-mingw32)
-    font-ionicons-rails (2.0.1.5)
-      railties (>= 3.2, < 6.0)
+    font-awesome-sass (5.6.1)
+      sassc (>= 1.11)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -312,9 +315,10 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   delayed_job_active_record
   devise
+  devise-security
   devise_zxcvbn
   faker
-  font-ionicons-rails
+  font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
   listen

@@ -2,5 +2,5 @@
 
 class Performance < ApplicationRecord
   has_one :event, through: :performance_events
-  has_many :tickets
+  has_many :tickets, through: :perfomance_tickets
 end
