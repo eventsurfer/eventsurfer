@@ -1,5 +1,5 @@
-<h1>Index Events</h1>
-<table class="table table-striped table-responsive table-sm table-active table-hover">
+<h1>All Events</h1>
+<table class="table">
   <th>Name</th>
   <th>Start date</th>
   <th>End date</th>
@@ -7,10 +7,10 @@
   <th><%= button_to "add", new_admin_event_path, method: :get, class: "btn btn-success" %></th>
   <tbody>
   <% @events.each do |event| %>
-    <tr data-id="<%= event.id %>" data-name="<%= event.name %>" data-start="<%= I18n.l(event.start.to_datetime, format: :shortest) %>" data-createdAt="<%= I18n.l(event.created_at.to_datetime, format: :shortest) %>" data-updatedAt="<%= I18n.l(event.updated_at.to_datetime, format: :shortest) %>" data-stop="<%= I18n.l(event.stop.to_datetime, format: :shortest) %>" data-hosterName="<%= event.hoster_name %>" data-hotline="<%= event.hotline %>" data-changedBy="<%= event.changed_by %>" data-link="<%= edit_admin_event_path(event.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit">
+    <tr data-id="<%= event.id %>" data-name="<%= event.name %>" data-start="<%= I18n.l(event.start.to_datetime, format: :shortest) %>" data-createdAt="<%= I18n.l(event.created_at.to_datetime, format: :shortest) %>" data-updatedAt="<%= I18n.l(event.updated_at.to_datetime, format: :shortest) %>" data-stop="<%= I18n.l(event.stop.to_datetime, format: :shortest) %>" data-hosterName="<%= event.hoster_name %>" data-hotline="<%= event.hotline %>" data-changedBy="<%= event.changed_by %>" data-link="<%= admin_event_path(event.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit">
       <td><%= event.name %></td>
-      <td><%= I18n.l(event.start.to_datetime, format: :shortest) %></td>
-      <td><%= I18n.l(event.stop.to_datetime, format: :shortest) %></td>
+      <td><%= I18n.l(event.start.to_date, format: :default) %></td>
+      <td><%= I18n.l(event.stop.to_date, format: :default) %></td>
       <td><%= event.hoster_name %></td>
       <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger">Delete</button></form></td>
     </tr>
