@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   namespace :admin do
     resources :users do
       collection do
@@ -44,6 +45,18 @@ Rails.application.routes.draw do
         get ":id/delete", to: "events#destroy"
         get ":id/show", to: "events#show"
         get "/", to: "events#index"
+      end
+    end
+    resources :tickets do
+      collection do
+        get "index", to:"tickets#index"
+        get ":id/edit", to:"tickets#edit"
+        post ":id/edit", to:"tickets#update"
+        get "new", to:"tickets#new"
+        post "new", to:"tickets#update"
+        get ":id/delete", to:"tickets#destroy"
+        get ":id/show", to:"tickets#show"
+        get "/", to:"tickets#index"
       end
     end
     get "/", to:"dashboards#index"
