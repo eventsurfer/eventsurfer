@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true)
+  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today)
 end
 
 def fake_name()
@@ -59,24 +59,30 @@ end
 #Performnace.delete_all
 if (Performance.all.size < 20)
   10.times do
-    prize = Random.rand(1,5).to_f
+    prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
-    stop_seeling = Faker::Date.between(start, stop)
-    number_of_tickets = Random.rand(50,100)
-    number_of_tickets.times do
-      Ticket.create(validate_id="ffffff")
-    end
-    Performance.create(prize: prize, start: start, stop: stop, stop_seeling: stop_seeling, number_of_tickets: number_of_tickets)
+    stop_selling = Faker::Date.between(start, stop)
+    number_of_tickets = Random.rand(50..100)
+    Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
 if (PerformanceEvent.all.size < 40 )
   10.times do
-    PerformanceEvent.create(event_id: Event.all[Random.rand(0,Event.all.size)], performance_id: Performance.all[0,Performance.all.size])
+    PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)], performance_id: Performance.all[0,Performance.all.size])
   end
 end
 if (Ticket.all.size < 200)
-  10.times do
+  Performance.all.each do |p|
+    arr = []
+    10.times do |t|
 
+      ticket = Ticket.create(validate_id:"fffggg", valid_: true )
+      arr.push(ticket.id)
+    end
+    arr.each do |t|
+      PerformanceTicket.create(performances_id: p.id, tickets_id: t)
+    end
   end
+
 end
