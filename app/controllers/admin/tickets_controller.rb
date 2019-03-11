@@ -2,7 +2,7 @@
 
 class Admin::TicketsController < ApplicationController
   before_action :authenticate_user!
-  layout "adminDash"
+
   def index
     @tickets = Ticket.all
   end
