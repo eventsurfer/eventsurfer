@@ -2,6 +2,7 @@
 
 class Admin::LocationsController < ApplicationController
   before_action :authenticate_user!
+  layout "adminDash"
   def index
     @locations = Location.all
   end
