@@ -3,13 +3,13 @@
 class Admin::UsersController < ApplicationController
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!
-
+  layout "adminDash"
   def index
     @users = User.all
   end
 
   def new
-    User.new
+    @user = User.new
   end
 
   def edit

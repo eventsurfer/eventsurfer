@@ -27,8 +27,9 @@ gem "jbuilder", "~> 2.5"
 # gem "redis", "~> 4.0"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
-# User framework authentification
+
 gem "devise" # framework for user authentification
+gem "devise-security" # security plugin for devise
 gem "faker" # framework to generate test data
 gem "jquery-rails"
 gem "devise_zxcvbn" # plugin for devise
