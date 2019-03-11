@@ -45,15 +45,17 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-if (Event.all.size<10)
+p Event.all.size
+if (Event.all.size < 10)
   5.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
     hoster_name = Faker::Name.name
-    website = Faker::StarWars.planets
+    website = Faker::FunnyName.name + ".net"
     hotline = Faker::PhoneNumber.cell_phone_with_country_code
     description = Faker::Quotes
+    Event.create(name: name, start: start, stop: stop, hoster_name: hoster_name, website: website, hotline: hotline, description: description)
   end
 end
 #Performnace.delete_all
@@ -67,9 +69,9 @@ if (Performance.all.size < 20)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
-if (PerformanceEvent.all.size < 40 )
+if (PerformanceEvent.all.size < 40)
   10.times do
-    PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)], performance_id: Performance.all[0,Performance.all.size])
+    PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)], performance_id: Performance.all[0, Performance.all.size])
   end
 end
 if (Ticket.all.size < 200)
@@ -77,7 +79,7 @@ if (Ticket.all.size < 200)
     arr = []
     10.times do |t|
 
-      ticket = Ticket.create(validate_id:"fffggg", valid_: true )
+      ticket = Ticket.create(validate_id: "fffggg", valid_: true)
       arr.push(ticket.id)
     end
     arr.each do |t|

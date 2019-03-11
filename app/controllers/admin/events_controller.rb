@@ -47,8 +47,11 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
+    p PerformanceEvent.all
     @event = Event.find(params[:id])
-    @performances = PerformanceEvent.find_by(event_id: params[:id])
+    @performances = PerformanceEvent.where(:event_id => params[:id])
+    @locations = PerformanceLocation.where(:event_id => params[:id])
+    p @performances
   end
 
   private
