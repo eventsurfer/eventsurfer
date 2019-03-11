@@ -1,13 +1,14 @@
 <%= javascript_include_tag 'table_modal.js', 'data-turbolinks-track': 'reload' %>
-<table class="table" data-modal="true">
+<table class="table" data-modal="true" data-name="User">
   <thead>
   <tr>
-    <th>Id</th>
+    <th data-modal="false">Id</th>
     <th>Name</th>
     <th>Email</th>
     <th>Enabled</th>
     <th>Regstrierung</th>
     <th>Password</th>
+    <th data-modal="button"></th>
   </tr>
   </thead>
   <tbody>
