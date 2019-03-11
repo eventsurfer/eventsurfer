@@ -1,9 +1,8 @@
 <div class="container-fluid">
-  <h1><%= @event.name %></h1>
+  <h1 ><%= @event.name %></h1>
   <div class="row">
     <div class="col-sm-6">
       <h3>Performances</h3>
-      <p>Has <%= @performances.size %> Performances</p>
       <table class="table">
         <th><%= I18n.t (:location) %></th>
         <th>Start</th>
@@ -11,8 +10,8 @@
         <tbody>
           <% @performances.each do |perform| %>
             <tr>
-
-              <td><%= @locations.where(:performance_id => Performance.first.id).first.location.name%></td>
+              <td><%= perform.performance.id %></td>
+              <td><%= @locations.find_by(:performance_id => perform.performance.id).location.name%></td>
               <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
               <td><%=I18n.l(perform.performance.stop.to_date, format: :default) %></td>
             </tr>
@@ -21,11 +20,10 @@
       </table>
     </div>
     <div class="col-sm-6">
-      <h3>Locations</h3>
-      <p>Has <%= @locations.size %> Locations</p>
-      <%= @locations.each do |loc| %>
-        <ul>
-          <%= getFullAddress(loc.location) %>
+      <h3>Locations  <span class="badge badge-primary badge-pill"><%= @locations.size %> </span></h3>
+      <% @locations.each do |loc| %>
+        <ul class="list-unstyled">
+          <li><%= getFullAddress(loc.location) %></li>
         </ul>
       <% end %>
     </div>
