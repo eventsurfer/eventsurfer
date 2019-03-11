@@ -2,7 +2,7 @@
 
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
-
+  layout "adminDash"
   def index
     @events = Event.all
     @event_performances = PerformanceEvent.all
