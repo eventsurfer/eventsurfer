@@ -2,11 +2,11 @@
   <div class="form-inline">
     <div class="form-group">
       <%= form.label(:start) %>
-      <%= form.time_select(:start, class: "form-control", placeholder: "start of performances") %>
+      <%= form.datetime_select(:start, class: "form-control", placeholder: "start of performances") %>
     </div>
     <div class="form-group">
       <%= form.label(:stop) %>
-      <%= form.time_select(:stop, class: "form-control", placeholder: "stop of performances") %>
+      <%= form.datetime_select(:stop, class: "form-control", placeholder: "stop of performances") %>
     </div>
     <div class="form-group">
       <%= form.label(:prize) %>
@@ -18,11 +18,11 @@
     </div>
     <div class="form-group">
       <%= form.label(:stop_selling) %>
-      <%= form.time_select(:stop_selling, class: "form-control", placeholder: "stop of selling") %>
+      <%= form.datetime_select(:stop_selling, class: "form-control", placeholder: "stop of selling") %>
     </div>
     <div class="form-group">
-      <%= form.label(:prize) %>
-      <%= form.number_field(:prize, class: "form-control", step:1) %>
+      <%= form.label(:number_of_tickets) %>
+      <%= form.number_field(:number_of_tickets, class: "form-control", step:1) %>
     </div>
   </div>
   <div class="form-group">
