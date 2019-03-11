@@ -1,9 +1,9 @@
 <h1>All Events</h1>
 <table class="table">
-  <th>Name</th>
-  <th>Start date</th>
-  <th>End date</th>
-  <th>Hoster</th>
+  <th><%= I18n.t :admin_event_name %></th>
+  <th><%= I18n.t :admin_event_start_date %></th>
+  <th><%= I18n.t :admin_event_end_date %></th>
+  <th><%= I18n.t :admin_event_hoster %></th>
   <th><%= button_to "add", new_admin_event_path, method: :get, class: "btn btn-success" %></th>
   <tbody>
   <% @events.each do |event| %>
@@ -12,7 +12,7 @@
       <td><%= I18n.l(event.start.to_date, format: :default) %></td>
       <td><%= I18n.l(event.stop.to_date, format: :default) %></td>
       <td><%= event.hoster_name %></td>
-      <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger">Delete</button></form></td>
+      <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger"><%= I18n.t :delete %>></button></form></td>
     </tr>
   <% end %>
   </tbody>

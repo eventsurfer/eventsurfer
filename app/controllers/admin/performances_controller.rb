@@ -50,16 +50,15 @@ class Admin::PerformancesController < ApplicationController
   end
 
   private
-
-  begin
-    def performance_params
-      params.require(:performance).permit(:start,
-                                           :stop,
-                                           :prize,
-                                           :sell_allowed,
-                                           :stop_selling,
-                                           :number_of_tickets
-      )
+    begin
+      def performance_params
+        params.require(:performance).permit(:start,
+                                             :stop,
+                                             :prize,
+                                             :sell_allowed,
+                                             :stop_selling,
+                                             :number_of_tickets
+        )
+      end
     end
-  end
 end

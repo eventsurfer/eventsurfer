@@ -31,6 +31,13 @@
 
 en:
   location: "Location"
+  admin_event_order: "Order"
+  admin_event_start_date: "start date"
+  admin_event_end_date: "end date"
+  admin_event_hoster: "hoster"
+  add: "add"
+  delete: "delete"
+  admin_event_name: "event name"
   hello: "Hello world"
   date:
     formats:
