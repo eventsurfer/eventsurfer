@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   namespace :admin do
     resources :users do
       collection do
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
     resources :dashboards do
       collection do
         get "index", to: "dashboards#index"
+        get "/", to: "dashboards#index"
       end
     end
     resources :events do
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
         get "/", to: "events#index"
       end
     end
+    get "/", to:"dashboards#index"
   end
 
 
