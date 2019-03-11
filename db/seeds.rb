@@ -45,7 +45,6 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-p Event.all.size
 if (Event.all.size < 10)
   5.times do
     name = Faker::FunnyName.name
