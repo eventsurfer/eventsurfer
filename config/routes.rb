@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :dashboards do
       collection do
         get "index", to: "dashboards#index"
+        get "/", to: "dashboards#index"
       end
     end
     resources :events do
@@ -46,6 +47,19 @@ Rails.application.routes.draw do
         get "/", to: "events#index"
       end
     end
+    resources :tickets do
+      collection do
+        get "index", to:"tickets#index"
+        get ":id/edit", to:"tickets#edit"
+        post ":id/edit", to:"tickets#update"
+        get "new", to:"tickets#new"
+        post "new", to:"tickets#update"
+        get ":id/delete", to:"tickets#destroy"
+        get ":id/show", to:"tickets#show"
+        get "/", to:"tickets#index"
+      end
+    end
+
     resources :performances do
       collection do
         get "index", to: "performances#index"
@@ -58,6 +72,8 @@ Rails.application.routes.draw do
         get "/", to: "performances#index"
       end
     end
+
+    get "/", to:"dashboards#index"
   end
 
 
