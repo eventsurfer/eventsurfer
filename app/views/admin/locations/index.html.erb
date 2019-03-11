@@ -1,37 +1,48 @@
+<%= javascript_include_tag 'locations.js', 'data-turbolinks-track': 'reload' %>
 <h2>Locations</h2>
 <table class="table table-striped table-responsive table-sm table-active table-hover" id="location-indextable">
   <thead class="text-center">
-  <th>Name</th>
-  <th>Street</th>
-  <th>Street Number</th>
-  <th>City</th>
-  <th>Country</th>
-  <th><%= button_to "add", new_admin_location_path, method: :get, class: "btn btn-success" %></th>
+  <tr>
+    <th>Name</th>
+    <th>Street</th>
+    <th>Street Number</th>
+    <th>City</th>
+    <th>Country</th>
+    <th><%= button_to "add", new_admin_location_path, method: :get, class: "btn btn-success" %></th>
+  </tr>
   </thead>
   <tbody>
   <% @locations.each do |location| %>
 
-    <tr data-id="<%= location.id %>" data-name="<%= location.name %>" data-street="<%= location.street %>" data-streetNumber="<%= location.street_number %>" data-city="<%= location.city %>" data-country="<%= location.country %>" data-postcode="<%= location.postcode %>" data-createdAt="<%= I18n.l(location.created_at.to_date, format: :default) %>" data-updatedAt="<%= I18n.l(location.updated_at.to_date, format: :default) %>" data-changedBy="<%= if location.changed_by == "null"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                location.changed_by
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                "No Data"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>" data-link="<%= edit_admin_location_path(location.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit" >
+    <tr data-location-id="<%= location.id %>"
+        data-location-name="<%= location.name %>"
+        data-location-street="<%= location.street %>"
+        data-location-streetNumber="<%= location.street_number %>"
+        data-location-city="<%= location.city %>"
+        data-location-country="<%= location.country %>"
+        data-location-postcode="<%= location.postcode %>"
+        data-location-createdAt="<%= I18n.l(location.created_at.to_date, format: :default) %>"
+        data-location-updatedAt="<%= I18n.l(location.updated_at.to_date, format: :default) %>"
+        data-location-changedBy="<%= if location.changed_by == "null"
+                                       location.changed_by
+                                     else
+                                       "No Data"
+                                     end %>"
+        data-location-link="<%= edit_admin_location_path(location.id) %>"
+
+        data-toggle="tooltip" data-placement="bottom" title="Click to edit">
 
       <td><%= location.name %></td>
       <td><%= location.street %></td>
       <td><%= location.street_number %></td>
       <td><%= location.city %></td>
       <td><%= location.country %></td>
-      <td><form action="/admin/locations/<%=location.id %>/delete" method="get"><button class="btn btn-danger">Delete</button></form></td>
+      <td>
+        <form action="/admin/locations/<%= location.id %>/delete" method="get">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
-
-
-
-<script>
-    $("tr[data-link]").click(function () {
-        window.location = $(this).data("link");
-    })
-</script>

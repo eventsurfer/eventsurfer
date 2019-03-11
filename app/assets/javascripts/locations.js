@@ -1,49 +1,47 @@
-let getLocationsFromIndexTable = function (start, end, timezone, callback) {
-    events = [];
-    evant = [];
-    $('#location-indextable tbody tr').each(function () {
-        evant = {
-            id: $(this).data("id"),
-            street: $(this).data("street"),
-            postcode: $(this).data("postcode"),
-            city: $(this).data("city"),
-            country: $(this).data("country"),
-            streetNumber: $(this).data("streetNumber"),
-            createdAt: $(this).data("createdAt"),
-            updatedAt: $(this).data("updatedAt"),
-            changedBy: $(this).data("changedBy")
-        };
-        events.push(evant);
-    });
-    return events;
-};
-let showModalWithEventData = function (evant) {
-    if($('#locationModal').length){
-        $('#locationModal span.street').text(evant.street);
-        $('#locationModal, span.postcode').text(evant.postcode);
-        $('#locationModal span.city').text(evant.city);
-        $('#locationModal, span.country').text(evant.country);
-        $('#locationModal span.createdAt').text(evant.createdAt);
-        $('#locationModal, span.updatedAt').text(evant.updatedAt);
-        $('#locationModal span.changedBy').text(evant.changedBy);
-        let data = {evant:evant};
-        let edit = $("#locationModal form.locationeditbutton");
-        let del = $("#locationModal form.locationedeletebutton");
-        edit.attr("action","admin/locations"+evant.id+"edit");
-        edit.children('.locationeditbutton').attr("value","Edit");
-        edit.off("ajax:success");
-        edit.off("ajax:error");
-        edit.on("ajax:error", function (xhr, status, error) {
+const prefix = "location";
 
-        });
-        edit.on("ajax:success", null, data, function (xhr, status) {
-
-        });
-        console.log("hi");
+let showModalWithEventData = function () {
+    let data = Object.entries($(this).data());
+    for (let i = 0; i < data.length; i++) {
+        let attribute = data[i][0].toLowerCase();
+        if (attribute.includes(prefix)) {
+            $('#locationModal span.' + attribute.replace(prefix, "")).text(data[i][1]);
+        }
     }
+    let edit = $("#locationeditbutton");
+    let del = $("#locationedeletebutton");
+    edit.attr("href", "/admin/locations/" + $(this).data("locationId") + "/edit");
+    del.attr("href", "/admin/locations/" + $(this).data("locationId") + "/delete");
+    edit.off("ajax:success");
+    edit.off("ajax:error");
+    edit.on("ajax:error", function (xhr, status, error) {
 
+    });
+    //edit.on("ajax:success", null, data, function (xhr, status) {
+
+    //});
+    $('#locationModal').modal();
 };
 
 $(document).ready(function () {
-   showModalWithEventData(getLocationsFromIndexTable());
+    $("<div id=\"locationModal\" class=\"modal fade\" role=\"dialog\">\n" +
+        "  <div class=\"modal-dialog\">\n" +
+        "    <div class=\"modal-content\">\n" +
+        "      <div class=\"modal-header\">\n" +
+        "        <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n" +
+        "        <h5 class=\"modal-title\" id=\"#locationModalLabel\">Modal Header</h5>\n" +
+        "      </div>\n" +
+        "      <div class=\"modal-body\">\n" +
+        "        <p>Ein netter Text <span class=\"street\">STREET</span> <span class=\"postcode\">POSTCODE</span> <span class=\"city\">CITY</span> <span class=\"country\">COUNTRY</span> <span class=\"streetnumber\">STREETNUMBER</span> <span class=\"createdat\">CREATED AT</span> <span class=\"updatedat\">UPDATED AT</span> <span class=\"changedby\">CHANGED BY</span></p>\n" +
+        "      </div>\n" +
+        "      <div class=\"modal-footer\">\n" +
+        "        <a id='locationeditbutton' href='#' class=\"btn btn-secondary\" role=\"button\">Edit</a>\n" +
+        "        <a id='locationedeletebutton' href='#' class=\"btn btn-danger\" role=\"button\">Delete</a>\n" +
+        "        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+        "      </div>\n" +
+        "    </div>\n" +
+        "  </div>\n" +
+        "</div>").appendTo("body");
+
+    $("tr[data-location-link]").click(showModalWithEventData);
 });
