@@ -1,3 +1,13 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Events", admin_events_path %>
+
+  </li>
+  <li class="breadcrumb-item active">
+    <%= link_to @event.name, admin_event_path(@event.id) %>
+  </li>
+</ol>
+
 <div class="container-fluid">
   <h1 ><%= @event.name %></h1>
   <div class="row">
@@ -9,7 +19,7 @@
         <th>Stop</th>
         <tbody>
           <% @performances.each do |perform| %>
-            <tr>
+            <tr data-link="<%= edit_admin_performance_path(perform.performance.id) %>" >
 
               <td><%= @locations.find_by(:performance_id => perform.performance.id).location.name%></td>
               <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
@@ -32,3 +42,8 @@
   </div>
 
 </div>
+<script>
+    $("tr[data-link]").click(function () {
+        window.location = $(this).data("link");
+    })
+</script>
