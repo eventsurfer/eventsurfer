@@ -75,7 +75,7 @@
         <a class="dropdown-item" href="<%= edit_user_registration_path %>">Settings</a>
         <a class="dropdown-item" href="#">Activity Log</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<%= destroy_user_session_path %>">Logout</a>
+        <p class="dropdown-item"><%= button_to "logout",destroy_user_session_path, method: :delete, class: "btn btn-primary" %></p>
 
       </div>
     </li>
