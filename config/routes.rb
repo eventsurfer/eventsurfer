@@ -76,6 +76,17 @@ Rails.application.routes.draw do
     get "/", to:"dashboards#index"
   end
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :events do
+        collection do
+          post "get"
+        end
+      end
+    end
+  end
+
+
 
   # Show events
   resources :events do
