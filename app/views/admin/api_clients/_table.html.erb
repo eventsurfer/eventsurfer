@@ -1,10 +1,9 @@
 <table class="table">
- <thead>
-   <tr>
-     <td>App-Name</td>
-     <td>Auth-Key</td>
-     <td></td>
-    </tr>
+  <thead>
+  <th>App-Name</th>
+  <th>Auth-Key</th>
+  <th></th>
+  <th></th>
   </thead>
   <tbody>
   <% @clients.each do |c| %>
@@ -16,18 +15,20 @@
                     class: "btn btn-secondary",
                     "data-toggle": "tooltip",
                     "data-placement": "top",
-                     title: "edit") do %>
-           <%= "edit" %>
+                    title: "edit") do %>
+          <i class="far fa-edit"></i>
         <% end %>
+      </td>
+      <td>
         <%= button_to(admin_api_client_path(c.id),
-                    class: "btn btn-secondary",
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: "edit",
-                    method: :delete,
-                    data: {confirm:
-                          "Delete Api-Client?"}) do %>
-          <%= "trash" %>
+                      class: "btn btn-secondary",
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      title: "edit",
+                      method: :delete,
+                      data: {confirm:
+                                 "Delete Api-Client?"}) do %>
+          <i class="far fa-trash-alt"></i>
         <% end %>
       </td>
     </tr>

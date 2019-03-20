@@ -1,43 +1,46 @@
-<h1>Einstellungen</h1>
+<h1>Settings</h1>
 
-<%= link_to('Einstellung eintragen',
+<%= link_to('Add setting',
             new_admin_setting_path,
             class: "btn btn-primary") %>
 <table class="table">
   <thead>
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-      <th></th>
-    </tr>
+
+    <th>Key</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+
   </thead>
 
   <tbody>
-    <% @settings.each do |setting| %>
-      <tr>
-        <td><%= setting.key %></td>
-        <td><%= setting.value %></td>
-        <td>
+  <% @settings.each do |setting| %>
+    <tr>
+      <td><%= setting.key %></td>
+      <td><%= setting.value %></td>
+      <td>
         <%= link_to(edit_admin_setting_path(setting.id),
                     class: "btn btn-secondary",
                     "data-toggle": "tooltip",
                     "data-placement": "top",
-                     title: "Bearbeiten") do %>
-           <%= "edit" %>
+                    title: "edit") do %>
+          <i class="far fa-edit"></i>
         <% end %>
+      </td>
+      <td>
         <%= button_to(admin_setting_path(setting.id),
-                    class: "btn btn-secondary",
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: "Entfernen",
-                    method: :delete,
-                    data: {confirm:
-                          "Einstellung wirklich löschen?"}) do %>
-          <%= "trash" %>
+                      class: "btn btn-secondary",
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      title: "destroy",
+                      method: :delete,
+                      data: {confirm:
+                                 "Delete settings?"}) do %>
+          <i class="far fa-trash-alt"></i>
         <% end %>
-        </td>
-      </tr>
-    <% end %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
