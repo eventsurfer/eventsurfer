@@ -75,6 +75,11 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :settings do
+      collection do
+        get "showApiKeys", to: "settings#showApiKeys"
+      end
+    end
     get "/", to:"dashboards#index"
   end
 
