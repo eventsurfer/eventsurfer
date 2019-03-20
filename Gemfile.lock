@@ -99,6 +99,13 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    countries (3.0.0)
+      i18n_data (~> 0.8.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
+    country_select (4.0.0)
+      countries (~> 3.0)
+      sort_alphabetical (~> 1.0)
     crass (1.0.4)
     delayed_job (4.1.5)
       activesupport (>= 3.0, < 5.3)
@@ -130,6 +137,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.8.0)
     io-like (0.3.0)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
@@ -252,6 +260,9 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    sixarm_ruby_unaccent (1.2.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -280,6 +291,7 @@ GEM
     uglifier (4.1.18)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.0)
+    unicode_utils (1.4.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.6.2)
@@ -313,6 +325,7 @@ DEPENDENCIES
   chromedriver-helper
   city-state
   coffee-rails (~> 4.2)
+  country_select (~> 4.0)
   delayed_job_active_record
   devise
   devise-security
