@@ -87,3 +87,4 @@ if (Ticket.all.size < 200)
   end
 
 end
+ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
