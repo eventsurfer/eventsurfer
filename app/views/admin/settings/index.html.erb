@@ -1,0 +1,43 @@
+<h1>Einstellungen</h1>
+
+<%= link_to('Einstellung eintragen',
+            new_admin_setting_path,
+            class: "btn btn-primary") %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.key %></td>
+        <td><%= setting.value %></td>
+        <td>
+        <%= link_to(edit_admin_setting_path(setting.id),
+                    class: "btn btn-secondary",
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                     title: "Bearbeiten") do %>
+           <%= "edit" %>
+        <% end %>
+        <%= button_to(admin_setting_path(setting.id),
+                    class: "btn btn-secondary",
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "Entfernen",
+                    method: :delete,
+                    data: {confirm:
+                          "Einstellung wirklich löschen?"}) do %>
+          <%= "trash" %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

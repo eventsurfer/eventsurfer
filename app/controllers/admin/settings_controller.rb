@@ -2,30 +2,50 @@
 
 class Admin::SettingsController < ApplicationController
   before_action :authenticate_user!
-
-  def showApiKeys
-    @apiKeys = ApiClient.all
+  layout "adminDash"
+  def index
+    @settings = Setting.all
   end
 
-  def newApiKey
-    @apiKey = ApiClient.new
+  def new
+    @setting = Setting.new
   end
 
-  def show
-    @apiKey = ApiClient.find(params[:id])
-  end
-
-  def delete
-    @apiKey = ApiClient.find(params[:id])
-    if (@apiKey.destroy)
-      redirect_to showApiKeys_admin_settings_path
-    else
-      flash[:warning] = "sth. went wrong"
-    end
+  def edit
+    @setting = Setting.find(params[:id])
   end
 
   def create
-    @apiKey = ApiClient.create(setting_parameter)
+    @setting = Setting.new(setting_params)
+    if @setting.save
+      redirect_to admin_settings_url,
+                  notice: "Setting was successfully created."
+    else
+      render :new
+    end
   end
 
+  def update
+    @setting = Setting.find(params[:id])
+    if @setting.update(setting_params)
+      redirect_to admin_settings_url,
+                  notice: "Setting was successfully updated."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @setting = Setting.find(params[:id])
+    @setting.destroy
+    redirect_to admin_settings_url,
+                notice: "Setting was successfully destroyed."
+  end
+
+  private
+  begin
+    def setting_params
+      params.require(:setting).permit(:key, :value)
+    end
+  end
 end

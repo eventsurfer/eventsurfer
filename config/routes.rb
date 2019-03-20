@@ -75,11 +75,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :settings do
-      collection do
-        get "showApiKeys", to: "settings#showApiKeys"
-      end
-    end
+    resources :settings, :except => [:show]
+    resources :api_clients, :only => [:index,
+                                      :new,
+                                      :create,
+                                      :edit,
+                                      :update,
+                                      :destroy]
     get "/", to:"dashboards#index"
   end
 
