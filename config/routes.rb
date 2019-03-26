@@ -92,6 +92,11 @@ Rails.application.routes.draw do
           post "get"
         end
       end
+      resources :tickets do
+        collection do
+          post "validate_ticket"
+        end
+      end
     end
   end
 
