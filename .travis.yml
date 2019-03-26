@@ -1,4 +1,7 @@
 language: ruby
+install:
+  - gem install bundler
+  - bundle install --path=vendor/bundle
 script:
   - bundle exec rubocop
   - bundle exec rails test
