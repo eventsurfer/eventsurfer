@@ -39,7 +39,7 @@ gem "delayed_job_active_record" # for delayed jobs in ruby on rails
 gem "font-awesome-sass"
 gem "city-state" # get all countries with name and towns
 
-gem 'country_select', '~> 4.0'
+gem "country_select", "~> 4.0"
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
