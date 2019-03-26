@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+  <th>App-Name</th>
+  <th>Auth-Key</th>
+  <th></th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% @clients.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+      <td><%= c.auth_key %></td>
+      <td>
+        <%= link_to(edit_admin_api_client_path(c),
+                    class: "btn btn-secondary",
+                    "data-toggle": "tooltip",
+                    "data-placement": "top",
+                    title: "edit") do %>
+          <i class="far fa-edit"></i>
+        <% end %>
+      </td>
+      <td>
+        <%= button_to(admin_api_client_path(c.id),
+                      class: "btn btn-secondary",
+                      "data-toggle": "tooltip",
+                      "data-placement": "top",
+                      title: "edit",
+                      method: :delete,
+                      data: {confirm:
+                                 "Delete Api-Client?"}) do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

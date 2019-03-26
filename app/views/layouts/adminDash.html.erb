@@ -75,7 +75,7 @@
         <a class="dropdown-item" href="<%= edit_user_registration_path %>">Settings</a>
         <a class="dropdown-item" href="#">Activity Log</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<%= destroy_user_session_path %>" >Logout</a>
+        <p class="dropdown-item"><%= button_to "logout",destroy_user_session_path, method: :delete, class: "btn btn-primary" %></p>
 
       </div>
     </li>
@@ -87,26 +87,84 @@
   <!-- Sidebar -->
   <ul class="sidebar navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="<%= admin_dashboards_path %>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </a>
     </li>
+
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+      <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button" data-toggle="dropdown"
          aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
+        <i class="fas fa-fw fa-calendar-day"></i>
+        <span>Events</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="eventsDropdown">
+        <a class="dropdown-item" href="<%= admin_events_path %>">Show all events</a>
+        <a class="dropdown-item" href="<%= new_admin_event_path %>">Create event</a>
+        <a class="dropdown-item" href="<%= admin_event_path(1) %>"></a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="performancesDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-theater-masks"></i>
+        <span>Performances</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="performancesDropdown">
+        <a class="dropdown-item" href="#">Show all performances</a>
+        <a class="dropdown-item" href="#">Add performance</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-map"></i>
+        <span>Locations</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="locationsDropdown">
+        <a class="dropdown-item" href="<%= admin_locations_path %>">Show all locations</a>
+        <a class="dropdown-item" href="<%= new_admin_location_path %>">Add location</a>
+        <a class="dropdown-item" href="#">Global Map</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-address-book"></i>
+        <span>Users</span>
       </a>
       <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <h6 class="dropdown-header">Login Screens:</h6>
-        <a class="dropdown-item" href="login.html">Login</a>
-        <a class="dropdown-item" href="register.html">Register</a>
-        <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+        <h6 class="dropdown-header"><i class="fas fa-fw fa-address-card"></i> Costumer</h6>
+        <a class="dropdown-item" href="#">Show all costumer</a>
+        <a class="dropdown-item" href="#">Statistics</a>
         <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Other Pages:</h6>
-        <a class="dropdown-item" href="404.html">404 Page</a>
-        <a class="dropdown-item" href="blank.html">Blank Page</a>
+        <h6 class="dropdown-header"><i class="fas fa-fw fa-user"></i> Employer</h6>
+        <a class="dropdown-item" href="<%= admin_users_path %>">Show all employer</a>
+        <a class="dropdown-item" href="<%= new_admin_user_path %>">Add employer</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="ordersDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-clipboard-list"></i>
+        <span>Orders</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="ordersDropdown">
+        <a class="dropdown-item" href="#">Show all orders</a>
+        <a class="dropdown-item" href="#">Add order</a>
+        <a class="dropdown-item" href="#">Statistics</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-theater-masks"></i>
+        <span>Settings</span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="performancesDropdown">
+        <a class="dropdown-item" href="<%= admin_settings_url %>"><i class="fas fa-tools"></i> General</a>
+        <a class="dropdown-item" href="<%= admin_api_clients_url %>">API Clients</a>
       </div>
     </li>
     <li class="nav-item">
@@ -120,7 +178,14 @@
         <span>Tables</span></a>
     </li>
   </ul>
-  <%= yield %>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /content-wrapper -->
+
 </div>
 <!-- /#wrapper -->
 </body>

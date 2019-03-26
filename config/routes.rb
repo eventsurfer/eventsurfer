@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users do
+
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
@@ -59,8 +61,45 @@ Rails.application.routes.draw do
         get "/", to:"tickets#index"
       end
     end
+
+    resources :performances do
+      collection do
+        get "index", to: "performances#index"
+        get ":id/edit", to: "performances#edit"
+        post ":id/edit", to: "performances#update"
+        get "new", to: "performances#new"
+        post "new", to: "performances#create"
+        get ":id/delete", to: "performances#destroy"
+        get ":id/show", to: "performances#show"
+        get "/", to: "performances#index"
+      end
+    end
+
+    resources :settings, :except => [:show]
+    resources :api_clients, :only => [:index,
+                                      :new,
+                                      :create,
+                                      :edit,
+                                      :update,
+                                      :destroy]
     get "/", to:"dashboards#index"
   end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :events do
+        collection do
+          post "get"
+        end
+      end
+      resources :tickets do
+        collection do
+          post "validate_ticket"
+        end
+      end
+    end
+  end
+
 
 
   # Show events
