@@ -105,12 +105,12 @@ Rails.application.routes.draw do
     end
   end
 
-
-
   # Show events
   resources :events do
-    post 'punch'
-    get "events", to: "events#index"
+    collection do
+      post 'punch'
+      get ":id/show", to: "events#show"
+    end
   end
 
 
