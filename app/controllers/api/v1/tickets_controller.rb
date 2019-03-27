@@ -43,6 +43,5 @@ class Api::V1::TicketsController < Api::V1::BaseController
         return bad_request
       end
     end
-
   end
 end
