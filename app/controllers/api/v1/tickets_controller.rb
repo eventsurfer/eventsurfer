@@ -4,8 +4,9 @@ class Api::V1::TicketsController < Api::V1::BaseController
   before_action :authenticate_client!
 
   def validate_ticket
-    if params[:validate_id].present? && params[:ticket_id].present?
+    if params[:validate_id].present? && params[:ticket_id].present? && params[:user_id]
       begin
+        @user = User.find(params[:user_id])
         @ticket = Ticket.find_by(id: params[:ticket_id])
         if @ticket.nil? || !@ticket.valid_
           if @ticket.nil?
@@ -15,7 +16,11 @@ class Api::V1::TicketsController < Api::V1::BaseController
           end
         else
           if @ticket.validate_id == params[:validate_id]
-            @ticket.use_ticket
+            if (@user.nil?)
+              return unauthenticated
+            else
+              @ticket.use_ticket(params[:user_id])
+            end
             if @ticket.save
               render json: {ticket: @ticket, action: "used"}
             else
@@ -29,11 +34,14 @@ class Api::V1::TicketsController < Api::V1::BaseController
         return api_error()
       end
 
-    end
-    if (params[:ticket_id].present? && !params[:validate_id])
-      return api_error(status: 400, error: "forget validate id")
-    elsif (params[:validate_id].present? && !params[:ticket_id])
-      return api_error(status: 400, error: "forget ticket id")
+    else
+      if (params[:ticket_id].present?)
+        return api_error(status: 400, error: "forget validate id")
+      elsif (params[:validate_id].present?)
+        return api_error(status: 400, error: "forget ticket id")
+      else
+        return bad_request
+      end
     end
   end
 end
