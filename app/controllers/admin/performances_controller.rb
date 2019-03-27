@@ -14,7 +14,7 @@ class Admin::PerformancesController < ApplicationController
   def create
     @performance = Performance.new(performance_params)
     if @performance.save
-      redirect_to(admin_performances_path)
+      redirect_to(admin_event_path)
     else
       render :new
     end

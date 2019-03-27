@@ -3,6 +3,7 @@
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
   layout "adminDash"
+
   def index
     @events = Event.all
     @event_performances = PerformanceEvent.all
@@ -14,8 +15,11 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
     if @event.save
-      redirect_to(admin_events_path)
+      session[:tmp_event_id] = @event.id
+      p @event.id
+      redirect_to(admin_event_path(@event.id))
     else
       render :new
     end
@@ -29,7 +33,9 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     if (@event.update(event_params))
       flash[:success] = "Event was edited successful"
-      redirect_to(admin_events_path)
+      session[:tmp_event_id] = @event.id
+      p @event.id
+      redirect_to(admin_event_path(@event.id))
     else
       flash[:danger] = "Something went wrong"
       # redirect_to(edit_admin_event_path(params[:id]))
@@ -40,7 +46,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     if (@event.destroy)
       flash[:success] = "Event was destroyed successful"
-      redirect_to admin_events_path
+      redirect_to admin_event_path
     else
       flash[:danger] = "Something went wrong "
     end
@@ -54,17 +60,17 @@ class Admin::EventsController < ApplicationController
 
   private
 
-    begin
-      def event_params
-        params.require(:event).permit(:start,
-                                      :stop,
-                                      :description,
-                                      :name,
-                                      :hoster_name,
-                                      :website,
-                                      :prize,
-                                      :hotline
-        )
-      end
+  begin
+    def event_params
+      params.require(:event).permit(:start,
+                                    :stop,
+                                    :description,
+                                    :name,
+                                    :hoster_name,
+                                    :website,
+                                    :prize,
+                                    :hotline
+      )
     end
+  end
 end
