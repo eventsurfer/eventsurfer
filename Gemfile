@@ -87,7 +87,7 @@ end
 group :production do
   gem 'pg'
   gem 'unicorn'
-  gem 'duktape'
+  #gem 'duktape'
 end
 
 # Some stuff for Evensystem
