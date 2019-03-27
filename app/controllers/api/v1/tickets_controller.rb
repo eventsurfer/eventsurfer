@@ -17,9 +17,9 @@ class Api::V1::TicketsController < Api::V1::BaseController
         else
           if @ticket.validate_id == params[:validate_id]
             if (@user.nil?)
-              @ticket.use_ticket(params[:user_id])
-            else
               return unauthenticated
+            else
+              @ticket.use_ticket(params[:user_id])
             end
             if @ticket.save
               render json: {ticket: @ticket, action: "used"}
@@ -34,13 +34,15 @@ class Api::V1::TicketsController < Api::V1::BaseController
         return api_error()
       end
 
-    end
-    if (params[:ticket_id].present?)
-      return api_error(status: 400, error: "forget validate id")
-    elsif (params[:validate_id].present?)
-      return api_error(status: 400, error: "forget ticket id")
     else
-      return bad_request
+      if (params[:ticket_id].present?)
+        return api_error(status: 400, error: "forget validate id")
+      elsif (params[:validate_id].present?)
+        return api_error(status: 400, error: "forget ticket id")
+      else
+        return bad_request
+      end
     end
+
   end
 end

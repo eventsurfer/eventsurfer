@@ -4,8 +4,8 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :authenticate_client!
 
   def signIn
-    if (params[:user_mail].present? && params[:passwd].present?)
-      @user = User.find_by(:email => params[:user_mail])
+    if (params[:user_email].present? && params[:passwd].present?)
+      @user = User.find_by(:email => params[:user_email])
       if (@user.nil?)
         return not_found
       else

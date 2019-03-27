@@ -10,7 +10,6 @@ class Ticket < ApplicationRecord
       self.used_at = DateTime.now
       self.valid_ = false
       self.changed_by = user_id
-
   end
 
 end
