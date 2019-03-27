@@ -4,8 +4,9 @@ class Api::V1::TicketsController < Api::V1::BaseController
   before_action :authenticate_client!
 
   def validate_ticket
-    if params[:validate_id].present? && params[:ticket_id].present?
+    if params[:validate_id].present? && params[:ticket_id].present? && params[:user_id]
       begin
+        @user = User.find(params[:user_id])
         @ticket = Ticket.find_by(id: params[:ticket_id])
         if @ticket.nil? || !@ticket.valid_
           if @ticket.nil?
@@ -15,7 +16,11 @@ class Api::V1::TicketsController < Api::V1::BaseController
           end
         else
           if @ticket.validate_id == params[:validate_id]
-            @ticket.use_ticket
+            if (@user.nil?)
+              @ticket.use_ticket(params[:user_id])
+            else
+              return unauthenticated
+            end
             if @ticket.save
               render json: {ticket: @ticket, action: "used"}
             else
