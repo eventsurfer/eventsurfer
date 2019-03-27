@@ -2,6 +2,7 @@
 
 class Admin::PerformancesController < ApplicationController
   before_action :authenticate_user!
+  layout "adminDash"
 
   def index
     @performances = Performance.all
@@ -14,7 +15,7 @@ class Admin::PerformancesController < ApplicationController
   def create
     @performance = Performance.new(performance_params)
     if @performance.save
-      redirect_to(admin_event_path)
+      redirect_to(admin_event_path(session[:tmp_event_id]))
     else
       render :new
     end
@@ -28,7 +29,7 @@ class Admin::PerformancesController < ApplicationController
     @performance = Performance.find(params[:id])
     if @performance.update(performance_params)
       flash[:success] = "performances was edited successful"
-      redirect_to(admin_performances_path)
+      redirect_to(admin_event_path(session[:tmp_event_id]))
     else
       flash[:danger] = "Something went wrong"
       # redirect_to(edit_admin_performance_path(params[:id]))

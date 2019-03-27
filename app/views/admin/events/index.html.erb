@@ -1,4 +1,9 @@
-<h1>All Events</h1>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Events", admin_events_path %>
+
+  </li>
+</ol>
 <table class="table">
   <th><%= I18n.t :admin_event_name %></th>
   <th><%= I18n.t :admin_event_start_date %></th>

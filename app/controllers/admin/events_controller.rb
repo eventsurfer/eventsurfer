@@ -18,7 +18,6 @@ class Admin::EventsController < ApplicationController
 
     if @event.save
       session[:tmp_event_id] = @event.id
-      p @event.id
       redirect_to(admin_event_path(@event.id))
     else
       render :new
@@ -34,7 +33,6 @@ class Admin::EventsController < ApplicationController
     if (@event.update(event_params))
       flash[:success] = "Event was edited successful"
       session[:tmp_event_id] = @event.id
-      p @event.id
       redirect_to(admin_event_path(@event.id))
     else
       flash[:danger] = "Something went wrong"
@@ -54,6 +52,7 @@ class Admin::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    session[:tmp_event_id] = @event.id
     @performances = PerformanceEvent.where(event_id: params[:id])
     @locationsPerformance = @event.getLocations(@performances)
   end
