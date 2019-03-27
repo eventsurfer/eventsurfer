@@ -59,17 +59,17 @@ class Admin::EventsController < ApplicationController
 
   private
 
-  begin
-    def event_params
-      params.require(:event).permit(:start,
-                                    :stop,
-                                    :description,
-                                    :name,
-                                    :hoster_name,
-                                    :website,
-                                    :prize,
-                                    :hotline
-      )
+    begin
+      def event_params
+        params.require(:event).permit(:start,
+                                      :stop,
+                                      :description,
+                                      :name,
+                                      :hoster_name,
+                                      :website,
+                                      :prize,
+                                      :hotline
+        )
+      end
     end
-  end
 end
