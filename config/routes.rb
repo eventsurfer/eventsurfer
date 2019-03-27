@@ -97,6 +97,11 @@ Rails.application.routes.draw do
           post "validate_ticket"
         end
       end
+      resources :users do
+        collection do
+          post "signIn"
+        end
+      end
     end
   end
 
