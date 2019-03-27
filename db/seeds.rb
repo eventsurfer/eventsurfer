@@ -53,7 +53,7 @@ if (Event.all.size < 10)
     hoster_name = Faker::Name.name
     website = Faker::FunnyName.name + ".net"
     hotline = Faker::PhoneNumber.cell_phone_with_country_code
-    description = Faker::Quotes
+    description = Faker::Movies::Hobbit.quote
     Event.create(name: name, start: start, stop: stop, hoster_name: hoster_name, website: website, hotline: hotline, description: description)
   end
 end
@@ -69,8 +69,13 @@ if (Performance.all.size < 20)
   end
 end
 if (PerformanceEvent.all.size < 40)
-  10.times do
-    PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)], performance_id: Performance.all[0, Performance.all.size])
+  count = 0
+  10.times do |i|
+    #a = PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)].id, performance_id: Performance.all[Random.rand(0..Performance.all.size)].id)
+    #p a
+    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
+    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count+1].id)
+    count+=2
   end
 end
 if (Ticket.all.size < 200)
@@ -87,4 +92,16 @@ if (Ticket.all.size < 200)
   end
 
 end
-ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
+if (PerformanceLocation.all.size < 30)
+  loc = Location.all
+  count = 0
+  Performance.all.each do |per|
+    PerformanceLocation.create(performance_id: per.id, location_id: loc[count].id)
+    PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 1].id)
+    PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 2].id)
+    count += 1
+  end
+end
+if (!ApiClient.find_by_name("testi"))
+  ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
+end
