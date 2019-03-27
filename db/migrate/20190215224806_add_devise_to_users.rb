@@ -3,6 +3,7 @@
 class AddDeviseToUsers < ActiveRecord::Migration[5.2]
   def self.up
     begin
+      drop_table :users
       create_table :users do |t|
         ## Database authenticatable
         t.string :name, null: false, default:""
