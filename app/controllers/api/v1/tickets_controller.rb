@@ -30,12 +30,10 @@ class Api::V1::TicketsController < Api::V1::BaseController
       end
 
     end
-    if (params[:ticket_id].present?)
+    if (params[:ticket_id].present? && !params[:validate_id])
       return api_error(status: 400, error: "forget validate id")
-    elsif (params[:validate_id].present?)
+    elsif (params[:validate_id].present? && !params[:ticket_id])
       return api_error(status: 400, error: "forget ticket id")
-    else
-      return bad_request
     end
   end
 end
