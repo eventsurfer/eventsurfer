@@ -14,6 +14,7 @@ class Admin::PerformancesController < ApplicationController
 
   def create
     @performance = Performance.new(performance_params)
+    @locations = Location.getLocationsNames
     if @performance.save
       redirect_to(admin_event_path(session[:tmp_event_id]))
     else
@@ -58,7 +59,8 @@ class Admin::PerformancesController < ApplicationController
                                              :prize,
                                              :sell_allowed,
                                              :stop_selling,
-                                             :number_of_tickets
+                                             :number_of_tickets,
+                                             :location
         )
       end
     end

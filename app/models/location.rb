@@ -17,4 +17,11 @@ class Location < ApplicationRecord
     end
     return arr.sort
   end
+
+  def self.getLocationsNames
+    tmp = []
+    loc = Location.all
+    loc.each{|l|tmp.push(l.name)}
+    return tmp
+  end
 end
