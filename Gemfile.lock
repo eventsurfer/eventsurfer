@@ -124,6 +124,7 @@ GEM
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
+    duktape (2.0.1.0)
     erubi (1.8.0)
     execjs (2.7.0)
     faker (1.9.3)
@@ -341,6 +342,7 @@ DEPENDENCIES
   devise (>= 4.6.0)
   devise-security
   devise_zxcvbn
+  duktape
   faker
   font-awesome-sass
   jbuilder (~> 2.5)
