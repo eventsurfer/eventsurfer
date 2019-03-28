@@ -16,7 +16,9 @@ class Admin::PerformancesController < ApplicationController
   def create
     @perLoc = PerformanceLocation.new
     @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
-    @performance = Performance.new(performance_params[0..-1])
+    p "dslkjslkfjödsjflksjfölksdjfölksjdfölksj"
+    p performance_params
+    @performance = Performance.new(performance_params.except(:location).except(:event_id))
     @locations = Location.getLocationsNames
     if @performance.save
       eventPer = PerformanceEvent.new(event_id: session[:tmp_event_id], performance_id: @performance.id)
@@ -71,7 +73,9 @@ class Admin::PerformancesController < ApplicationController
                                             :sell_allowed,
                                             :stop_selling,
                                             :number_of_tickets,
-                                            :location
+                                            :location,
+                                            :changed_by,
+                                            :event_id
         )
       end
     end
