@@ -55,10 +55,8 @@ class Admin::PerformancesController < ApplicationController
       end
     else
       flash[:danger] = "You reduce the number of tickets. This can do problems"
-      #redirect_to(admin_event_path(session[:tmp_event_id]))
+      # redirect_to(admin_event_path(session[:tmp_event_id]))
     end
-
-
   end
 
   def destroy
@@ -77,18 +75,18 @@ class Admin::PerformancesController < ApplicationController
 
   private
 
-  begin
-    def performance_params
-      params.require(:performance).permit(:start,
-                                          :stop,
-                                          :prize,
-                                          :sell_allowed,
-                                          :stop_selling,
-                                          :number_of_tickets,
-                                          :location,
-                                          :changed_by,
-                                          :event_id
-      )
+    begin
+      def performance_params
+        params.require(:performance).permit(:start,
+                                            :stop,
+                                            :prize,
+                                            :sell_allowed,
+                                            :stop_selling,
+                                            :number_of_tickets,
+                                            :location,
+                                            :changed_by,
+                                            :event_id
+        )
+      end
     end
-  end
 end
