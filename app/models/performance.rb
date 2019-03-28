@@ -2,8 +2,8 @@
 
 class Performance < ApplicationRecord
   has_one :performance_location
-  has_one :event
-  has_many :tickets
+  has_one :performance_event
+  has_many :performance_tickets
   has_one :event, through: :performance_events
   has_many :tickets, through: :performance_tickets
 
