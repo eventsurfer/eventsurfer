@@ -51,14 +51,14 @@ Rails.application.routes.draw do
     end
     resources :tickets do
       collection do
-        get "index", to:"tickets#index"
-        get ":id/edit", to:"tickets#edit"
-        post ":id/edit", to:"tickets#update"
-        get "new", to:"tickets#new"
-        post "new", to:"tickets#update"
-        get ":id/delete", to:"tickets#destroy"
-        get ":id/show", to:"tickets#show"
-        get "/", to:"tickets#index"
+        get "index", to: "tickets#index"
+        get ":id/edit", to: "tickets#edit"
+        post ":id/edit", to: "tickets#update"
+        get "new", to: "tickets#new"
+        post "new", to: "tickets#update"
+        get ":id/delete", to: "tickets#destroy"
+        get ":id/show", to: "tickets#show"
+        get "/", to: "tickets#index"
       end
     end
 
@@ -82,7 +82,7 @@ Rails.application.routes.draw do
                                       :edit,
                                       :update,
                                       :destroy]
-    get "/", to:"dashboards#index"
+    get "/", to: "dashboards#index"
   end
 
   namespace :api, defaults: {format: :json} do
@@ -113,17 +113,17 @@ Rails.application.routes.draw do
       end
       resources :performances do
         collection do
-          get":id/show", to: "performances#show"
+          get ":id/show", to: "performances#show"
         end
       end
     end
+    get ":id/add", to: "carts#add_item", :as => :add_to_cart
+    get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
+    get "cart", to: "carts#list_items"
+    get "/", to: "events#index"
 
-
-    get ":id/add", to: "carts#add_item"
-    get ":id/remove", to: "carts#remove_item"
-    get "list_items", to: "carts#list_items"
-    get "/", to:"events#index"
   end
+
   #Default page
   root "frontend/events#index"
 end
