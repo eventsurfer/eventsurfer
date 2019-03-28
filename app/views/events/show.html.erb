@@ -23,7 +23,8 @@
             <td><%= @locations.find_by(:performance_id => perform.performance.id).location.name%></td>
             <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
             <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
-            <td><%= @tickets.find_by(:performance_id => perform.performance.id)%></td>
+            <td><%= @tickets.where(:performances_id => perform.performance.id).size%></td>
+            <td><a href="#" class="btn btn-info" role="button">Add to cart</a></td>
           </tr>
         <% end %>
 
