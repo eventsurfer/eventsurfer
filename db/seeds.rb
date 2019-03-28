@@ -45,8 +45,8 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-if (Event.all.size < 10)
-  5.times do
+if (Event.all.size < 20)
+  11.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
@@ -58,8 +58,8 @@ if (Event.all.size < 10)
   end
 end
 #Performnace.delete_all
-if (Performance.all.size < 20)
-  10.times do
+if (Performance.all.size < 30)
+  15.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)

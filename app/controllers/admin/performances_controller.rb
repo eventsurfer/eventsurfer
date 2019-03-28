@@ -39,8 +39,10 @@ class Admin::PerformancesController < ApplicationController
   end
 
   def update
+    @perLoc = PerformanceLocation.find_by(performance_id: params[:id])
+    @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
     @performance = Performance.find(params[:id])
-    if @performance.update(performance_params)
+    if @performance.update(performance_params.except(:location).except(:event_id)) && @perLoc.save
       flash[:success] = "performances was edited successful"
       redirect_to(admin_event_path(session[:tmp_event_id]))
     else
