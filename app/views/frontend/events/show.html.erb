@@ -1,10 +1,9 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
     <%= link_to "Events", root_path %>
-
   </li>
   <li class="breadcrumb-item active">
-    <%= link_to @event.name, event_path %>
+    <%= link_to @event.name, frontend_event_path %>
   </li>
 </ol>
 
@@ -24,10 +23,9 @@
             <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
             <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
             <td><%= @tickets.where(:performances_id => perform.performance.id).size%></td>
-            <td><a href="#" class="btn btn-info" role="button">Add to cart</a></td>
+            <td><a href=<%= frontend_event_performance_path(perform.id)%>>Performance</a></td>
           </tr>
         <% end %>
-
         </tbody>
       </table>
     </div>

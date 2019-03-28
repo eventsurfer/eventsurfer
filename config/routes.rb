@@ -106,14 +106,24 @@ Rails.application.routes.draw do
   end
 
   # Show events
-  resources :events do
-    collection do
-      post 'punch'
-      get ":id/show", to: "events#show"
+  namespace :frontend do
+    resources :events do
+      collection do
+        get ":id/show", to: "events#show", :shallow => true
+      end
+      resources :performances do
+        collection do
+          get":id/show", to: "performances#show"
+        end
+      end
     end
+
+
+    get ":id/add", to: "carts#add_item"
+    get ":id/remove", to: "carts#remove_item"
+    get "list_items", to: "carts#list_items"
+    get "/", to:"events#index"
   end
-
-
   #Default page
-  root "events#index"
+  root "frontend/events#index"
 end

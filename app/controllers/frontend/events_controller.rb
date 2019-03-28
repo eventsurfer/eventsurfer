@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EventsController < ApplicationController
+class Frontend::EventsController < ApplicationController
   def index # TODO: featured events(admin choosed top idk 6(?) events)
     @events = Event.all
   end
