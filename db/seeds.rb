@@ -74,15 +74,14 @@ if (PerformanceEvent.all.size < 40)
     #a = PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)].id, performance_id: Performance.all[Random.rand(0..Performance.all.size)].id)
     #p a
     p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count+1].id)
-    count+=2
+    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
+    count += 2
   end
 end
 if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
     10.times do |t|
-
       ticket = Ticket.create(validate_id: "fffggg", valid_: true)
       arr.push(ticket.id)
     end
