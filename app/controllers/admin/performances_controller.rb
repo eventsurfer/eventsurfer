@@ -24,6 +24,7 @@ class Admin::PerformancesController < ApplicationController
       eventPer = PerformanceEvent.new(event_id: session[:tmp_event_id], performance_id: @performance.id)
       @perLoc.performance_id = @performance.id
       if @perLoc.save && eventPer.save
+        Ticket.createTicketsForPerformance(@performance, current_user.id)
         redirect_to(admin_event_path(session[:tmp_event_id]))
       else
         flash[:error] = "sth went wrong"
