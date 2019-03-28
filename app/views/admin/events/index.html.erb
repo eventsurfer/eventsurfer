@@ -1,4 +1,9 @@
-<h1>All Events</h1>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Events", admin_events_path %>
+
+  </li>
+</ol>
 <table class="table">
   <th><%= I18n.t :admin_event_name %></th>
   <th><%= I18n.t :admin_event_start_date %></th>
@@ -12,7 +17,7 @@
       <td><%= I18n.l(event.start.to_date, format: :default) %></td>
       <td><%= I18n.l(event.stop.to_date, format: :default) %></td>
       <td><%= event.hoster_name %></td>
-      <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger"><%= I18n.t :delete %>></button></form></td>
+      <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger"><%= I18n.t :delete %></button></form></td>
     </tr>
   <% end %>
   </tbody>
