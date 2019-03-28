@@ -1,31 +1,27 @@
-class CartsController < ApplicationController
+# frozen_string_literal: true
 
-
+class Frontend::CartsController < ApplicationController
   def add_item
-
     t = Ticket.find(params[:id])
-
     if !@cart.include?(t.id)
       @cart.push(t.id)
     end
-
-    redirect_to list_items_path
-
+    redirect_to(frontend_cart_path)
   end
 
   def list_items
-
-    @items = @cart
-
+    @items = []
+    p @items
+    p @cart
+    @cart.each do |id|
+      @items.push(Ticket.find(id.to_i))
+    end
   end
 
   def remove_item
-
-    @cart.delete_at(params[:id].to_i)
-
-    redirect_to list_items_path
-
-
+    @cart.delete(params[:id].to_i)
+    p @cart
+    redirect_to(frontend_cart_path)
   end
 
 
