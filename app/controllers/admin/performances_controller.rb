@@ -19,7 +19,7 @@ class Admin::PerformancesController < ApplicationController
     @performance = Performance.new(performance_params[0..-1])
     @locations = Location.getLocationsNames
     if @performance.save
-      eventPer = PerformanceEvent.new(:event_id =>session[:tmp_event_id], :performance_id=>@performance.id)
+      eventPer = PerformanceEvent.new(event_id: session[:tmp_event_id], performance_id: @performance.id)
       @perLoc.performance_id = @performance.id
       if @perLoc.save && eventPer.save
         redirect_to(admin_event_path(session[:tmp_event_id]))
@@ -63,16 +63,16 @@ class Admin::PerformancesController < ApplicationController
 
   private
 
-  begin
-    def performance_params
-      params.require(:performance).permit(:start,
-                                          :stop,
-                                          :prize,
-                                          :sell_allowed,
-                                          :stop_selling,
-                                          :number_of_tickets,
-                                          :location
-      )
+    begin
+      def performance_params
+        params.require(:performance).permit(:start,
+                                            :stop,
+                                            :prize,
+                                            :sell_allowed,
+                                            :stop_selling,
+                                            :number_of_tickets,
+                                            :location
+        )
+      end
     end
-  end
 end
