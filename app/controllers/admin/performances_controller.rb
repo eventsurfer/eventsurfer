@@ -10,13 +10,22 @@ class Admin::PerformancesController < ApplicationController
 
   def new
     @performance = Performance.new
+    @locations = Location.getLocationsNames
   end
 
   def create
-    @performance = Performance.new(performance_params)
-    #@locations = Location.getLocationsNames
+    @perLoc = PerformanceLocation.new
+    @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
+    @performance = Performance.new(performance_params[0..-1])
+    @locations = Location.getLocationsNames
     if @performance.save
-      redirect_to(admin_event_path(session[:tmp_event_id]))
+      eventPer = PerformanceEvent.new(:event_id =>session[:tmp_event_id], :performance_id=>@performance.id)
+      @perLoc.performance_id = @performance.id
+      if @perLoc.save && eventPer.save
+        redirect_to(admin_event_path(session[:tmp_event_id]))
+      else
+        flash[:error] = "sth went wrong"
+      end
     else
       render :new
     end
@@ -24,6 +33,7 @@ class Admin::PerformancesController < ApplicationController
 
   def edit
     @performance = Performance.find(params[:id])
+    @locations = Location.getLocationsNames
   end
 
   def update
@@ -52,16 +62,17 @@ class Admin::PerformancesController < ApplicationController
   end
 
   private
-    begin
-      def performance_params
-        params.require(:performance).permit(:start,
-                                             :stop,
-                                             :prize,
-                                             :sell_allowed,
-                                             :stop_selling,
-                                             :number_of_tickets,
-                                             :location
-        )
-      end
+
+  begin
+    def performance_params
+      params.require(:performance).permit(:start,
+                                          :stop,
+                                          :prize,
+                                          :sell_allowed,
+                                          :stop_selling,
+                                          :number_of_tickets,
+                                          :location
+      )
     end
+  end
 end

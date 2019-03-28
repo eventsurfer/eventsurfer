@@ -2,30 +2,34 @@
 
   <div class="form-group">
     <%= form.label(:start) %>
-    <%= form.datetime_select(:start, class: "form-control", placeholder: "start of performances") %>
+    <%= form.datetime_select(:start, class: "form-control", placeholder: "start of performances", required: true) %>
   </div>
   <div class="form-group">
     <%= form.label(:stop) %>
-    <%= form.datetime_select(:stop, class: "form-control", placeholder: "stop of performances") %>
+    <%= form.datetime_select(:stop, class: "form-control", placeholder: "stop of performances", required: true) %>
   </div>
   <div class="form-group">
     <%= form.label(:prize) %>
-    <%= form.number_field(:prize, class: "form-control", :min => 0) %>
+    <%= form.number_field(:prize, class: "form-control", :min => 0, required: true) %>
   </div>
   <div class="form-group">
     <%= form.label(:sell_allowed) %>
-    <%= form.check_box(:sell_allowed) %>
+    <%= form.check_box(:sell_allowed, required: true) %>
   </div>
   <div class="form-group">
     <%= form.label(:stop_selling) %>
-    <%= form.datetime_select(:stop_selling, class: "form-control", placeholder: "stop of selling") %>
+    <%= form.datetime_select(:stop_selling, class: "form-control", placeholder: "stop of selling", required: true) %>
   </div>
   <div class="form-group">
     <%= form.label(:number_of_tickets) %>
-    <%= form.number_field(:number_of_tickets, class: "form-control", step: 1) %>
+    <%= form.number_field(:number_of_tickets, class: "form-control", step: 1, required: true) %>
   </div>
   <div class="form-group">
-    <%= form.select(:location, ["dd","dd","dd"]) %>
+    <div class="form-inline">
+      <%= form.label(:location, :location, class:"form-label") %>
+      <%= form.select(:location, @locations, {class:"form-control"}, required: true) %>
+    </div>
+
   </div>
   <div class="form-group">
     <div>
