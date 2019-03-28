@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
-  has_one :performance, through: :performance_locations
+  has_many :performance_locations
+  has_many :performance, through: :performance_locations
 
   ##
   #
