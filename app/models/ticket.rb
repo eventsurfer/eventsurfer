@@ -12,8 +12,8 @@ class Ticket < ApplicationRecord
     self.changed_by = user_id
   end
 
-  def self.createTicketsForPerformance(performance, user_id)
-    performance.number_of_tickets.times do
+  def self.createTicketsForPerformance(performance, user_id, numberTickets)
+    numberTickets.times do
       tmpTicket = Ticket.create(validate_id: "fffggg", valid_: false, changed_by: user_id) #TODO: create validate_id algo
       PerformanceTicket.create(performances_id: performance.id, tickets_id: tmpTicket.id)
     end

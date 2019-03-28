@@ -68,11 +68,9 @@ if (Performance.all.size < 30)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
-if (PerformanceEvent.all.size < 40)
+if (PerformanceEvent.all.size < 20)
   count = 0
-  10.times do |i|
-    #a = PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)].id, performance_id: Performance.all[Random.rand(0..Performance.all.size)].id)
-    #p a
+  5.times do |i|
     p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
     p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
     count += 2
