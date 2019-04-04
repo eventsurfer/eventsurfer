@@ -68,6 +68,7 @@ if (Performance.all.size < 30)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
+# fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
 if (PerformanceEvent.all.size < 20)
   count = 0
   5.times do |i|
