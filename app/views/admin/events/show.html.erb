@@ -17,14 +17,14 @@
         <th><%= I18n.t (:location) %></th>
         <th>Start</th>
         <th>Stop</th>
+        <th><%= "number of tickets" %></th>
         <tbody>
           <% @locationsPerformance.each do |locPerform| %>
-            <tr data-link="<%= edit_admin_performance_path(locPerform.performance.id) %>" >
-
+            <tr data-link="<%= edit_admin_performance_path(locPerform.performance.id) %>" data-id="<%= locPerform.performance.id %>" >
               <td><%= locPerform.location.name%></td>
               <td><%= I18n.l(locPerform.performance.start.to_date, format: :default) %></td>
               <td><%=I18n.l(locPerform.performance.stop.to_date, format: :default) %></td>
-
+              <td><%= locPerform.performance.number_of_tickets %></td>
             </tr>
           <% end %>
 

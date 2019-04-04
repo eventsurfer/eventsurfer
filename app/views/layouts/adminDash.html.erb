@@ -180,6 +180,12 @@
   </ul>
   <div id="content-wrapper">
     <div class="container-fluid">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
     <!-- /.container-fluid -->

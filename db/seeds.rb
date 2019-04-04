@@ -45,8 +45,8 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-if (Event.all.size < 10)
-  5.times do
+if (Event.all.size < 20)
+  11.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
@@ -58,8 +58,8 @@ if (Event.all.size < 10)
   end
 end
 #Performnace.delete_all
-if (Performance.all.size < 20)
-  10.times do
+if (Performance.all.size < 30)
+  15.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
@@ -68,21 +68,19 @@ if (Performance.all.size < 20)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
-if (PerformanceEvent.all.size < 40)
+# fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
+if (PerformanceEvent.all.size < 20)
   count = 0
-  10.times do |i|
-    #a = PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)].id, performance_id: Performance.all[Random.rand(0..Performance.all.size)].id)
-    #p a
+  5.times do |i|
     p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count+1].id)
-    count+=2
+    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
+    count += 2
   end
 end
 if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
     10.times do |t|
-
       ticket = Ticket.create(validate_id: "fffggg", valid_: true)
       arr.push(ticket.id)
     end
