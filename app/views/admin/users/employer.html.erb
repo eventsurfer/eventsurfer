@@ -1,27 +1,36 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Id</th>
     <th>Name</th>
     <th>Email</th>
     <th>Enabled</th>
-    <th>Regstrierung</th>
-    <th>Password</th>
+    <th>Admin</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <% @employer.each do |user| %>
     <tr>
-      <td><%= user.id %></td>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.enabled %></td>
-      <td><%= user.created_at %></td>
-      <td><%= user.admin %></td>
       <td>
-        <%= link_to('Bearbeiten',
+        <%if user.enabled? %>
+          <i class="fas fa-fw fa-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-fw fa-times" style="color: red"></i>
+        <% end %>
+      </td>
+      <td>
+        <%if user.admin? %>
+          <i class="fas fa-fw fa-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-fw fa-times" style="color: red"></i>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to("",
                     edit_admin_user_path(user),
-                    class: "btn btn-secondary ", style: "background-color: ") %>
+                    class: "btn btn-secondary fas fa-fw fa-edit") %>
       </td>
     </tr>
   <% end %>
