@@ -4,8 +4,17 @@ class Admin::UsersController < ApplicationController
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!
   layout "adminDash"
+
   def index
     @users = User.all
+  end
+
+  def costumer
+    @costumer = User.costumer
+  end
+
+  def employer
+    @employer = User.employer
   end
 
   def new
@@ -49,14 +58,14 @@ class Admin::UsersController < ApplicationController
 
   private
 
-    begin
-      def user_params
-        params.require(:user).permit(:name,
-                                     :email,
-                                     :enabled,
-                                     :rank,
-                                     :admin
-        )
-      end
+  begin
+    def user_params
+      params.require(:user).permit(:name,
+                                   :email,
+                                   :enabled,
+                                   :rank,
+                                   :admin
+      )
     end
+  end
 end

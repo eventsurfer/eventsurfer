@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         get ":id/delete", to: "users#destroy"
         get ":id/show", to: "users#show"
         get "show", to: "users#show"
+        get "costumer", to:"users#costumer"
+        get "employer", to:"users#employer"
       end
     end
     resources :locations do
