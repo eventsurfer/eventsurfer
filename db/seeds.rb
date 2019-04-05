@@ -29,7 +29,7 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), encrypted_password: psswd, enabled: true)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true)
   end
 end
 #Location.delete_all
