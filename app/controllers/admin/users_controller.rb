@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!
   layout "adminDash"
-
+  # TODO: discuss user management system
   def index
     @users = User.all
   end
@@ -33,7 +33,11 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to(admin_users_path)
+      if @user.role == 0
+        redirect_to costumer_admin_users_path
+      else
+        redirect_to employer_admin_users_path
+      end
     else
       render :edit
     end
@@ -64,7 +68,12 @@ class Admin::UsersController < ApplicationController
                                      :email,
                                      :enabled,
                                      :rank,
-                                     :admin
+                                     :admin,
+                                     :street,
+                                     :postcode,
+                                     :country,
+                                     :city,
+                                     :street_number,
         )
       end
     end

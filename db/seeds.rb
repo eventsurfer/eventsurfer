@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today)
+  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today, role: "employer", level: 4)
 end
 
 def fake_name()
@@ -29,7 +29,8 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 0)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
   end
 end
 #Location.delete_all
@@ -72,8 +73,8 @@ end
 if (PerformanceEvent.all.size < 20)
   count = 0
   5.times do |i|
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
+    PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
+    PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
     count += 2
   end
 end
