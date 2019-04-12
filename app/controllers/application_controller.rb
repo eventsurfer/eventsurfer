@@ -9,11 +9,10 @@ class ApplicationController < ActionController::Base
     if current_user.admin
 
     else
-      flash[:error] = "You have no admin rights"
+      flash[:danger] = "You have no admin rights"
       sign_out current_user
       redirect_to root_path
     end
-
   end
 
   protected
