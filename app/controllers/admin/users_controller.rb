@@ -3,6 +3,7 @@
 class Admin::UsersController < ApplicationController
   # noinspection RailsParamDefResolve
   before_action :authenticate_user!
+  before_action :is_admin?
   layout "adminDash"
   # TODO: discuss user management system
   def index
