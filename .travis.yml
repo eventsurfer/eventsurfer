@@ -7,6 +7,8 @@ before_install:
 install:
   - gem install bundler
   - bundle install --path=vendor/bundle
+before_script:
+  - bundle exec rails db:migrate -e test
 script:
   - bundle exec rubocop
   - bundle exec rails test -e test
