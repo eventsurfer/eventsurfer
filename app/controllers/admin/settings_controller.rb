@@ -3,6 +3,7 @@
 class Admin::SettingsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
   def index
     @settings = Setting.all
@@ -48,6 +49,13 @@ class Admin::SettingsController < ApplicationController
     begin
       def setting_params
         params.require(:setting).permit(:key, :value)
+      end
+      def checkPermission!
+        if current_user.rank >= 3
+
+        else
+          redirect_to admin_dashboard_path
+        end
       end
     end
 end

@@ -3,6 +3,7 @@
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
 
   def index
@@ -71,6 +72,13 @@ class Admin::EventsController < ApplicationController
                                       :prize,
                                       :hotline
         )
+      end
+      def checkPermission!
+        if current_user.rank >= 2
+
+        else
+          redirect_to admin_dashboard_path
+        end
       end
     end
 end

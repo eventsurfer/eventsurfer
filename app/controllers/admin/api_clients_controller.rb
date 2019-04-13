@@ -3,6 +3,7 @@
 class Admin::ApiClientsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
 
   def index
@@ -45,6 +46,13 @@ class Admin::ApiClientsController < ApplicationController
     begin
       def api_client_params
         params.require(:api_client).permit(:name, :ip_address)
+      end
+      def checkPermission!
+        if current_user.rank >= 3
+
+        else
+          redirect_to admin_dashboard_path
+        end
       end
     end
 end
