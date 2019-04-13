@@ -18,7 +18,7 @@ FactoryBot.define do
     admin {true}
     rank {3}
   end
-  factory :Admin_user, parent: :user do
+  factory :admin_user, parent: :user do
     admin {true}
     rank {4}
   end
