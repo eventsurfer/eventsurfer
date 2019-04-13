@@ -73,7 +73,7 @@ class Admin::LocationsController < ApplicationController
         if current_user.rank >= 2
 
         else
-          redirect_to admin_dashboard_path
+          redirect_to admin_dashboards_path
         end
       end
     end

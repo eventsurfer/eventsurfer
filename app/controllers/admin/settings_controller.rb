@@ -54,7 +54,7 @@ class Admin::SettingsController < ApplicationController
         if current_user.rank >= 3
 
         else
-          redirect_to admin_dashboard_path
+          redirect_to admin_dashboards_path
         end
       end
     end
