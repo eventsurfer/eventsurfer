@@ -20,12 +20,4 @@ class Setting < ApplicationRecord
       return "root@localhost"
     end
   end
-
-  def self.getBugreportUrl
-    if s = Setting.find_by_key("BUGREPORT-URL")
-      return s.value
-    else
-      return ""
-    end
-  end
 end
