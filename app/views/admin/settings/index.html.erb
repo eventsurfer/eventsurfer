@@ -1,16 +1,16 @@
-<h1>Settings</h1>
+<h1><%= t('admin.settings.settings') %></h1>
 
 <%= link_to('Add setting',
             new_admin_setting_path,
             class: "btn btn-primary") %>
 <table class="table">
   <thead>
-
-    <th>Key</th>
-    <th>Value</th>
+  <tr>
+    <th><%= t('admin.settings.key') %></th>
+    <th><%= t('admin.settings.value') %></th>
     <th></th>
     <th></th>
-
+  </tr>
   </thead>
 
   <tbody>

@@ -1,8 +1,45 @@
 de:
+  admin:
+    api_clients:
+      add: "API-Client hinzufügen"
+      edit: "API-Client bearbeiten"
+    events:
+      create: "Neues Event erstellen"
+      edit: "Event bearbeiten"
+    locations:
+      edit: "Ort bearbeiten"
+      locations: "Orte"
+      name: "Name"
+      street: "Straße"
+      street_number: "Hausnummer"
+      city: "Stadt"
+      country: "Land"
+    performances:
+      edit: "Aufführung bearbeiten"
+      performances: "Aufführungen"
+      start: "Beginn"
+      end: "Ende"
+      price: "Preis"
+      number_of_tickets: "Anzahl der Tickets"
+      create: "Neue Aufführung erstellen"
+    settings:
+      edit: "Einstellung bearbeiten"
+      settings: "Einstellungen"
+      key: "Schlüssel"
+      value: "Wert"
+      new: "Neue Einstellung"
+    tickets:
+      id: "id"
+      valid_id: "valid_id"
+      valid: "valid"
+      created_at: "Erstellt am"
+      updated_at: "Geändert am"
+  common:
+    delete: "Löschen"
   activerecord:
     attributes:
       event:
-        hoster_name: "Veranstalltername"
+        hoster_name: "Veranstaltername"
         website: "Webseite"
       user:
         email: "E-Mail"
@@ -102,4 +139,3 @@ de:
     currency:
       format:
         delimiter: "."
-

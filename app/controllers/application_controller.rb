@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_admin?
 
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
   def is_admin?
     if current_user.admin

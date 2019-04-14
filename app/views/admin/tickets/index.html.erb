@@ -1,18 +1,24 @@
 <h1>hi</h1>
 <table class="table">
-  <th>id</th>
-  <th>valid_id</th>
-  <th>valid</th>
-  <th>created_at</th>
-  <th>updated_At</th>
+  <thead>
+  <tr>
+    <th><%= t('admin.tickets.id') %></th>
+    <th><%= t('admin.tickets.valid_id') %></th>
+    <th><%= t('admin.tickets.valid') %></th>
+    <th><%= t('admin.tickets.created_at') %></th>
+    <th><%= t('admin.tickets.updated_at') %></th>
+  </tr>
+  </thead>
+  <tbody>
   <%= @tickets.each do |ticket| %>
     <tr>
       <td><%= ticket.id %></td>
       <td><%= ticket.valid_id %></td>
       <td><%= ticket.valid_ %></td>
       <td><%= I18n.l(ticket.created_at, format: :shortest) %></td>
-      <td><%= I18n.l(ticket.updated_at, format: :shortest )%></td>
+      <td><%= I18n.l(ticket.updated_at, format: :shortest) %></td>
     </tr>
 
   <% end %>
+  </tbody>
 </table>

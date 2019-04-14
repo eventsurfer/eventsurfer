@@ -30,6 +30,44 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin:
+    api_clients:
+      add: "Add API-Client"
+      edit: "Edit API-Client"
+    events:
+      create: "Create new event"
+      edit: "Edit event"
+    locations:
+      edit: "Edit location"
+      locations: "Locations"
+      name: "Name"
+      street: "Street"
+      street_number: "Street Number"
+      city: "City"
+      country: "Country"
+    performances:
+      edit: "Edit performance"
+      performances: "Performances"
+      start: "Start"
+      end: "End"
+      price: "Price"
+      number_of_tickets: "Number of ticktes"
+      create: "Create new performance"
+    settings:
+      edit: "Edit Setting"
+      settings: "Settings"
+      key: "Key"
+      value: "Value"
+      new: "New Setting"
+    tickets:
+      id: "id"
+      valid_id: "valid_id"
+      valid: "valid"
+      created_at: "created_at"
+      updated_at: "updated_At"
+  common:
+    delete: "Delete"
+
   location: "Location"
   admin_event_order: "Order"
   admin_event_start_date: "start date"
@@ -55,4 +93,3 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
-
