@@ -15,8 +15,8 @@ Rails.application.routes.draw do
         get ":id/delete", to: "users#destroy"
         get ":id/show", to: "users#show"
         get "show", to: "users#show"
-        get "costumer", to:"users#costumer"
-        get "employer", to:"users#employer"
+        get "costumer", to: "users#costumer"
+        get "employer", to: "users#employer"
       end
     end
     resources :locations do
@@ -53,14 +53,14 @@ Rails.application.routes.draw do
     end
     resources :tickets do
       collection do
-        get "index", to:"tickets#index"
-        get ":id/edit", to:"tickets#edit"
-        post ":id/edit", to:"tickets#update"
-        get "new", to:"tickets#new"
-        post "new", to:"tickets#update"
-        get ":id/delete", to:"tickets#destroy"
-        get ":id/show", to:"tickets#show"
-        get "/", to:"tickets#index"
+        get "index", to: "tickets#index"
+        get ":id/edit", to: "tickets#edit"
+        post ":id/edit", to: "tickets#update"
+        get "new", to: "tickets#new"
+        post "new", to: "tickets#update"
+        get ":id/delete", to: "tickets#destroy"
+        get ":id/show", to: "tickets#show"
+        get "/", to: "tickets#index"
       end
     end
 
@@ -84,29 +84,28 @@ Rails.application.routes.draw do
                                       :edit,
                                       :update,
                                       :destroy]
-    get "/", to:"dashboards#index"
+    get "/", to: "dashboards#index"
   end
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :events do
+      resources :events, except: [:get] do
         collection do
           post "get"
         end
       end
-      resources :tickets do
+      resources :tickets, except: [:validate_ticket] do
         collection do
           post "validate_ticket"
         end
       end
-      resources :users do
+      resources :users, :except => [:signIn] do
         collection do
           post "signIn"
         end
       end
     end
   end
-
 
 
   # Show events

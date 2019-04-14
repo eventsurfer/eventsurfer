@@ -1,8 +1,14 @@
 language: ruby
 cache: bundler
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS eventsystem_test;'
 install:
   - gem install bundler
   - bundle install --path=vendor/bundle
+before_script:
+  - bundle exec rails db:migrate RAILS_ENV=test
 script:
   - bundle exec rubocop
-  - bundle exec rails test
+  - bundle exec rails test -e test
