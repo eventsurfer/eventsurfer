@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-class ApiclientTest < ActiveSupport::TestCase
+class ApiClientTest < ActiveSupport::TestCase
 
 
 end

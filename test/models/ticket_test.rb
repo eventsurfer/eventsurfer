@@ -14,12 +14,10 @@ class TicketTest < ActiveSupport::TestCase
   test "use ticket" do
     @ticket.use_ticket(@user.id)
     assert_equal(false, @ticket.valid_)
-    assert_equal(Date.today, @ticket.used_at.to_date)
+    p DateTime.now
+    assert_equal(DateTime.now.to_date, @ticket.used_at.to_date)
     assert_equal(@user.id, @ticket.changed_by)
   end
 
-  test "create tickets for performance" do
-
-  end
 
 end
