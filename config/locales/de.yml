@@ -6,6 +6,7 @@ de:
     events:
       create: "Neues Event erstellen"
       edit: "Event bearbeiten"
+      events: "Events"
     locations:
       edit: "Ort bearbeiten"
       locations: "Orte"

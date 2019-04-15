@@ -37,6 +37,7 @@ en:
     events:
       create: "Create new event"
       edit: "Edit event"
+      events: "Events"
     locations:
       edit: "Edit location"
       locations: "Locations"
