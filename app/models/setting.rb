@@ -23,7 +23,7 @@ class Setting < ApplicationRecord
 
   def self.getPaymentInfo
     m = Setting.getSetting_as_list("PAYMENT_INFO")
-    if m !={}
+    if m != {}
       return m
     else
       return "no configuration was set"
