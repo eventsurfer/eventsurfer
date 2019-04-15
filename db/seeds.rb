@@ -82,7 +82,9 @@ if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
     10.times do |t|
-      ticket = Ticket.create(validate_id: "fffggg", valid_: true)
+      ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
+      ticket.validate_id += "D"+ticket.id.to_s
+      ticket.save
       arr.push(ticket.id)
     end
     arr.each do |t|
