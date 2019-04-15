@@ -21,11 +21,12 @@ class Setting < ApplicationRecord
     end
   end
 
-  def self.getBugreportUrl
-    if s = Setting.find_by_key("BUGREPORT-URL")
-      return s.value
+  def self.getPaymentInfo
+    m = Setting.getSetting_as_list("PAYMENT_INFO")
+    if m != {}
+      return m
     else
-      return ""
+      return "no configuration was set"
     end
   end
 end
