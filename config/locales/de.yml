@@ -7,6 +7,7 @@ de:
       create: "Neues Event erstellen"
       edit: "Event bearbeiten"
       events: "Events"
+      show_all: "Alle Events anzeigen"
     locations:
       edit: "Ort bearbeiten"
       locations: "Orte"
@@ -15,6 +16,9 @@ de:
       street_number: "Hausnummer"
       city: "Stadt"
       country: "Land"
+      show_all: "Alle Orte anzeigen"
+      add: "Ort hinzufügen"
+      global_map: "Globale Karte"
     performances:
       edit: "Aufführung bearbeiten"
       performances: "Aufführungen"
@@ -23,20 +27,45 @@ de:
       price: "Preis"
       number_of_tickets: "Anzahl der Tickets"
       create: "Neue Aufführung erstellen"
+      show_all: "Alle Aufführungen anzeigen"
+      add: "Aufführung hizufügen"
     settings:
       edit: "Einstellung bearbeiten"
       settings: "Einstellungen"
       key: "Schlüssel"
       value: "Wert"
       new: "Neue Einstellung"
+      general: "Allgemein"
     tickets:
       id: "id"
       valid_id: "valid_id"
       valid: "valid"
       created_at: "Erstellt am"
       updated_at: "Geändert am"
+    users:
+      users: "Benutzer"
+      id: "Id"
+      name: "Name"
+      email: "E-Mail"
+      enabled: "Aktiviert"
+      registration: "Registrierung"
+      passsword: "Passwort"
+      customers: "Alle Kunden"
+      edit: "Bearbeiten"
+      admin: "Administrator"
+      customer: "Kunde"
+      show_all_customers: "Alle Kunden anzeigen"
+      employer: "Arbeitgeber"
+      show_all_employer: "Alle Arbeitgeber anzeigen"
+      add_employer: "Arbeitgeber hinzufügen"
+    orders:
+      orders: "Bestellungen"
+      show_all: "Alle Bestellungen anzeigen"
+      add: "Bestellung hinzufügen"
   common:
     delete: "Löschen"
+    edit: "Bearbeiten"
+
   activerecord:
     attributes:
       event:
