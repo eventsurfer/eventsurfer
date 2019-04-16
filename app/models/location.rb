@@ -16,7 +16,6 @@ class Location < ApplicationRecord
         arr.push(loc)
       end
     end
-    p arr.sort
     return arr.sort
   end
 

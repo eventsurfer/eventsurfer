@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today)
+  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today, role: "employer", rank: 4)
 end
 
 def fake_name()
@@ -29,7 +29,8 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), encrypted_password: psswd, enabled: true)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 0)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
   end
 end
 #Location.delete_all
@@ -45,8 +46,8 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-if (Event.all.size < 10)
-  5.times do
+if (Event.all.size < 20)
+  11.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
@@ -58,8 +59,8 @@ if (Event.all.size < 10)
   end
 end
 #Performnace.delete_all
-if (Performance.all.size < 20)
-  10.times do
+if (Performance.all.size < 30)
+  15.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
@@ -68,22 +69,22 @@ if (Performance.all.size < 20)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
-if (PerformanceEvent.all.size < 40)
+# fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
+if (PerformanceEvent.all.size < 20)
   count = 0
-  10.times do |i|
-    #a = PerformanceEvent.create(event_id: Event.all[Random.rand(0..Event.all.size)].id, performance_id: Performance.all[Random.rand(0..Performance.all.size)].id)
-    #p a
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
-    p PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count+1].id)
-    count+=2
+  5.times do |i|
+    PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
+    PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
+    count += 2
   end
 end
 if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
     10.times do |t|
-
-      ticket = Ticket.create(validate_id: "fffggg", valid_: true)
+      ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
+      ticket.validate_id += "D"+ticket.id.to_s
+      ticket.save
       arr.push(ticket.id)
     end
     arr.each do |t|

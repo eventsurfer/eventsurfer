@@ -2,6 +2,8 @@
 
 class Admin::PerformancesController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
 
   def index
@@ -16,12 +18,13 @@ class Admin::PerformancesController < ApplicationController
   def create
     @perLoc = PerformanceLocation.new
     @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
-    @performance = Performance.new(performance_params[0..-1])
+    @performance = Performance.new(performance_params.except(:location).except(:event_id))
     @locations = Location.getLocationsNames
     if @performance.save
       eventPer = PerformanceEvent.new(event_id: session[:tmp_event_id], performance_id: @performance.id)
       @perLoc.performance_id = @performance.id
       if @perLoc.save && eventPer.save
+        Ticket.createTicketsForPerformance(@performance, current_user.id, @performance.number_of_tickets)
         redirect_to(admin_event_path(session[:tmp_event_id]))
       else
         flash[:error] = "sth went wrong"
@@ -37,13 +40,22 @@ class Admin::PerformancesController < ApplicationController
   end
 
   def update
+    @perLoc = PerformanceLocation.find_by(performance_id: params[:id])
+    @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
     @performance = Performance.find(params[:id])
-    if @performance.update(performance_params)
-      flash[:success] = "performances was edited successful"
-      redirect_to(admin_event_path(session[:tmp_event_id]))
+    if @performance.number_of_tickets < performance_params[:number_of_tickets].to_i
+      if @performance.update(performance_params.except(:location).except(:event_id)) && @perLoc.save
+        number = performance_params[:number_of_tickets].to_i - @performance.number_of_tickets
+        Ticket.createTicketsForPerformance(@performance, current_user.id, number)
+        flash[:success] = "performances was edited successful"
+        redirect_to(admin_event_path(session[:tmp_event_id]))
+      else
+        flash[:danger] = "Something went wrong"
+        # redirect_to(edit_admin_performance_path(params[:id]))
+      end
     else
-      flash[:danger] = "Something went wrong"
-      # redirect_to(edit_admin_performance_path(params[:id]))
+      flash[:danger] = "You reduce the number of tickets. This can do problems"
+      # redirect_to(admin_event_path(session[:tmp_event_id]))
     end
   end
 
@@ -71,8 +83,17 @@ class Admin::PerformancesController < ApplicationController
                                             :sell_allowed,
                                             :stop_selling,
                                             :number_of_tickets,
-                                            :location
+                                            :location,
+                                            :changed_by,
+                                            :event_id
         )
+      end
+      def checkPermission!
+        if current_user.rank >= 2
+
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
 end

@@ -13,4 +13,20 @@ class Ticket < ApplicationRecord
     self.changed_by = user_id
   end
 
+  def self.generateValidateId
+    validate_id = SecureRandom.urlsafe_base64(32)
+  end
+
+  def self.createTicketsForPerformance(performance, user_id, numberTickets)
+    numberTickets.times do
+      tmpTicket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true, changed_by: user_id)
+      tmpTicket.validate_id += "D" + tmpTicket.id.to_s
+      if tmpTicket.save
+        PerformanceTicket.create(performances_id: performance.id, tickets_id: tmpTicket.id)
+      else
+        return "sth went wrong"
+      end
+    end
+  end
+
 end
