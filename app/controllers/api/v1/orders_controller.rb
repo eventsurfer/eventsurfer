@@ -14,4 +14,14 @@ class Api::V1::OrdersController < Api::V1::BaseController
       end
     end
   end
+
+  def test1
+    respond_to :html, :pdf
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "test.pdf", template: "api/v1/orders/test1.html.erb", layout: "pdf/test"
+      end
+    end
+  end
 end

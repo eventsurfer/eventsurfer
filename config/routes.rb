@@ -107,6 +107,7 @@ Rails.application.routes.draw do
       resources :orders, :except => [:show], :defaults => {:format => "pdf"} do
         collection do
           post ":id/show", to: "orders#show"
+          post "test1", to: "orders#test1"
         end
       end
     end
