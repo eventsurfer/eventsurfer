@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < Api::V1::BaseController
-  before_action :authenticate_client!
+  #before_action :authenticate_client!
 
   def show
     respond_to :html, :pdf
@@ -10,7 +10,9 @@ class Api::V1::OrdersController < Api::V1::BaseController
       format.pdf do
         render pdf: "test.pdf",
                template: "api/v1/orders/show.html.erb",
-               layout: "pdf/test"
+               layout: "pdf/test",
+               page_size: "A4"
+
       end
     end
   end
@@ -23,5 +25,8 @@ class Api::V1::OrdersController < Api::V1::BaseController
         render pdf: "test.pdf", template: "api/v1/orders/test1.html.erb", layout: "pdf/test"
       end
     end
+  end
+  def example
+    render "layouts/pdf/_head.html.erb"
   end
 end
