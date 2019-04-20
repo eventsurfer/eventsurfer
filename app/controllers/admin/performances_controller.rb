@@ -18,8 +18,6 @@ class Admin::PerformancesController < ApplicationController
   def create
     @perLoc = PerformanceLocation.new
     @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
-    p "dslkjslkfjödsjflksjfölksdjfölksjdfölksj"
-    p performance_params
     @performance = Performance.new(performance_params.except(:location).except(:event_id))
     @locations = Location.getLocationsNames
     if @performance.save

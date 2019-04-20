@@ -46,9 +46,7 @@ class Api::V1::BaseController < ApplicationController
 
 
   def authenticate_client!
-    p request.headers
     key = request.headers["X-EVENTSURFER-Auth"]
-    p key
     key = key.blank? ? nil : key
     if key && ApiClient.exists?(auth_key: key)
       client = ApiClient.find_by(auth_key: key)

@@ -9,7 +9,6 @@ class Event < ApplicationRecord
     performances.each { |per| tmp_id.push(per.id) }
     tmp_loc = []
     tmp_id.each {|id| tmp_loc.push(PerformanceLocation.find(id))}
-    p tmp_loc
     return tmp_loc
   end
 end
