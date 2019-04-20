@@ -104,6 +104,11 @@ Rails.application.routes.draw do
           post "signIn"
         end
       end
+      resources :orders, :except => [:show], :defaults => {:format => "pdf"} do
+        collection do
+          get ":id/show", to: "orders#show"
+        end
+      end
     end
   end
 
