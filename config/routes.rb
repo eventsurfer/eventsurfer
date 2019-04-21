@@ -77,7 +77,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :settings, :except => [:show]
+    resources :settings, :except => [:show, :defaultInfo] do
+      collection do
+        post "defaultInfo", to:"settings#defaultInfo"
+      end
+    end
     resources :api_clients, :only => [:index,
                                       :new,
                                       :create,
