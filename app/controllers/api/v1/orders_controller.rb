@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < Api::V1::BaseController
-  #before_action :authenticate_client!
+  # before_action :authenticate_client!
 
   def show
     respond_to :html, :pdf
@@ -20,7 +20,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def order
     respond_to :html, :pdf
     @info = DefaultInformation.first
-    @order = nil#Order.find(params[:id])
+    @order = nil# Order.find(params[:id])
     respond_to do |format|
       format.html
       format.pdf do
