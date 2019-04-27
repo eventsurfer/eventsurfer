@@ -88,7 +88,7 @@ if (Ticket.all.size < 200)
       arr.push(ticket.id)
     end
     arr.each do |t|
-      PerformanceTicket.create(performance_id: p.id, tickets_id: t)
+      PerformanceTicket.create(performance_id: p.id, ticket_id: t)
     end
   end
 
@@ -99,7 +99,6 @@ if (PerformanceLocation.all.size < 30)
   Performance.all.each do |per|
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count].id)
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 1].id)
-    PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 2].id)
     count += 1
   end
 end
