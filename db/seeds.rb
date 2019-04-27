@@ -88,7 +88,7 @@ if (Ticket.all.size < 200)
       arr.push(ticket.id)
     end
     arr.each do |t|
-      PerformanceTicket.create(performances_id: p.id, tickets_id: t)
+      PerformanceTicket.create(performance_id: p.id, tickets_id: t)
     end
   end
 
