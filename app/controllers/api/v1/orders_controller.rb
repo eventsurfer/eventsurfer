@@ -25,7 +25,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
       format.html
       format.pdf do
         render pdf: "order.pdf",
-               template: "layouts/pdf/order.html.erb",
+               template: "layouts/pdf/order1.html.erb",
                layout: "pdf/test.html.erb"
       end
     end
