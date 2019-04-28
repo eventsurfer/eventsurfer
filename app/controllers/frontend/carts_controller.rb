@@ -6,6 +6,8 @@ class Frontend::CartsController < ApplicationController
     if !@cart.include?(t.id)
       @cart.push(t.id)
     end
+
+    # unless current_user.nil?    end
     redirect_to(frontend_cart_path)
   end
 

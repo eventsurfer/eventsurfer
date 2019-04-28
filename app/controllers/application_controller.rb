@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_cart
-
     if session[:cart]
       @cart = session[:cart]
     else
