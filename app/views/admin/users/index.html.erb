@@ -1,12 +1,12 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Enabled</th>
-    <th>Regstrierung</th>
-    <th>Password</th>
+    <th><%= t('admin.users.id') %></th>
+    <th><%= t('admin.users.name') %></th>
+    <th><%= t('admin.users.email') %></th>
+    <th><%= t('admin.users.enabled') %></th>
+    <th><%= t('admin.users.registration') %></th>
+    <th><%= t('admin.users.passsword') %></th>
   </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
       <td><%= user.created_at %></td>
       <td><%= user.admin %></td>
       <td>
-        <%= link_to('Bearbeiten',
+        <%= link_to(t('common.edit'),
                     edit_admin_user_path(user),
                     class: "btn btn-secondary ", style: "background-color: ") %>
       </td>

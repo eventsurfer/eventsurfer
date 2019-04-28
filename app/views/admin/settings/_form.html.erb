@@ -4,9 +4,9 @@
       <h2><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
 
       <ul>
-      <% setting.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% setting.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
