@@ -26,15 +26,15 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-  end
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    end
 
   private
 
-  def extract_locale_from_header
-    request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
-  end
+    def extract_locale_from_header
+      request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
+    end
 
 end
