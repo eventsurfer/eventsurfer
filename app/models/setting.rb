@@ -20,13 +20,4 @@ class Setting < ApplicationRecord
       return "root@localhost"
     end
   end
-
-  def self.getPaymentInfo
-    m = Setting.getSetting_as_list("PAYMENT_INFO")
-    if m != {}
-      return m
-    else
-      return "no configuration was set"
-    end
-  end
 end
