@@ -36,6 +36,7 @@ de:
       value: "Wert"
       new: "Neue Einstellung"
       general: "Allgemein"
+      add: "Einstellung hinzufügen"
     tickets:
       id: "id"
       valid_id: "valid_id"
@@ -65,6 +66,8 @@ de:
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
+    add: "Hinzufügen"
+    save: "Speichern"
 
   activerecord:
     attributes:

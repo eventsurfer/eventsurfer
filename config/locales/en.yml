@@ -67,6 +67,7 @@ en:
       value: "Value"
       new: "New Setting"
       general: "General"
+      add: "Add setting"
     tickets:
       id: "id"
       valid_id: "valid_id"
@@ -96,6 +97,8 @@ en:
   common:
     delete: "Delete"
     edit: "Edit"
+    add: "Add"
+    save: "Save"
 
   location: "Location"
   admin_event_order: "Order"
