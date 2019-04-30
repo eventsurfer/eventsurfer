@@ -7,35 +7,34 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_cart
-    if session[:cart]
-      @cart = session[:cart]
-    else
-      session[:cart] = []
-      @cart = session[:cart]
+    def set_cart
+      if session[:cart]
+        @cart = session[:cart]
+      else
+        session[:cart] = []
+        @cart = session[:cart]
+      end
+    end
+    helper_method :is_admin?
+
+    def set_locale
+      I18n.locale = params[:locale] || extract_locale_from_header || I18n.default_locale
+      logger.debug "* Locale set to '#{I18n.locale}'"
     end
 
-  end
-  helper_method :is_admin?
-
-  def set_locale
-    I18n.locale = params[:locale] || extract_locale_from_header || I18n.default_locale
-    logger.debug "* Locale set to '#{I18n.locale}'"
-  end
-
-  def default_url_options
-    {locale: I18n.locale}
-  end
-
-  def is_admin?
-    if current_user.admin
-
-    else
-      flash[:danger] = "You have no admin rights"
-      sign_out current_user
-      redirect_to root_path
+    def default_url_options
+      {locale: I18n.locale}
     end
-  end
+
+    def is_admin?
+      if current_user.admin
+
+      else
+        flash[:danger] = "You have no admin rights"
+        sign_out current_user
+        redirect_to root_path
+      end
+    end
 
   protected
 
