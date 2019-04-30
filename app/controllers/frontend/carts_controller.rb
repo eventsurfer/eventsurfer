@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-
+# TODO: delete cart
+# TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
   def add_item
     t = Ticket.find(params[:id])
@@ -7,13 +8,19 @@ class Frontend::CartsController < ApplicationController
       @cart.push(t.id)
     end
 
-    # unless current_user.nil?    end
+    unless current_user.nil?
+      if PerformanceCart.find_by(performance_id: t.performance.id)
+        p t.performance.id
+        PerformanceCart.find_by(performance_id: t.performance.id).update(count: PerformanceCart.find_by(performance_id: (t.performance.id)).count + 1)
+      else
+        PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.performance.id, count: 1)
+      end
+    end
     redirect_to(frontend_cart_path)
   end
 
   def list_items
     @items = []
-    p @items
     p @cart
     @cart.each do |id|
       @items.push(Ticket.find(id.to_i))
