@@ -1,13 +1,12 @@
 <table class="table">
   <th>Performance</th>
-  <th>PerformanceID</th>
+  <th>Count</th>
   <tbody>
   <% if !@items.nil?%>
-    <% @items.each do |ticket| %>
+    <% @items.each do |item| %>
       <tr>
-        <td><%= ticket.performance.event.name%></td>
-        <td><%= ticket.performance.id%></td>
-        <td><a href=<%= frontend_remove_from_cart_path(ticket.id)%>>X</a></td>
+        <td><%= item.performance_id%></td>
+        <td><%= item.count%></td>
       </tr>
     <% end %>
   <%= @cart %>

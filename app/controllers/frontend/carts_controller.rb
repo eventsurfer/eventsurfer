@@ -21,10 +21,16 @@ class Frontend::CartsController < ApplicationController
 
   def list_items
     @items = []
-    p @cart
-    @cart.each do |id|
-      @items.push(Ticket.find(id.to_i))
+    unless current_user.nil?
+      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+        @items.push(item)
+      end
+    else
+      @cart.each do |id|
+        @items.push(Ticket.find(id.to_i))
+      end
     end
+
   end
 
   def remove_item
