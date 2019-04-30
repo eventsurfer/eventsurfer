@@ -2,6 +2,7 @@
 P5-Arbeiten
 
 Staging: [![Build Status](https://travis-ci.com/eventsurfer/eventsurfer.svg?branch=staging)](https://travis-ci.com/eventsurfer/eventsurfer)
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7125f48349bb4213931d0d42a42f4c1f)](https://www.codacy.com/app/florianfynnweber/eventsurfer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=eventsurfer/eventsurfer&amp;utm_campaign=Badge_Grade)
 
 [Production](http://menschenmachenmenschensachen.online)
