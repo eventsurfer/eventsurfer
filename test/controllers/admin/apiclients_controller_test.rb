@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class ApiclientTest < ActionDispatch::IntegrationTest
+class ApiclientsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
 end
