@@ -7,9 +7,9 @@
                         class: "form-control") %>
   </div>
 
-    <%= form.submit(form.object.new_record? ?
-                   "submit" : "API-Client Bearbeiten",
-                   class: "btn btn-primary")
-                                                      %>
+  <%= form.submit(form.object.new_record? ?
+                      "submit" : t('admin.api_clients.edit'),
+                  class: "btn btn-primary")
+  %>
 
 <% end %>
