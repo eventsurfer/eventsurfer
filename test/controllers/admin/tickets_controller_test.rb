@@ -18,12 +18,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     sign_in @admin_user
     ticket = create(:ticket)
     get admin_ticket_path(ticket.id)
-    assert_redirected_to admin_tickets_path
+    assert_response :success
   end
 
-  test "remove ticket" do
-    sign_in @admin_user
-    ticket = create(:ticket)
-    delete
-  end
 end
