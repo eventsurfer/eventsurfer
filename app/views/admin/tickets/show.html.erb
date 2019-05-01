@@ -7,9 +7,13 @@
   </thead>
   <tbody>
   <tr>
-    <% @ticket.attributes.values.each do |value| %>
-      <td><%= value.nil? ? "---" : value %></td>
-    <% end %>
+    <td><%= @ticket.id %></td>
+    <td><%= @ticket.validate_id[0..8] + "..." %></td>
+    <td><%= @ticket.valid_ %></td>
+    <td><%= I18n.l(@ticket.created_at, format: :shortest) %></td>
+    <td><%= I18n.l(@ticket.updated_at, format: :shortest) %></td>
+    <td><%= @ticket.changed_by.nil? ? "---" : @ticket.changed_by %></td>
+    <td><%= @ticket.used_at.nil? ? "---" : I18n.l(@ticket.used_at, format: :shortest) %></td>
   </tr>
   </tbody>
 </table>
