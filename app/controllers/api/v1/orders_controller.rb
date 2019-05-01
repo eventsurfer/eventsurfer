@@ -20,11 +20,19 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def order
     respond_to :html, :pdf
     @info = DefaultInformation.first
-    @order = nil# Order.find(params[:id])
+    p GroupTicket.where(order_id: params[:id])
+    group = GroupTicket.where(order_id: params[:id]).first
+    #GroupTicket.where(order_id: params[:id]).each do |group|
+    @groupTicket = group
+    @user = User.find(Order.find(group.order_id).user_id)
+    @perEve = PerformanceEvent.find_by(performance_id: group.performance_id)
+    #p PerformanceEvent.find_by(performance_id: group.performance_id).event
+    # <%= "#{@perEve.event.name}, #{I18n.l(@perEve.performance.start, format: :shortest)}" %>
+    @order = Order.find(group.order_id)
     respond_to do |format|
-      format.html
+      #format.html
       format.pdf do
-        render pdf: "order",
+        render pdf: "order.pdf",
                template: "layouts/pdf/order.html.erb",
                layout: "pdf/general.erb",
                viewport_size: "1280x1024",
@@ -33,6 +41,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
                height: 1024
       end
     end
+    #end
   end
 
   def test1
