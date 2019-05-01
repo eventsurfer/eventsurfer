@@ -11,5 +11,7 @@
     <% end %>
   <%= @cart %>
   <% end %>
+
+  <%= button_to "ORDER", frontend_create_order_path, method: :post %>
   </tbody>
 </table>
