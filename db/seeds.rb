@@ -29,7 +29,6 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 0)
     User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
   end
 end
@@ -83,7 +82,7 @@ if (Ticket.all.size < 200)
     arr = []
     10.times do |t|
       ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
-      ticket.validate_id += "D"+ticket.id.to_s
+      ticket.validate_id += "D" + ticket.id.to_s
       ticket.save
       arr.push(ticket.id)
     end
@@ -104,4 +103,23 @@ if (PerformanceLocation.all.size < 30)
 end
 if (!ApiClient.find_by_name("testi"))
   ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
+end
+
+if (Cart.all.size < 10)
+  10.times do |i|
+    this_cart = Cart.create(user_id: i+1)
+    5.times do
+      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...30), count: rand(1...6))
+    end
+  end
+end
+
+if (Order.all.size < 10)
+  10.times do |i|
+    this_order = Order.create(user_id: i+1)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i+1)).each do |item|
+      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+    end
+  end
+
 end
