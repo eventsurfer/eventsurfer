@@ -1,0 +1,15 @@
+<h2><%= "Information about Ticket #{@ticket.id}" %></h2>
+<table class="table table-striped table-responsive">
+  <thead class="text-center">
+  <% @ticket.attributes.keys.each do |key| %>
+    <th><%= key %></th>
+  <% end %>
+  </thead>
+  <tbody>
+  <tr>
+    <% @ticket.attributes.values.each do |value| %>
+      <td><%= value.nil? ? "---" : value %></td>
+    <% end %>
+  </tr>
+  </tbody>
+</table>
