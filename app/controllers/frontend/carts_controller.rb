@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # TODO: delete cart
 # TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
@@ -30,7 +31,6 @@ class Frontend::CartsController < ApplicationController
         @items.push(Ticket.find(id.to_i))
       end
     end
-
   end
 
   def remove_item
