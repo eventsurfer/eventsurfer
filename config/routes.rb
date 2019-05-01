@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users do
+
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
         get ":id/delete", to: "users#destroy"
         get ":id/show", to: "users#show"
         get "show", to: "users#show"
+        get "costumer", to: "users#costumer"
+        get "employer", to: "users#employer"
       end
     end
     resources :locations do
@@ -49,17 +53,58 @@ Rails.application.routes.draw do
     end
     resources :tickets do
       collection do
-        get "index", to:"tickets#index"
-        get ":id/edit", to:"tickets#edit"
-        post ":id/edit", to:"tickets#update"
-        get "new", to:"tickets#new"
-        post "new", to:"tickets#update"
-        get ":id/delete", to:"tickets#destroy"
-        get ":id/show", to:"tickets#show"
-        get "/", to:"tickets#index"
+        get "index", to: "tickets#index"
+        get ":id/edit", to: "tickets#edit"
+        post ":id/edit", to: "tickets#update"
+        get "new", to: "tickets#new"
+        post "new", to: "tickets#update"
+        get ":id/delete", to: "tickets#destroy"
+        #get ":id/show", to: "tickets#show"
+        get "/", to: "tickets#index"
       end
     end
-    get "/", to:"dashboards#index"
+
+    resources :performances do
+      collection do
+        get "index", to: "performances#index"
+        get ":id/edit", to: "performances#edit"
+        post ":id/edit", to: "performances#update"
+        get "new", to: "performances#new"
+        post "new", to: "performances#create"
+        get ":id/delete", to: "performances#destroy"
+        get ":id/show", to: "performances#show"
+        get "/", to: "performances#index"
+      end
+    end
+
+    resources :settings, :except => [:show]
+    resources :api_clients, :only => [:index,
+                                      :new,
+                                      :create,
+                                      :edit,
+                                      :update,
+                                      :destroy]
+    get "/", to: "dashboards#index"
+  end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :events, except: [:get] do
+        collection do
+          post "get"
+        end
+      end
+      resources :tickets, except: [:validate_ticket] do
+        collection do
+          post "validate_ticket"
+        end
+      end
+      resources :users, :except => [:signIn] do
+        collection do
+          post "signIn"
+        end
+      end
+    end
   end
 
 

@@ -28,9 +28,8 @@ gem "jbuilder", "~> 2.5"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
 
-gem "devise" # framework for user authentification
+gem "devise", ">= 4.6.0" # framework for user authentification
 gem "devise-security" # security plugin for devise
-gem "faker" # framework to generate test data
 gem "jquery-rails"
 gem "devise_zxcvbn" # plugin for devise
 gem "delayed_job_active_record" # for delayed jobs in ruby on rails
@@ -38,6 +37,8 @@ gem "delayed_job_active_record" # for delayed jobs in ruby on rails
 
 gem "font-awesome-sass"
 gem "city-state" # get all countries with name and towns
+
+gem "country_select", "~> 4.0"
 
 # Use ActiveStorage variant
 # gem "mini_magick", "~> 4.8"
@@ -59,16 +60,19 @@ gem "bootstrap"
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "rubocop-rails", git: "https://github.com/eventsurfer/rubocop-rails.git", require: false
+  gem "faker" # framework to generate test data
+  gem "factory_bot"
+  gem "brakeman"
+  gem "rails_best_practices"
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
   gem "web-console", ">= 3.3.0"
-  gem "rubocop-rails", require: false
   gem "listen"
   gem "spring"
   gem "spring-watcher-listen"
-  gem "brakeman"
   gem "capistrano-rails"
   gem "capistrano-bundler"
 
@@ -79,7 +83,8 @@ group :test do
   gem "capybara", ">= 2.15", "< 4.0"
   gem "selenium-webdriver"
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem "chromedriver-helper"
+  gem "chromedriver-helper", "1.2.0"
+  gem "simplecov", require: false
 end
 
 # Some stuff for Evensystem

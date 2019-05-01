@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
       <%= form.label :country %>
-      <%= form.select :country, @countries, class: "form-control custom-select", :placeholder => "Choose the country", :require => true %>
+      <%= form.country_select(:country, {priority_countries: ["GB", "FR", "DE", "US"], include_blank: false, selected: "GB"}, {class: "form-control", data: {attribute: "value"}}, :require => true) %>
     </div>
   </div>
   <div class="form-group">

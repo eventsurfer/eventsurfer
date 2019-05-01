@@ -25,10 +25,6 @@
 
   <a class="navbar-brand mr-1" href="<%= admin_dashboards_path %>">Eventsurfer</a>
 
-  <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-    <i class="fas fa-bars"></i>
-  </button>
-
   <!-- Navbar Search -->
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
     <div class="input-group">
@@ -75,7 +71,7 @@
         <a class="dropdown-item" href="<%= edit_user_registration_path %>">Settings</a>
         <a class="dropdown-item" href="#">Activity Log</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="<%= destroy_user_session_path %>" >Logout</a>
+        <p class="dropdown-item"><%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-primary" %></p>
 
       </div>
     </li>
@@ -87,26 +83,90 @@
   <!-- Sidebar -->
   <ul class="sidebar navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" href="<%= admin_dashboards_path %>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </a>
     </li>
+
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+      <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button" data-toggle="dropdown"
          aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
+        <i class="fas fa-fw fa-calendar-day"></i>
+        <span><%= t('admin.events.events') %></span>
       </a>
-      <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-        <h6 class="dropdown-header">Login Screens:</h6>
-        <a class="dropdown-item" href="login.html">Login</a>
-        <a class="dropdown-item" href="register.html">Register</a>
-        <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-        <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Other Pages:</h6>
-        <a class="dropdown-item" href="404.html">404 Page</a>
-        <a class="dropdown-item" href="blank.html">Blank Page</a>
+      <div class="dropdown-menu" aria-labelledby="eventsDropdown">
+        <a class="dropdown-item" href="<%= admin_events_path %>"><%= t('admin.events.show_all') %></a>
+        <a class="dropdown-item" href="<%= new_admin_event_path %>"><%= t('admin.events.create') %></a>
+        <a class="dropdown-item" href="<%= admin_event_path(1) %>"></a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="performancesDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-theater-masks"></i>
+        <span><%= t('admin.performances.performances') %></span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="performancesDropdown">
+        <a class="dropdown-item" href="#"><%= t('admin.performances.show_all') %></a>
+        <a class="dropdown-item" href="#"><%= t('admin.performances.add') %></a>
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="locationsDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-map"></i>
+        <span><%= t('admin.locations.locations') %></span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="locationsDropdown">
+        <a class="dropdown-item" href="<%= admin_locations_path %>"><%= t('admin.locations.show_all') %></a>
+        <a class="dropdown-item" href="<%= new_admin_location_path %>"><%= t('admin.locations.add') %></a>
+        <a class="dropdown-item" href="#"><%= t('admin.locations.global_map') %></a>
+      </div>
+    </li>
+    <% if current_user.rank >= 4 %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="usersDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-address-book"></i>
+          <span><%= t('admin.users.users') %></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <h6 class="dropdown-header"><i class="fas fa-fw fa-address-card"></i> <%= t('admin.users.customer') %></h6>
+          <a class="dropdown-item" href="<%= costumer_admin_users_path %>"><%= t('admin.users.show_all_customers') %></a>
+          <a class="dropdown-item" href="#">Statistics</a>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header"><i class="fas fa-fw fa-user"></i> <%= t('admin.users.employer') %></h6>
+          <a class="dropdown-item" href="<%= employer_admin_users_path %>"><%= t('admin.users.show_all_employer') %></a>
+          <a class="dropdown-item" href="#"><%= t('admin.users.add_employer') %></a>
+        </div>
+      </li>
+    <% end %>
+    <% if current_user.rank >= 3 %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="ordersDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-clipboard-list"></i>
+          <span><%= t('admin.orders.orders') %></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="ordersDropdown">
+          <a class="dropdown-item" href="#"><%= t('admin.orders.show_all') %></a>
+          <a class="dropdown-item" href="#"><%= t('admin.orders.add') %></a>
+          <a class="dropdown-item" href="#">Statistics</a>
+        </div>
+      </li>
+    <% end %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-fw fa-tools"></i>
+        <span><%= t('admin.settings.settings') %></span>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="performancesDropdown">
+        <a class="dropdown-item" href="<%= admin_settings_url %>">
+          <i class="fas fa-layer-group"></i> <%= t('admin.settings.general') %>
+        </a>
+        <a class="dropdown-item" href="<%= admin_api_clients_url %>"><i class="fas fa-code"></i> API Clients</a>
       </div>
     </li>
     <li class="nav-item">
@@ -120,7 +180,20 @@
         <span>Tables</span></a>
     </li>
   </ul>
-  <%= yield %>
+  <div id="content-wrapper">
+    <div class="container-fluid">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /content-wrapper -->
+
 </div>
 <!-- /#wrapper -->
 </body>

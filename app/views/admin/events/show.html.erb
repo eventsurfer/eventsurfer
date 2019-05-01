@@ -1,0 +1,55 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Events", admin_events_path %>
+
+  </li>
+  <li class="breadcrumb-item active">
+    <%= link_to @event.name, admin_event_path(@event.id) %>
+  </li>
+</ol>
+
+<div class="container-fluid">
+  <h1><%= @event.name %></h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Performances
+        <span> <%= link_to "", new_admin_performance_path, class: "fas fa-fw fa-plus", style: "color: green" %></span>
+      </h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th><%= I18n.t (:location) %></th>
+          <th>Start</th>
+          <th>Stop</th>
+          <th><%= "number of tickets" %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @locationsPerformance.each do |locPerform| %>
+          <tr data-link="<%= edit_admin_performance_path(locPerform.performance.id) %>" data-id="<%= locPerform.performance.id %>">
+            <td><%= locPerform.location.name %></td>
+            <td><%= I18n.l(locPerform.performance.start.to_date, format: :default) %></td>
+            <td><%= I18n.l(locPerform.performance.stop.to_date, format: :default) %></td>
+            <td><%= locPerform.performance.number_of_tickets %></td>
+          </tr>
+        <% end %>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <h3>Locations <span class="badge badge-primary badge-pill"><%= @locationsPerformance.size %> </span></h3>
+      <% @locationsPerformance.each do |loc| %>
+        <ul class="list-unstyled">
+          <li><%= getFullAddress(loc.location) %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+<script>
+    $("tr[data-link]").click(function () {
+        window.location = $(this).data("link");
+    })
+</script>

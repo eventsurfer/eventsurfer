@@ -30,6 +30,81 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin:
+    api_clients:
+      add: "Add API-Client"
+      edit: "Edit API-Client"
+    events:
+      create: "Create new event"
+      edit: "Edit event"
+      events: "Events"
+      show_all: "Show all events"
+    locations:
+      edit: "Edit location"
+      locations: "Locations"
+      name: "Name"
+      street: "Street"
+      street_number: "Street Number"
+      city: "City"
+      country: "Country"
+      show_all: "Show all locations"
+      add: "Add location"
+      global_map: "Global Map"
+    performances:
+      edit: "Edit performance"
+      performances: "Performances"
+      start: "Start"
+      end: "End"
+      price: "Price"
+      number_of_tickets: "Number of ticktes"
+      create: "Create new performance"
+      show_all: "Show all performances"
+      add: "Add performance"
+    settings:
+      edit: "Edit Setting"
+      settings: "Settings"
+      key: "Key"
+      value: "Value"
+      new: "New Setting"
+      general: "General"
+    tickets:
+      id: "id"
+      valid_id: "valid_id"
+      valid: "valid"
+      created_at: "created_at"
+      updated_at: "updated_At"
+    users:
+      users: "Users"
+      id: "Id"
+      name: "Name"
+      email: "E-mail"
+      enabled: "Enabled"
+      registration: "Registration"
+      passsword: "Password"
+      customers: "View of all Costumers"
+      edit: "edit"
+      admin: "Administrator"
+      customer: "Customer"
+      show_all_customers: "Show all costumer"
+      employer: "Employer"
+      show_all_employer: "Show all employer"
+      add_employer: "Add employer"
+    orders:
+      orders: "Orders"
+      show_all: "Show all orders"
+      add: "Add order"
+  common:
+    delete: "Delete"
+    edit: "Edit"
+
+  location: "Location"
+  admin_event_order: "Order"
+  admin_event_start_date: "start date"
+  admin_event_end_date: "end date"
+  admin_event_hoster: "hoster"
+  add: "add"
+  delete: "delete"
+  admin_event_name: "event name"
   hello: "Hello world"
   date:
     formats:
@@ -47,4 +122,3 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
-

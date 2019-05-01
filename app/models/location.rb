@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Location < ApplicationRecord
+  has_many :performance_locations
+  has_many :performance, through: :performance_locations
+
   ##
   #
   def self.getAllCountries
@@ -14,5 +17,12 @@ class Location < ApplicationRecord
       end
     end
     return arr.sort
+  end
+
+  def self.getLocationsNames
+    tmp = []
+    loc = Location.all
+    loc.each{|l|tmp.push(l.name)}
+    return tmp
   end
 end
