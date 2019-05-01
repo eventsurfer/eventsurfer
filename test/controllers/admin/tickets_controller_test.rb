@@ -7,7 +7,6 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     @admin_user = create(:admin_user)
   end
 
-
   test "get index" do
     sign_in @admin_user
     get admin_tickets_path
