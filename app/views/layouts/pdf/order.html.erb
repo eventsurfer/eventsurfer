@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Title</title>
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <style>
     p {
       margin-bottom: 0
@@ -14,14 +14,17 @@
 <body>
 <br><br>
 <div class="container">
-  <label><small><%= @info.company %> <%= @info.street %> <%= @info.street_number %> | <%= @info.postcode %> <%= @info.city %></small> </label>
+  <label>
+    <small><%= @info.company %> <%= @info.street %> <%= @info.street_number %>
+      | <%= @info.postcode %> <%= @info.city %></small>
+  </label>
   <div class="row shorter">
-    <div  class="col-sm-4">
-      <p class="destination" ><%= "Name of Person who orderd" %></p>
+    <div class="col-sm-4">
+      <p class="destination"><%= "Name of Person who orderd" %></p>
       <p class="destination"><%= "Destination street and number" %></p>
       <p class="destination"><%= "Postcode and city" %></p>
     </div>
-    <div class="col-sm-4 "> </div>
+    <div class="col-sm-4 "></div>
     <div class="col-sm-4">
       <p class=" source"><%= @info.company %></p>
       <p class=" source"><%= @info.street %> <%= @info.street_number %></p>
@@ -36,33 +39,34 @@
     <h3><%= "Order" %></h3>
     <div id="general">
       <div class="row">
-
-        <div  class="col-4">
+        <div class="col-sm-4">
           <p><%= "Order Nr.:" %></p>
           <p><%= "Commission: " %><%= "short text event and performance" %></p>
           <p><%= "User number: " %><%= "user id" %></p>
           <p></p>
         </div>
-        <div class="col-4"> </div>
-        <div class="col-4">
-          <p><%= "Date of order: "%></p>
-          <p><%="Delivery date: "%></p>
-          <p><%="Processor: "%></p>
-          <p><%="Phone: "%></p>
-          <p><%="Mail: "%></p>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <p><%= "Date of order: " %></p>
+          <p><%= "Delivery date: " %></p>
+          <p><%= "Processor: " %></p>
+          <p><%= "Phone: " %></p>
+          <p><%= "Mail: " %></p>
         </div>
         <div class="col-2"></div>
       </div>
     </div>
     <br><br><br><br>
     <div id="table">
-      <table id="order" class="table" >
+      <table id="order" class="table">
         <thead>
-        <th>Pos</th>
-        <th>Bezeichnung</th>
-        <th>Menge</th>
-        <th>Preis/Einheit €</th>
-        <th>Gesamt</th>
+        <tr>
+          <th>Pos</th>
+          <th>Bezeichnung</th>
+          <th>Menge</th>
+          <th>Preis/Einheit €</th>
+          <th>Gesamt</th>
+        </tr>
         </thead>
         <tbody>
         <tr>
@@ -91,7 +95,7 @@
     </div>
     <div id="total">
       <div class="row">
-        <div class="col-sm-8"> </div>
+        <div class="col-sm-8"></div>
         <div class="col-sm-4">
           <p>Total: </p>
         </div>
