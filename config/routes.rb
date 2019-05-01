@@ -99,7 +99,7 @@ Rails.application.routes.draw do
           post "validate_ticket"
         end
       end
-      resources :users, :except => [:signIn] do
+      resources :users do
         collection do
           post "signIn"
         end
@@ -108,13 +108,27 @@ Rails.application.routes.draw do
   end
 
 
+
   # Show events
-  resources :events do
-    post 'punch'
-    get "events", to: "events#index"
+  namespace :frontend do
+    resources :events do
+      collection do
+        get ":id/show", to: "events#show", :shallow => true
+      end
+      resources :performances do
+        collection do
+          get ":id/show", to: "performances#show"
+        end
+      end
+    end
+    get ":id/add", to: "carts#add_item", :as => :add_to_cart
+    get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
+    get "cart", to: "carts#list_items"
+    post "create_order", to:"carts#createOrder"
+    get "/", to: "events#index"
+
   end
 
-
   #Default page
-  root "events#index"
+  root "frontend/events#index"
 end
