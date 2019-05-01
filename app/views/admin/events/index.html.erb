@@ -5,11 +5,15 @@
   </li>
 </ol>
 <table class="table">
-  <th><%= I18n.t :admin_event_name %></th>
-  <th><%= I18n.t :admin_event_start_date %></th>
-  <th><%= I18n.t :admin_event_end_date %></th>
-  <th><%= I18n.t :admin_event_hoster %></th>
-  <th><%= button_to "add", new_admin_event_path, method: :get, class: "btn btn-success" %></th>
+  <thead>
+  <tr>
+    <th><%= I18n.t :admin_event_name %></th>
+    <th><%= I18n.t :admin_event_start_date %></th>
+    <th><%= I18n.t :admin_event_end_date %></th>
+    <th><%= I18n.t :admin_event_hoster %></th>
+    <th><%= button_to "add", new_admin_event_path, method: :get, class: "btn btn-success" %></th>
+  </tr>
+  </thead>
   <tbody>
   <% @events.each do |event| %>
     <tr data-id="<%= event.id %>" data-name="<%= event.name %>" data-start="<%= I18n.l(event.start.to_datetime, format: :shortest) %>" data-createdAt="<%= I18n.l(event.created_at.to_datetime, format: :shortest) %>" data-updatedAt="<%= I18n.l(event.updated_at.to_datetime, format: :shortest) %>" data-stop="<%= I18n.l(event.stop.to_datetime, format: :shortest) %>" data-hosterName="<%= event.hoster_name %>" data-hotline="<%= event.hotline %>" data-changedBy="<%= event.changed_by %>" data-link="<%= admin_event_path(event.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit">
@@ -17,7 +21,11 @@
       <td><%= I18n.l(event.start.to_date, format: :default) %></td>
       <td><%= I18n.l(event.stop.to_date, format: :default) %></td>
       <td><%= event.hoster_name %></td>
-      <td><form action="/admin/events/<%=event.id %>/delete" method="get"><button class="btn btn-danger"><%= I18n.t :delete %></button></form></td>
+      <td>
+        <form action="/admin/events/<%= event.id %>/delete" method="get">
+          <button class="btn btn-danger"><%= I18n.t :delete %></button>
+        </form>
+      </td>
     </tr>
   <% end %>
   </tbody>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-class TicketTest < ActiveSupport::TestCase
+class TicketsTest < ActiveSupport::TestCase
   setup do
     @ticket = build(:ticket)
     @user = create(:user)

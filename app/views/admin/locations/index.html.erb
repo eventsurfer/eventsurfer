@@ -1,12 +1,14 @@
-<h2>Locations</h2>
+<h2><%= t('admin.locations.locations') %></h2>
 <table class="table" id="location-indextable">
   <thead class="text-center">
-  <th>Name</th>
-  <th>Street</th>
-  <th>Street Number</th>
-  <th>City</th>
-  <th>Country</th>
-  <th><%= button_to "add", new_admin_location_path, method: :get, class: "btn btn-success" %></th>
+  <tr>
+    <th><%= t('admin.locations.name') %></th>
+    <th><%= t('admin.locations.street') %></th>
+    <th><%= t('admin.locations.street_number') %></th>
+    <th><%= t('admin.locations.city') %></th>
+    <th><%= t('admin.locations.country') %></th>
+    <th><%= button_to "add", new_admin_location_path, method: :get, class: "btn btn-success" %></th>
+  </tr>
   </thead>
   <tbody>
   <% @locations.each do |location| %>
@@ -15,14 +17,18 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                 location.changed_by
                                                                                                                                                                                                                                                                                                                                                                                                                                                               else
                                                                                                                                                                                                                                                                                                                                                                                                                                                                 "No Data"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>" data-link="<%= edit_admin_location_path(location.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit" >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              end %>" data-link="<%= edit_admin_location_path(location.id) %>" data-toggle="tooltip" data-placement="bottom" title="Click to edit">
 
       <td><%= location.name %></td>
       <td><%= location.street %></td>
       <td><%= location.street_number %></td>
       <td><%= location.city %></td>
       <td><%= location.country %></td>
-      <td><form action="/admin/locations/<%=location.id %>/delete" method="get"><button class="btn btn-danger">Delete</button></form></td>
+      <td>
+        <form action="/admin/locations/<%= location.id %>/delete" method="get">
+          <button class="btn btn-danger"><%= t('common.delete') %></button>
+        </form>
+      </td>
     </tr>
   <% end %>
   </tbody>

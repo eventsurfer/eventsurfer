@@ -59,7 +59,7 @@ Rails.application.routes.draw do
         get "new", to: "tickets#new"
         post "new", to: "tickets#update"
         get ":id/delete", to: "tickets#destroy"
-        get ":id/show", to: "tickets#show"
+        #get ":id/show", to: "tickets#show"
         get "/", to: "tickets#index"
       end
     end
