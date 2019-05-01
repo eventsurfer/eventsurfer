@@ -107,7 +107,7 @@ end
 
 if (Cart.all.size < 10)
   10.times do |i|
-    this_cart = Cart.create(user_id: i+1)
+    this_cart = Cart.create(user_id: i + 1)
     5.times do
       PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...30), count: rand(1...6))
     end
@@ -116,10 +116,20 @@ end
 
 if (Order.all.size < 10)
   10.times do |i|
-    this_order = Order.create(user_id: i+1)
-    PerformanceCart.where(cart_id: Cart.find_by_user_id(i+1)).each do |item|
+    this_order = Order.create(user_id: i + 1)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i + 1)).each do |item|
       GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
     end
   end
-
+end
+if (DefaultInformation.all.empty?)
+  #p "hi"
+  street = Faker::Address.street_name
+  number = Faker::Address.street_suffix
+  country = Faker::Address.country
+  city = Faker::Address.city
+  postcode = Faker::Address.postcode
+  name = Faker::Company.industry
+  website = Faker::FunnyName.name + ".net"
+  DefaultInformation.create(company: name, street: street, street_number: number.to_s, country: country, city: city, postcode: postcode.to_s, cellphone: Faker::PhoneNumber.cell_phone_with_country_code, website: website, email: Faker::Internet.unique.email(name), changed_by: 1)
 end
