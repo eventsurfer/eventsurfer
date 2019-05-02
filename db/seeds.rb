@@ -123,7 +123,6 @@ if (Order.all.size < 10)
   end
 end
 if (DefaultInformation.all.empty?)
-  #p "hi"
   street = Faker::Address.street_name
   number = Faker::Address.street_suffix
   country = Faker::Address.country
