@@ -77,6 +77,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :orders do
+      collection do
+        get "index", to:"orders#index"
+      end
+    end
+
     resources :settings, :except => [:show]
     resources :api_clients, :only => [:index,
                                       :new,

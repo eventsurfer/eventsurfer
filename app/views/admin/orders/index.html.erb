@@ -1,0 +1,32 @@
+<h2>Orders</h2>
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-6">
+      <h3>Paid</h3>
+      <ul>
+        <% @paid.each do |order| %>
+          <li><%= @user.find(order[0]).name%></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-sm-6">
+      <h3>Unpaid</h3>
+      <ul>
+        <% @unpaid.each do |order| %>
+          <li>
+            <%= @user.find(order[0]).name%>
+            <table class="table">
+              <tr>
+                <th>33</th>
+                <th>44</th>
+              </tr>
+            </table>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
