@@ -1,7 +1,7 @@
 <%= form_for :event do |form| %>
   <div class="form-group">
     <%= form.label(:name) %>
-    <%= form.text_field(:name, class:"form-control", placeholder: "event name") %>
+    <%= form.text_field(:name, class: "form-control", placeholder: "event name") %>
   </div>
   <div class="form-group">
     <%= form.label(:description) %>
@@ -10,11 +10,11 @@
   <div class="form-inline">
     <div class="form-group">
       <%= form.label(:start) %>
-      <%= form.time_select(:start, class:"form-control", placeholder: "start of event") %>
+      <%= form.time_select(:start, class: "form-control", placeholder: "start of event") %>
     </div>
     <div class="form-group">
       <%= form.label(:stop) %>
-      <%= form.time_select(:stop, class:"form-control",placeholder: "stop of event") %>
+      <%= form.time_select(:stop, class: "form-control", placeholder: "stop of event") %>
     </div>
   </div>
   <div class="form-group">
@@ -23,11 +23,11 @@
   </div>
   <div class="form-group">
     <%= form.label(:website) %>
-    <%= form.text_field(:website, class:"form-control", placeholder: "link to event website") %>
+    <%= form.text_field(:website, class: "form-control", placeholder: "link to event website") %>
   </div>
   <div class="form-group">
     <%= form.label(:hotline) %>
-    <%= form.text_field(:hotline, class:"form-control", placeholder: "hotline") %>
+    <%= form.text_field(:hotline, class: "form-control", placeholder: "hotline") %>
   </div>
   <div class="form-group">
     <div>
@@ -35,4 +35,4 @@
     </div>
   </div>
 
-<%end %>
+<% end %>

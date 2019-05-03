@@ -2,7 +2,10 @@
 
 class Admin::LocationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
+
   def index
     @locations = Location.all
   end
@@ -57,13 +60,21 @@ class Admin::LocationsController < ApplicationController
     begin
       def location_params
         params.require(:location).permit(:street,
-                                     :postcode,
-                                     :country,
-                                     :city,
-                                     :street_number,
-                                     :changed_by,
-                                     :name
+                                         :postcode,
+                                         :country,
+                                         :city,
+                                         :street_number,
+                                         :changed_by,
+                                         :name
         )
+      end
+
+      def checkPermission!
+        if current_user.rank >= 2
+
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
 

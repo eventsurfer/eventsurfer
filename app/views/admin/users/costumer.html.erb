@@ -1,0 +1,22 @@
+<h1><%= t('admin.users.customers') %></h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= t('admin.users.name') %></th>
+    <th><%= t('admin.users.email') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @costumer.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= link_to(t('common.edit'),
+                    edit_admin_user_path(user),
+                    class: "btn btn-secondary ", style: "background-color: ") %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
