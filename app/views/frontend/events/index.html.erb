@@ -14,44 +14,20 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-        <div class="card-body">
-          <h4 class="card-title"><%= @events.first.name %></h4>
-          <p class="card-text"><%=@events.first.description %></p>
-        </div>
-        <div class="card-footer">
-          <a href="<%= frontend_event_path(@events.first.id) %>" class="btn btn-primary">Find Out More!</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus
-            neque sequi doloribus totam ut praesentium aut.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Find Out More!</a>
+    <% @events.first(3).each do |event| %>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><%= event.name %></h4>
+            <p class="card-text"><%= event.description %></p>
+          </div>
+          <div class="card-footer">
+            <a href="<%= frontend_event_path(event.id) %>" class="btn btn-primary">Find Out More!</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4 mb-5">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-        <div class="card-body">
-          <h4 class="card-title">Card title</h4>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus
-            neque.</p>
-        </div>
-        <div class="card-footer">
-          <a href="#" class="btn btn-primary">Find Out More!</a>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
   <!-- /.row -->
 
