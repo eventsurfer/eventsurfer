@@ -1,43 +1,16 @@
-<!-- Header -->
-<header class="bg-primary py-5 mb-5">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-lg-12">
-        <h1 class="display-4 text-white mt-5 mb-2">Eventsurfer</h1>
-        <p class="lead mb-5 text-white-50">Finde dein nächstes Event</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- Page Content -->
-<div class="container">
-
-  <div class="row">
-    <% @events.first(3).each do |event| %>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
-          <div class="card-body">
-            <h4 class="card-title"><%= event.name %></h4>
-            <p class="card-text"><%= event.description %></p>
-          </div>
-          <div class="card-footer">
-            <a href="<%= frontend_event_path(event.id) %>" class="btn btn-primary">Find Out More!</a>
-          </div>
+<div class="row">
+  <% @events.first(3).each do |event| %>
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+        <div class="card-body">
+          <h4 class="card-title"><%= event.name %></h4>
+          <p class="card-text"><%= event.description %></p>
+        </div>
+        <div class="card-footer">
+          <a href="<%= frontend_event_path(event.id) %>" class="btn btn-primary">Find Out More!</a>
         </div>
       </div>
-    <% end %>
-  </div>
-  <!-- /.row -->
-
+    </div>
+  <% end %>
 </div>
-<!-- /.container -->
-
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-  </div>
-  <!-- /.container -->
-</footer>

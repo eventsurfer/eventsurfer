@@ -1,12 +1,7 @@
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <%= link_to "Events", root_path %>
-  </li>
-  <li class="breadcrumb-item active">
-    <%= link_to @performance.id, frontend_event_path %>
-  </li>
-</ol>
-
+<a href="<%= frontend_event_path(@performance.event.id) %>" class="btn btn-outline-primary">
+  <i class="fas fa-chevron-left"></i> <%= @performance.event.name %>
+  Übersicht
+</a>
 <div class="container-fluid">
   <h1><%= @performance.location.name %></h1>
   <div class="row">
@@ -15,14 +10,22 @@
       <table class="table">
         <thead>
         <tr>
-          <th>ID</th>
+          <th>Nr</th>
+          <th>Preis</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
         <% @performance.tickets.each do |ticket| %>
           <tr>
             <td><%= ticket.id %></td>
-            <td><a href=<%= frontend_add_to_cart_path(ticket.id) %>>Add to Cart</a></td>
+            <td><%= @performance.prize %> €</td>
+            <td>
+              <a href="<%= frontend_add_to_cart_path(ticket.id) %>" class="btn btn-primary"
+                 data-toggle="tooltip" data-placement="bottom" title="Add to cart">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+            </td>
           </tr>
         <% end %>
         </tbody>
