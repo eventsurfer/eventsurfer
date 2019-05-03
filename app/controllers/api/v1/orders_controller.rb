@@ -22,15 +22,16 @@ class Api::V1::OrdersController < Api::V1::BaseController
     @info = DefaultInformation.first
     p GroupTicket.where(order_id: params[:id])
     group = GroupTicket.where(order_id: params[:id]).first
-    #GroupTicket.where(order_id: params[:id]).each do |group|
-    @groupTicket = group
-    @user = User.find(Order.find(group.order_id).user_id)
-    @perEve = PerformanceEvent.find_by(performance_id: group.performance_id)
-    #p PerformanceEvent.find_by(performance_id: group.performance_id).event
-    # <%= "#{@perEve.event.name}, #{I18n.l(@perEve.performance.start, format: :shortest)}" %>
+    GroupTicket.where(order_id: params[:id]).each do |group|
+      @groupTicket = group
+      @user = User.find(Order.find(group.order_id).user_id)
+      @perEve = PerformanceEvent.find_by(performance_id: group.performance_id)
+      p PerformanceEvent.find_by(performance_id: group.performance_id).event
+      # <%= "#{@perEve.event.name}, #{I18n.l(@perEve.performance.start, format: :shortest)}" %>
+    end
     @order = Order.find(group.order_id)
     respond_to do |format|
-      #format.html
+      format.html
       format.pdf do
         render pdf: "order.pdf",
                template: "layouts/pdf/order.html.erb",

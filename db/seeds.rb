@@ -59,7 +59,7 @@ if (Event.all.size < 20)
 end
 #Performnace.delete_all
 if (Performance.all.size < 30)
-  15.times do
+  11.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
@@ -71,7 +71,7 @@ end
 # fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
 if (PerformanceEvent.all.size < 20)
   count = 0
-  5.times do |i|
+  4.times do |i|
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
     count += 2
@@ -109,7 +109,7 @@ if (Cart.all.size < 10)
   10.times do |i|
     this_cart = Cart.create(user_id: i + 1)
     5.times do
-      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...30), count: rand(1...6))
+      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...15), count: rand(1...6))
     end
   end
 end
