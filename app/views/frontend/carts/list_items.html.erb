@@ -5,13 +5,14 @@
   <% if !@items.nil?%>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.performance_id%></td>
-        <td><%= item.count%></td>
+        <td><%= item[0] %></td>
+        <td><%= item[1] %></td>
       </tr>
     <% end %>
   <%= @cart %>
   <% end %>
 
-  <%= button_to "ORDER", frontend_create_order_path, method: :post %>
   </tbody>
+  <%= button_to "ORDER", frontend_create_order_path, method: :post %>
+
 </table>
