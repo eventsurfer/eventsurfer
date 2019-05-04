@@ -5,8 +5,15 @@
 class Frontend::CartsController < ApplicationController
   def add_item
     t = Ticket.find(params[:id])
-    if !@cart.include?(t.id)
-      @cart.push(t.id)
+    exist = false
+    @cart.each do |element|
+      if element[0] == t.id
+        element[1] = element[1] + 1
+        exist = true
+      end
+    end
+    unless exist
+      @cart.push([t.id, 1])
     end
 
     unless current_user.nil?
@@ -24,11 +31,11 @@ class Frontend::CartsController < ApplicationController
     @items = []
     unless current_user.nil?
       PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        @items.push(item)
+        @items.push([item.performance_id, item.count])
       end
     else
-      @cart.each do |id|
-        @items.push(Ticket.find(id.to_i))
+      @cart.each do |item|
+        @items.push(item)
       end
     end
   end
