@@ -4,7 +4,7 @@
 # TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
   def add_item
-    t = Ticket.find(params[:id])
+    t = Ticket.find(params[:id]).performance
     exist = false
     @cart.each do |element|
       if element[0] == t.id
@@ -17,11 +17,11 @@ class Frontend::CartsController < ApplicationController
     end
 
     unless current_user.nil?
-      if PerformanceCart.find_by(performance_id: t.performance.id)
-        p t.performance.id
-        PerformanceCart.find_by(performance_id: t.performance.id).update(count: PerformanceCart.find_by(performance_id: (t.performance.id)).count + 1)
+      pc = PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.id)
+      if pc
+        pc.update(count: pc.count + 1)
       else
-        PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.performance.id, count: 1)
+        PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.id, count: 1)
       end
     end
     redirect_to(frontend_cart_path)
