@@ -113,6 +113,7 @@ Rails.application.routes.draw do
           post ":id/show", to: "orders#show"
           post "test1", to: "orders#test1"
           post "order", to:"orders#order"
+          # get "order", to:"orders#order"
           get "example", to: "orders#example"
         end
       end

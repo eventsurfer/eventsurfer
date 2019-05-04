@@ -26,7 +26,6 @@ class Api::V1::OrdersController < Api::V1::BaseController
     @user = User.find(@order.user_id)
     GroupTicket.where(order_id: params[:id]).each {|group| @groupTickets.push(group)}
     respond_to do |format|
-      #format.html
       format.pdf do
         render pdf: "order.pdf",
                template: "layouts/pdf/order.html.erb",

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc "DB drop, create, migrate, seed"
-  task :doSth => :environment do
+  task doSth: :environment do
     p "drop databases"
     Rake::Task["db:drop"].invoke
     p "create databases"
