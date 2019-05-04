@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < Api::V1::BaseController
-  # before_action :authenticate_client!
+  before_action :authenticate_client!
 
   def show
     respond_to :html, :pdf
