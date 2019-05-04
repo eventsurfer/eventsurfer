@@ -2,6 +2,8 @@
   <thead>
   <tr>
     <th>Performance</th>
+    <th>Location</th>
+    <th>Beginning</th>
     <th>Count</th>
   </tr>
   </thead>
@@ -9,14 +11,14 @@
   <% if !@items.nil? %>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item[0] %></td>
+        <td><%= item[0].event.name %></td>
+        <td><%= item[0].location.name %></td>
+        <td><%= I18n.l(item[0].start) %></td>
         <td><%= item[1] %></td>
       </tr>
     <% end %>
     <%= @cart %>
   <% end %>
-
   </tbody>
-  <%= button_to "ORDER", frontend_create_order_path, method: :post %>
-
 </table>
+<a href="<%= frontend_create_order_path %>" class="btn btn-primary">ORDER <i class="far fa-credit-card"></i></a>
