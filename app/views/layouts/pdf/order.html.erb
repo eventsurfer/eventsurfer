@@ -57,9 +57,6 @@
       </div>
     </div>
     <br><br><br><br>
-    <% @groupTickets.each do |groupTicket| %>
-      <%= groupTicket.attributes %>
-    <% end %>
     <% count = 1 %>
     <div id="table">
       <table id="order" class="table">
@@ -76,7 +73,7 @@
         <% @groupTickets.each do |groupTicket| %>
           <tr>
             <td><%= count %></td>
-            <td><%= @performances.find(groupTicket.performance_id) %></td>
+            <td><%= @performances.find(groupTicket.performance_id).event.name %>, <%= @performances.find(groupTicket.performance_id).location.name %> (<%= I18n.l(@performances.find(groupTicket.performance_id).start) %>)</td>
             <td><%= groupTicket.count %></td>
             <td><%= "einzel preis" %></td>
             <td><%= "gesamt preis" %></td>

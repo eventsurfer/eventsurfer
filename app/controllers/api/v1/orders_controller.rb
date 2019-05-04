@@ -24,12 +24,9 @@ class Api::V1::OrdersController < Api::V1::BaseController
     @order = Order.find(params[:id])
     @performances = Performance.all
     @user = User.find(@order.user_id)
-    GroupTicket.where(order_id: params[:id]).each do |group|
-      @groupTickets.push(group)
-    end
-
+    GroupTicket.where(order_id: params[:id]).each {|group| @groupTickets.push(group)}
     respond_to do |format|
-      format.html
+      #format.html
       format.pdf do
         render pdf: "order.pdf",
                template: "layouts/pdf/order.html.erb",
@@ -40,7 +37,6 @@ class Api::V1::OrdersController < Api::V1::BaseController
                height: 1024
       end
     end
-    #end
   end
 
   def test1
