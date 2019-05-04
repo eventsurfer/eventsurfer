@@ -15,6 +15,5 @@ class OrderMailer < ApplicationMailer
     @order = order
     @groupTickets = GroupTicket.where(order_id: order.id)
     @user = user
-
   end
 end
