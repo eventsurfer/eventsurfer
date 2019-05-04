@@ -9,9 +9,8 @@
         <td>
           <%= form_tag(frontend_update_cart_path(item[0]), method: "post") do %>
             <%= number_field_tag :count, value = item[1], :min => 1 %>
-            <%= submit_tag value = "Y" %>
+            <%= submit_tag value = "->" %>
           <% end %>
-
         </td>
         <td><a href=<%= frontend_remove_from_cart_path(item[0]) %>>X</a></td>
       </tr>
