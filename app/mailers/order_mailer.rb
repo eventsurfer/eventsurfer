@@ -11,12 +11,7 @@ class OrderMailer < ApplicationMailer
     @performances = Performance.all
     @user = User.find(@order.user_id)
     GroupTicket.where(order_id: order.id).each {|group| @groupTickets.push(group)}
-    attachments["order.pdf"] = WickedPdf.new.pdf_from_string(
-                                                render_to_string(pdf: "order", template: "layouts/pdf/order",layout: "pdf/general.erb"), {viewport_size: "1280x1024",
-                                                                                                                                            page_size: "A4",
-                                                                                                                                            width: 1280,
-                                                                                                                                            height: 1024}
-    )
+    attachments["order.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(pdf: "order", template: "layouts/pdf/order", layout: "pdf/general.erb"), viewport_size: "1280x1024", page_size: "A4", width: 1280, height: 1024)
     mail(subject: "Your order confirmation", to: @user.email, template_path: "layouts/mailer", template_name: "entry_order")
   end
 
