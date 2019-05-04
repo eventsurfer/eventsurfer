@@ -46,7 +46,7 @@ if (Location.all.size < 40)
 end
 #Event.delete_all
 if (Event.all.size < 20)
-  11.times do
+  5.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
@@ -59,7 +59,7 @@ if (Event.all.size < 20)
 end
 #Performnace.delete_all
 if (Performance.all.size < 30)
-  11.times do
+  10.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
@@ -69,12 +69,16 @@ if (Performance.all.size < 30)
   end
 end
 # fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
-if (PerformanceEvent.all.size < 20)
-  count = 0
-  4.times do |i|
+if (PerformanceEvent.all.size < 30)
+  count = 1
+  p Event.all.size
+  5.times do |i|
+    p count
+    p Event.all[i]
+    p Performance.all[count], Performance.all[count+1]
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
-    count += 2
+    count +=2
   end
 end
 if (Ticket.all.size < 200)
