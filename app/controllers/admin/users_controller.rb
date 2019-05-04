@@ -49,6 +49,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      Cart.create(user_id: @user.id)
       redirect_to(admin_users_url)
     else
       render :new

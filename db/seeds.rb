@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today, role: "employer", level: 4)
+  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today, role: "employer", rank: 4)
 end
 
 def fake_name()
@@ -29,7 +29,6 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 0)
     User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
   end
 end
@@ -82,11 +81,13 @@ if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
     10.times do |t|
-      ticket = Ticket.create(validate_id: "fffggg", valid_: true)
+      ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
+      ticket.validate_id += "D" + ticket.id.to_s
+      ticket.save
       arr.push(ticket.id)
     end
     arr.each do |t|
-      PerformanceTicket.create(performances_id: p.id, tickets_id: t)
+      PerformanceTicket.create(performance_id: p.id, ticket_id: t)
     end
   end
 
@@ -97,10 +98,28 @@ if (PerformanceLocation.all.size < 30)
   Performance.all.each do |per|
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count].id)
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 1].id)
-    PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 2].id)
     count += 1
   end
 end
 if (!ApiClient.find_by_name("testi"))
   ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
+end
+
+if (Cart.all.size < 10)
+  10.times do |i|
+    this_cart = Cart.create(user_id: i+1)
+    5.times do
+      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...30), count: rand(1...6))
+    end
+  end
+end
+
+if (Order.all.size < 10)
+  10.times do |i|
+    this_order = Order.create(user_id: i+1)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i+1)).each do |item|
+      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+    end
+  end
+
 end

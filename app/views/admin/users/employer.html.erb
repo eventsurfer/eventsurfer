@@ -1,10 +1,10 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Enabled</th>
-    <th>Admin</th>
+    <th><%= t('admin.users.name') %></th>
+    <th><%= t('admin.users.email') %></th>
+    <th><%= t('admin.users.enabled') %></th>
+    <th><%= t('admin.users.admin') %></th>
     <th></th>
   </tr>
   </thead>
@@ -14,14 +14,14 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td>
-        <%if user.enabled? %>
+        <% if user.enabled? %>
           <i class="fas fa-fw fa-check" style="color: green"></i>
         <% else %>
           <i class="fas fa-fw fa-times" style="color: red"></i>
         <% end %>
       </td>
       <td>
-        <%if user.admin? %>
+        <% if user.admin? %>
           <i class="fas fa-fw fa-check" style="color: green"></i>
         <% else %>
           <i class="fas fa-fw fa-times" style="color: red"></i>
