@@ -40,6 +40,24 @@ class Frontend::CartsController < ApplicationController
     end
   end
 
+  def update
+    id = params[:id].to_i
+    count = params[:count].to_i
+
+    @cart.each do |element|
+      if element[0] == id
+        element[1] = count
+      end
+    end
+    p @cart
+
+    unless current_user.nil?
+      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+    end
+    redirect_to(frontend_cart_path)
+
+  end
+
   def remove_item
     id = params[:id].to_i
     @cart.each do |element|
@@ -47,7 +65,6 @@ class Frontend::CartsController < ApplicationController
         @cart.delete(element)
       end
     end
-
 
     unless current_user.nil?
       PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).delete
