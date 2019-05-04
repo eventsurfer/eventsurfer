@@ -4,20 +4,32 @@
     <th>Performance</th>
     <th>Location</th>
     <th>Beginning</th>
+    <th>Price per ticket</th>
     <th>Count</th>
+    <th>Price</th>
   </tr>
   </thead>
   <tbody>
   <% if !@items.nil? %>
+    <% total = 0 %>
     <% @items.each do |item| %>
       <tr>
         <td><%= item[0].event.name %></td>
         <td><%= item[0].location.name %></td>
         <td><%= I18n.l(item[0].start) %></td>
+        <td><%= item[0].prize %> €</td>
         <td><%= item[1] %></td>
+        <td><%= total += item[0].prize * item[1] %> €</td>
       </tr>
     <% end %>
-    <%= @cart %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= total %> €</td>
+    </tr>
   <% end %>
   </tbody>
 </table>
