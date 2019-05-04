@@ -55,7 +55,6 @@ class Frontend::CartsController < ApplicationController
       PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
     end
     redirect_to(frontend_cart_path)
-
   end
 
   def remove_item
@@ -80,9 +79,8 @@ class Frontend::CartsController < ApplicationController
       end
     else
       p "nö"
-      #TODO else direct to user login path
+      # TODO else direct to user login path
     end
-
   end
-end
 
+end
