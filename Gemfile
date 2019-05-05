@@ -79,6 +79,7 @@ group :development do
   gem "spring-watcher-listen"
   gem "capistrano-rails"
   gem "capistrano-bundler"
+  gem "letter_opener"
 
 end
 

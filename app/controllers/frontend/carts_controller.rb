@@ -51,6 +51,8 @@ class Frontend::CartsController < ApplicationController
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
       GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
     end
+    OrderMailer.entry_order(this_order).deliver
+    redirect_to root_path
   end
 
 end

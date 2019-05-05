@@ -2,21 +2,22 @@
 
 class OrderMailer < ApplicationMailer
   add_template_helper(ApplicationHelper)
-  default from: "eventsurfer"
+  default from: "no-reply@eventsurfer.online"
 
-  def entry_order(order, user)
-    @group_ticket = order
-    @number_of_tickets = GroupTicket.where(order_id: order.id)
-    @total_prize = "" # TODO: Change
-    @user = user
-    mail(subject: "EXAMPLE ENTRY ORDER", to: user.email)
+  def entry_order(order)
+    @info = DefaultInformation.first
+    @groupTickets = []
+    @order = Order.find(order.id)
+    @performances = Performance.all
+    @user = User.find(@order.user_id)
+    GroupTicket.where(order_id: order.id).each {|group| @groupTickets.push(group)}
+    attachments["order.pdf"] = WickedPdf.new.pdf_from_string(render_to_string(pdf: "order", template: "layouts/pdf/order", layout: "pdf/general.erb"), viewport_size: "1280x1024", page_size: "A4", width: 1280, height: 1024)
+    mail(subject: "Your order confirmation", to: @user.email, template_path: "layouts/mailer", template_name: "entry_order")
   end
 
   def user_have_to_pay(order, user)
-    @group_ticket = order
-    @number_of_tickets = GroupTicket.where(order_id: order.id)
-    @total_prize = "" # TODO: Change
+    @order = order
+    @groupTickets = GroupTicket.where(order_id: order.id)
     @user = user
-    @payment_info = "" # TODO: Change
   end
 end

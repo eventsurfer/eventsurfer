@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
 
   enum role: [:costumer, :employer]
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
-  end
+  # def send_devise_notification(notification, *args)
+  #  devise_mailer.send(notification, self, *args).deliver_later
+  # end
 end
