@@ -121,6 +121,7 @@ if (Order.all.size < 10)
       GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
     end
   end
+  this_order = Order.create(user_id:1, paid:false)
 end
 if (DefaultInformation.all.empty?)
   street = Faker::Address.street_name
@@ -130,5 +131,5 @@ if (DefaultInformation.all.empty?)
   postcode = Faker::Address.postcode
   name = Faker::Company.industry
   website = Faker::FunnyName.name + ".net"
-  DefaultInformation.create(company: name, street: street, street_number: number.to_s, country: country, city: city, postcode: postcode.to_s, cellphone: Faker::PhoneNumber.cell_phone_with_country_code, website: website, email: Faker::Internet.unique.email(name), changed_by: 1)
+  DefaultInformation.create(company: name, street: street, street_number: number.to_s, country: country, city: city, postcode: postcode.to_s, cellphone: Faker::PhoneNumber.cell_phone_with_country_code, website: website, email: Faker::Internet.unique.email(name)[0..10], changed_by: 1)
 end

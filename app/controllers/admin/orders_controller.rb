@@ -29,6 +29,12 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def setPaid
+    p current_user
+    @order = Order.find(params[:id])
+    @order.setPaid(current_user)
+    redirect_to admin_orders_path
+  end
 
   private
 
