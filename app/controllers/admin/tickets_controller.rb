@@ -19,6 +19,7 @@ class Admin::TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.changed_by = current_user.id
     if @ticket.save
       redirect_to(admin_tickets_path)
     else

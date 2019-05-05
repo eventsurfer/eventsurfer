@@ -81,6 +81,8 @@ class Frontend::CartsController < ApplicationController
       p "nö"
       # TODO else direct to user login path
     end
+    OrderMailer.entry_order(this_order).deliver
+    redirect_to root_path
   end
 
 end

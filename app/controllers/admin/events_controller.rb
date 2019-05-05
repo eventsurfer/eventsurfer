@@ -17,7 +17,7 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
+    @event.changed_by = current_user.id
     if @event.save
       session[:tmp_event_id] = @event.id
       redirect_to(admin_event_path(@event.id))
@@ -32,6 +32,7 @@ class Admin::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.changed_by = current_user.id
     if (@event.update(event_params))
       flash[:success] = "Event was edited successful"
       session[:tmp_event_id] = @event.id
@@ -44,6 +45,7 @@ class Admin::EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    @event.changed_by = current_user.id
     if (@event.destroy)
       flash[:success] = "Event was destroyed successful"
       redirect_to admin_event_path
