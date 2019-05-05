@@ -76,14 +76,17 @@ Rails.application.routes.draw do
         get "/", to: "performances#index"
       end
     end
-
     resources :orders do
       collection do
         get "index", to:"orders#index"
       end
     end
 
-    resources :settings, :except => [:show]
+    resources :settings, :except => [:show, :defaultInfo] do
+      collection do
+        post "defaultInfo", to:"settings#defaultInfo"
+      end
+    end
     resources :api_clients, :only => [:index,
                                       :new,
                                       :create,

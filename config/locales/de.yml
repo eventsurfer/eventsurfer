@@ -165,6 +165,11 @@ de:
       month: Monat
       second: Sekunde
       year: Jahr
+    formats:
+      default: "%a %b %e %T %Y"
+  time:
+    formats:
+      default: "%d.%m.%Y %k:%M"
   number:
     currency:
       format:
