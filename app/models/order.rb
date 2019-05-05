@@ -34,4 +34,13 @@ class Order < ApplicationRecord
 
     end
   end
+
+  def setUnPaid(current)
+    self.changed_by = current.id
+    self.paid = false
+    self.paid_at = nil
+    if self.save
+
+    end
+  end
 end

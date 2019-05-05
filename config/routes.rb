@@ -81,6 +81,7 @@ Rails.application.routes.draw do
         #get ":id/show", to: "orders#getDetailedInfo"
         post ":id/setPaid", to: "orders#setPaid"
         get "index", to: "orders#index"
+        post ":id/setUnPaid", to: "orders#setUnPaid"
       end
     end
 
