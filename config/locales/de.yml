@@ -38,6 +38,7 @@ de:
       general: "Allgemein"
       add: "Einstellung hinzufügen"
     tickets:
+      tickets: "Tickets"
       id: "id"
       valid_id: "valid_id"
       valid: "valid"
@@ -63,6 +64,9 @@ de:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"
       add: "Bestellung hinzufügen"
+    cart:
+      add_to: "Zum Warenkorb hinzufügen"
+      order: "Bestellen"
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
