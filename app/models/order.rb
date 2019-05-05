@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   scope :paid, -> {where(paid: true)}
   scope :unpaid, ->{where(paid: false)}
 
-  #def self.getDataSorted
+  # def self.getDataSorted
   #  back = {}
   #  tmp = {}
   #  orders = Order.paid
@@ -21,10 +21,10 @@ class Order < ApplicationRecord
   #  end
   #  back[:unpaid] = tmp
   #  return back
-  #end
+  # end
 
   def self.getDataSorted
-    back = {paid:[],unpaid:[]}
+    back = {paid: [], unpaid: []}
     tmp_paid = {}
     Order.all.each do |order|
       if (order.paid?)
@@ -32,6 +32,25 @@ class Order < ApplicationRecord
       else
         back[:unpaid].push(order)
       end
+    end
+    return back
+  end
+
+  def self.paid_grouped
+    userOrder = []
+    back = {}
+    Order.paid.each {|order|userOrder.push(order.id) unless userOrder.include?(order.id) }
+    userOrder.each do |user|
+      back[user] = Order.where(user_id: user)
+    end
+    return back
+  end
+  def self.unpaid_grouped
+    userOrder = []
+    back = {}
+    Order.unpaid.each {|order|userOrder.push(order.id) unless userOrder.include?(order.id) }
+    userOrder.each do |user|
+      back[user] = Order.where(user_id: user)
     end
     return back
   end

@@ -9,18 +9,16 @@ class Admin::OrdersController < ApplicationController
   def index
     @groupeTicket = GroupTicket.all
     @orders = Order.all
-    @paid = Order.paid
-    @unpaid = Order.unpaid
+    @paid = Order.paid_grouped
+    @unpaid = Order.unpaid_grouped
     @user = User.all
   end
 
   def show
     @order = Order.find(params[:id])
-  end
-
-  def getDetailedInfo
-    @order = Order.find(params[:id])
     @groupTickets = GroupTicket.where(order_id: @order.id)
+    @performances = Performance.all
+    @user  = User.find(@order.user_id)
   end
 
   def destroy

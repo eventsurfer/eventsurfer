@@ -5,28 +5,29 @@
     <div class="col-sm-6">
       <h3>Paid</h3>
       <div class="panel-group">
-        <% @paid.each do |order| %>
+        <% @paid.each do |userOrder| %>
           <div class="panel panel-default hover">
             <div class="panel-heading">
-              <h4 class="panel-title">
+              <h5 class="panel-title">
                 <div class="clearfix">
-                  <span data-toggle="collapse" href="#collapse<%= order.id.to_s %>"><%= @user.find(order.user_id).name %>
+                  <span data-toggle="collapse" href="#collapse<%= userOrder[0].to_s %>"><%= @user.find(userOrder[0]).name %>
                     <span class="float-right"><i class="fas fa-chevron-down"></i></span></span>
                 </div>
-              </h4>
-              <div class="panel-collapse collapse " id="collapse<%= order.id.to_s %>">
+              </h5>
+              <div class="panel-collapse collapse " id="collapse<%= userOrder[0].to_s %>">
                 <div class="panel-body">
-                  <table class="table table-hover">
+                  <table class="table text-center table-hover">
                     <th><%= "Order Nr." %></th>
                     <th><%= "paid_at" %></th>
                     <th><%= "payment_method" %></th>
-                    <th><%= link_to (order.id)%></th>
                     <tbody>
-                    <tr>
-                      <td><%= order.id %></td>
-                      <td><%= I18n.l(order.paid_at.to_date, format: :shortest) %></td>
-                      <td><%= order.payment_method %></td>
-                    </tr>
+                    <% userOrder[1].each do |order| %>
+                      <tr data-link="<%= admin_order_path(order.id) %>">
+                        <td><%= order.id %></td>
+                        <td><%= I18n.l(order.paid_at.to_date, format: :shortest) %></td>
+                        <td><%= order.payment_method %></td>
+                      </tr>
+                    <% end %>
                     </tbody>
                   </table>
                 </div>
@@ -39,20 +40,41 @@
 
     <div class="col-sm-6">
       <h3>Unpaid</h3>
-      <ul>
-        <% @unpaid.each do |order| %>
-          <li>
-            <%= @user.find(order.user_id).name %>
-            <table class="table">
-              <tr>
-                <th>33</th>
-                <th>44</th>
-              </tr>
-            </table>
-          </li>
+      <div class="panel-group">
+        <% @unpaid.each do |userOrder| %>
+          <div class="panel panel-default hover">
+            <div class="panel-heading">
+              <h5 class="panel-title">
+                <div class="clearfix">
+                  <span data-toggle="collapse" href="#collapse<%= userOrder[0].to_s %>"><%= @user.find(userOrder[0]).name %>
+                    <span class="float-right"><i class="fas fa-chevron-down"></i></span></span>
+                </div>
+              </h5>
+              <div class="panel-collapse collapse " id="collapse<%= userOrder[0].to_s %>">
+                <div class="panel-body">
+                  <table class="table text-center table-hover">
+                    <th><%= "Order Nr." %></th>
+                    <th><%= "Created at" %></th>
+                    <tbody>
+                    <% userOrder[1].each do |order| %>
+                      <tr data-link="<%= admin_order_path(order.id) %>">
+                        <td><%= order.id %></td>
+                        <td><%= I18n.l(order.created_at.to_date, format: :shortest) %></td>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
-
+<script>
+    $("tr[data-link]").click(function () {
+        window.location = $(this).data("link");
+    })
+</script>

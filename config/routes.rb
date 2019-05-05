@@ -78,7 +78,7 @@ Rails.application.routes.draw do
     end
     resources :orders do
       collection do
-        get ":id/getDetailedInfo", to:"orders#getDetailedInfo"
+        get ":id/show", to:"orders#getDetailedInfo"
         get "index", to:"orders#index"
       end
     end
