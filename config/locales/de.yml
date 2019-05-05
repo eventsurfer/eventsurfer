@@ -177,6 +177,7 @@ de:
   time:
     formats:
       default: "%d.%m.%Y %k:%M"
+      shortest: "%d.%m.%Y"
   number:
     currency:
       format:

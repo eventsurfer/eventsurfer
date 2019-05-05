@@ -1,0 +1,39 @@
+<h2>Order Nr.: <%= @order.id %></h2>
+
+<p><%= @user.name %><br><%= I18n.l(@order.created_at, format: :shortest) %></p>
+<br>
+
+<% count = 1 %>
+<div id="table">
+  <table id="order" class="table text-center table-hover">
+    <thead>
+    <tr>
+      <th>Pos</th>
+      <th>Description</th>
+      <th>Number of Tickets</th>
+      <th>Unit Price €</th>
+      <th>Subtotal</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% total = [] %>
+    <% @groupTickets.each do |groupTicket| %>
+      <tr>
+        <td><%= count %></td>
+        <td><%= @performances.find(groupTicket.performance_id).event.name %>
+          , <%= @performances.find(groupTicket.performance_id).location.name %>
+          (<%= I18n.l(@performances.find(groupTicket.performance_id).start) %>)
+        </td>
+        <td><%= groupTicket.count %></td>
+        <td><%= groupTicket.single_price %></td>
+        <td><%= total.push((groupTicket.single_price * groupTicket.count.to_f).round(2)).last %></td>
+      </tr>
+      <% count += 1 %>
+    <% end %>
+    </tbody>
+  </table>
+  <div id="total">
+    <p>Total: <%= total.inject(0) {|sum, x| sum + x} %> €</p>
+  </div>
+</div>
+</div>
