@@ -18,8 +18,14 @@
         <td><%= item[0].location.name %></td>
         <td><%= I18n.l(item[0].start) %></td>
         <td><%= item[0].prize %> €</td>
-        <td><%= item[1] %></td>
+        <td>
+          <%= form_tag(frontend_update_cart_path(item[0].id), method: "post") do %>
+            <%= number_field_tag :count, value = item[1], :min => 1 %>
+            <%= submit_tag value = "->" %>
+          <% end %>
+        </td>
         <td><%= total += item[0].prize * item[1] %> €</td>
+        <td><a href=<%= frontend_remove_from_cart_path(item[0].id) %>>X</a></td>
       </tr>
     <% end %>
     <tr>
@@ -31,6 +37,7 @@
       <td><%= total %> €</td>
     </tr>
   <% end %>
+
   </tbody>
 </table>
 <a href="<%= frontend_create_order_path %>" class="btn btn-primary">ORDER <i class="far fa-credit-card"></i></a>

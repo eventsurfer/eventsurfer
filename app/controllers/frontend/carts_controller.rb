@@ -40,16 +40,46 @@ class Frontend::CartsController < ApplicationController
     end
   end
 
-  def remove_item
-    @cart.delete(params[:id].to_i)
+  def update
+    id = params[:id].to_i
+    count = params[:count].to_i
+
+    @cart.each do |element|
+      if element[0] == id
+        element[1] = count
+      end
+    end
     p @cart
+
+    unless current_user.nil?
+      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+    end
+    redirect_to(frontend_cart_path)
+  end
+
+  def remove_item
+    id = params[:id].to_i
+    @cart.each do |element|
+      if element[0] == id
+        @cart.delete(element)
+      end
+    end
+
+    unless current_user.nil?
+      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).delete
+    end
     redirect_to(frontend_cart_path)
   end
 
   def createOrder
-    this_order = Order.create(user_id: current_user.id)
-    PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+    unless current_user.nil?
+      this_order = Order.create(user_id: current_user.id)
+      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+        GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+      end
+    else
+      p "nö"
+      # TODO else direct to user login path
     end
   end
 
