@@ -7,6 +7,7 @@
     <th>Price per ticket</th>
     <th>Count</th>
     <th>Price</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -21,12 +22,20 @@
         <td><%= item[0].prize %> €</td>
         <td>
           <%= form_tag(frontend_update_cart_path(item[0].id), method: "post") do %>
-            <%= number_field_tag :count, value = item[1], :min => 1 %>
-            <%= submit_tag value = "->" %>
+            <div class="input-group">
+              <%= number_field_tag(:count, value = item[1], :min => 1, class: "form-control") %>
+              <div class="input-group-append">
+                <%= submit_tag(value = "->", class: "btn btn-outline-secondary") %>
+              </div>
+            </div>
           <% end %>
         </td>
         <td><%= item[0].prize * item[1] %> €</td>
-        <td><a href=<%= frontend_remove_from_cart_path(item[0].id) %>>X</a></td>
+        <td>
+          <a href="<%= frontend_remove_from_cart_path(item[0].id) %>" class="text-danger">
+            <i class="fas fa-minus"></i>
+          </a>
+        </td>
       </tr>
     <% end %>
     <tr>
@@ -36,6 +45,7 @@
       <td></td>
       <td></td>
       <td><%= total %> €</td>
+      <td></td>
     </tr>
   <% end %>
 
