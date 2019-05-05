@@ -71,15 +71,15 @@ class Frontend::CartsController < ApplicationController
     redirect_to(frontend_cart_path)
   end
 
-  def createOrder
-    unless current_user.nil?
+  def create_order
+    if current_user.nil?
+      p "nö"
+      # TODO else direct to user login path
+    else
       this_order = Order.create(user_id: current_user.id)
       PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
         GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
       end
-    else
-      p "nö"
-      # TODO else direct to user login path
     end
   end
 
