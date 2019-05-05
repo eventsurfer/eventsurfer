@@ -68,15 +68,67 @@ class Frontend::CartsController < ApplicationController
     redirect_to(frontend_cart_path)
   end
 
-  def create_order
+  def checkout
     if current_user.nil?
-      redirect_to(new_user_session_path) # TODO: flash msg
+      redirect_to new_user_session_path, alert: "Please log in"
     else
-      this_order = Order.create(user_id: current_user.id)
-      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+      if PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).all.size > 0
+        not_free = []
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+          if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
+            not_free.append(item)
+          end
+        end
+        if not_free.size > 0
+          p "not free"
+          redirect_to frontend_path # TODO: not free msg
+        else
+          @items = []
+          PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+            @items.push([item.performance_id, item.count])
+          end
+        end
+      else
+        p "korb leer"
+        redirect_to frontend_path # TODO: wo anders hin und fehler msg
       end
     end
   end
 
+  def order
+    method = params[:pay_method].to_i
+    not_free = []
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+      if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
+        not_free.append(item)
+
+      else
+        item.count.to_i.times do
+          p item.performance_id
+          Performance.find(item.performance_id).tickets.where(reserved: 0).first.update(reserved: 1)
+        end
+      end
+
+      if not_free.size > 0
+        p "not free"
+        redirect_to frontend_path # TODO: not free msg
+
+      else
+        this_order = Order.create(user_id: current_user.id, payment_method: method)
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+          gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+          item.count.to_i.times do
+            Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
+          end
+        end
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
+        redirect_to frontend_success_path
+      end
+
+      def success
+        @order = Order.where(user_id: current_user.id).last
+      end
+
+    end
+  end
 end

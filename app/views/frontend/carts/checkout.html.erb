@@ -1,0 +1,13 @@
+<p> Your order:</p>
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item[0] %></td>
+  </tr>
+
+<% end %>
+
+<%= form_tag(frontend_create_order_path, method: "post") do %>
+  <%= select_tag :pay_method, options_for_select(Order.payment_methods) %>
+  <%= submit_tag value = "ORDER" %>
+<% end %>
+

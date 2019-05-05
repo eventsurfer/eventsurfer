@@ -35,7 +35,7 @@ class Admin::LocationsController < ApplicationController
       flash[:success] = "Location was deleted successful"
       redirect_to(admin_locations_path)
     else
-      flash[:danger] = "Something went wrong"
+      flash[:alert] = "Something went wrong"
     end
   end
 
