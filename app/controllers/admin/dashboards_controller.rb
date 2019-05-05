@@ -6,5 +6,7 @@ class Admin::DashboardsController < ApplicationController
   layout "adminDash"
 
   def index
+    @ordersUn = Order.unpaid
+    @ticket = Ticket.all.size
   end
 end

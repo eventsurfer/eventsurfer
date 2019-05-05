@@ -1,38 +1,35 @@
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <%= link_to "Events", root_path %>
-  </li>
-  <li class="breadcrumb-item active">
-    <%= link_to @event.name, frontend_event_path %>
-  </li>
-</ol>
-
-<div class="container-fluid">
-  <h1><%= @event.name %></h1>
-  <div class="row">
-    <div class="col-sm-6">
-      <h3><%= t('admin.performances.performances') %></h3>
-      <table class="table">
-        <th><%= I18n.t (:location) %></th>
-        <th>ID</th>
+<a href="<%= root_path %>" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> <%= t('admin.events.events') %></a>
+<h1><%= @event.name %></h1>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-10">
+    <h3><%= t('admin.performances.performances') %></h3>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th><%= t('admin.locations.locations') %></th>
         <th><%= t('admin.performances.start') %></th>
         <th><%= t('admin.performances.end') %></th>
-        <tbody>
-        <% @performances.each do |perform| %>
-          <tr>
-            <td><%= perform.performance.location.name %></td>
-            <td><%= perform.performance.id %></td>
-            <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
-            <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
-            <td><%= perform.performance.tickets.size %></td>
-            <td>
-              <a href=<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id) %>>Performance</a>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+        <th><%= t('admin.performances.number_of_tickets') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @performances.each do |perform| %>
+        <tr>
+          <td><%= perform.performance.location.name %></td>
+          <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
+          <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
+          <td><%= perform.performance.tickets.size %></td>
+          <td>
+            <a href="<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id) %>" class="btn btn-info">
+              <%= t('admin.tickets.tickets') %> <i class="fas fa-ticket-alt"></i>
+            </a>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 

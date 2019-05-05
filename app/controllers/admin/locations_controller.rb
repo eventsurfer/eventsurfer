@@ -17,6 +17,7 @@ class Admin::LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    @location.changed_by = current_user.id
     if @location.save
       redirect_to(admin_locations_path)
     else
@@ -31,6 +32,7 @@ class Admin::LocationsController < ApplicationController
 
   def destroy
     @location = Location.find(params[:id])
+    @location.changed_by = current_user.id
     if (@location.destroy)
       flash[:success] = "Location was deleted successful"
       redirect_to(admin_locations_path)
@@ -41,6 +43,7 @@ class Admin::LocationsController < ApplicationController
 
   def update
     @location = Location.find(params[:id])
+    @location.changed_by = current_user.id
     if (@location.update(location_params))
       flash[:success] = "Location was edited successful"
       redirect_to(admin_location_path)

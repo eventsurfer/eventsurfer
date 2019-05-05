@@ -21,6 +21,7 @@ class Admin::SettingsController < ApplicationController
 
   def create
     @setting = Setting.new(setting_params)
+    @setting.changed_by = current_user.id
     if @setting.save
       redirect_to admin_settings_url,
                   notice: "Setting was successfully created."
@@ -31,6 +32,7 @@ class Admin::SettingsController < ApplicationController
 
   def update
     @setting = Setting.find(params[:id])
+    @setting.changed_by = current_user.id
     if @setting.update(setting_params[:setting])
       redirect_to admin_settings_url,
                   notice: "Setting was successfully updated."
@@ -41,6 +43,7 @@ class Admin::SettingsController < ApplicationController
 
   def destroy
     @setting = Setting.find(params[:id])
+    @setting.changed_by = current_user.id
     if @setting.destroy
       redirect_to admin_settings_url,
                   notice: "Setting was successfully destroyed."

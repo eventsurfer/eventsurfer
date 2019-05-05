@@ -22,8 +22,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def destroy
+    @order = Order.find(params[:id])
     @groupeTicket = GroupTicket.where(order_id: params[:id])
-    if @groupeTicket.destroy
+    if @groupeTicket.destroy && @order.destroy
       flash[:success] = "Order was destroyed successfull"
       redirect_to admin_orders_path
     end

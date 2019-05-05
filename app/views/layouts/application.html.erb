@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>EventSurfer</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>EventSurfer</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+  </script>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Find ">
-    <meta name="author" content="Florian Fynn Weber">
-    <meta name="author" content="Falko Tschernay">
-    <meta name="author" content="Simon Bullik">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Find ">
+  <meta name="author" content="Florian Fynn Weber">
+  <meta name="author" content="Falko Tschernay">
+  <meta name="author" content="Simon Bullik">
 
-    <title>EventSurver</title>
-  </head>
+  <title>EventSurfer</title>
+</head>
 
-  <body>
+<body>
 
-  <div class="container">
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+<!-- Header -->
+<header class="bg-primary py-5 mb-5">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-12">
+        <h1 class="display-4 text-white mt-5 mb-2">Eventsurfer</h1>
+        <p class="lead mb-5 text-white-50">Finde dein nächstes Event</p>
+      </div>
+    </div>
   </div>
-    <%= yield %>
-  </body>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+  <%= yield %>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </div>
+  <!-- /.container -->
+</footer>
+</body>
 </html>
