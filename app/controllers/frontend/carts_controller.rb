@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: delete cart
-# TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
   def add_item
     t = Ticket.find(params[:id]).performance
@@ -49,7 +47,6 @@ class Frontend::CartsController < ApplicationController
         element[1] = count
       end
     end
-    p @cart
 
     unless current_user.nil?
       PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
@@ -73,8 +70,7 @@ class Frontend::CartsController < ApplicationController
 
   def create_order
     if current_user.nil?
-      p "nö"
-      # TODO else direct to user login path
+      redirect_to(new_user_session_path) # TODO: flash msg
     else
       this_order = Order.create(user_id: current_user.id)
       PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|

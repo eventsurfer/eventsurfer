@@ -135,7 +135,7 @@ Rails.application.routes.draw do
     get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
     post ":id/update", to: "carts#update", :as => :update_cart
     get "cart", to: "carts#list_items"
-    post "create_order", to: "carts#createOrder"
+    post "create_order", to: "carts#create_order"
     get "/", to: "events#index"
 
   end
