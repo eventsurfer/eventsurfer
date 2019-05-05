@@ -20,4 +20,10 @@ class OrderMailer < ApplicationMailer
     @groupTickets = GroupTicket.where(order_id: order.id)
     @user = user
   end
+
+  def sendTickets(order)
+    @order = order
+    @groupTickets = GroupTicket.where(order_id: order.id)
+    @user = User.find(@order.user_id)
+  end
 end
