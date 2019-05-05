@@ -1,0 +1,18 @@
+<table class="table">
+  <th>Performance</th>
+  <th>Count</th>
+  <tbody>
+  <% if !@items.nil?%>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item[0] %></td>
+        <td><%= item[1] %></td>
+      </tr>
+    <% end %>
+  <%= @cart %>
+  <% end %>
+
+  </tbody>
+  <%= button_to "ORDER", frontend_create_order_path, method: :post %>
+
+</table>

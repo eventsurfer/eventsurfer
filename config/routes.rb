@@ -59,7 +59,7 @@ Rails.application.routes.draw do
         get "new", to: "tickets#new"
         post "new", to: "tickets#update"
         get ":id/delete", to: "tickets#destroy"
-        get ":id/show", to: "tickets#show"
+        #get ":id/show", to: "tickets#show"
         get "/", to: "tickets#index"
       end
     end
@@ -77,7 +77,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :settings, :except => [:show]
+    resources :settings, :except => [:show, :defaultInfo] do
+      collection do
+        post "defaultInfo", to:"settings#defaultInfo"
+      end
+    end
     resources :api_clients, :only => [:index,
                                       :new,
                                       :create,
@@ -99,22 +103,45 @@ Rails.application.routes.draw do
           post "validate_ticket"
         end
       end
-      resources :users, :except => [:signIn] do
+      resources :users do
         collection do
           post "signIn"
+        end
+      end
+      resources :orders, :except => [:show, :test1, :example, :order], :defaults => {:format => "pdf"} do
+        collection do
+          post ":id/show", to: "orders#show"
+          post "test1", to: "orders#test1"
+          post "order", to:"orders#order"
+          # get "order", to:"orders#order"
+          get "example", to: "orders#example"
         end
       end
     end
   end
 
 
+
   # Show events
-  resources :events do
-    post 'punch'
-    get "events", to: "events#index"
+  namespace :frontend do
+    resources :events do
+      collection do
+        get ":id/show", to: "events#show", :shallow => true
+      end
+      resources :performances do
+        collection do
+          get ":id/show", to: "performances#show"
+        end
+      end
+    end
+    get ":id/add", to: "carts#add_item", :as => :add_to_cart
+    get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
+    get "cart", to: "carts#list_items"
+    post "create_order", to:"carts#createOrder"
+    get "/", to: "events#index"
+
   end
 
-
   #Default page
-  root "events#index"
+  root "frontend/events#index"
 end

@@ -29,7 +29,6 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 0)
     User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
   end
 end
@@ -47,7 +46,7 @@ if (Location.all.size < 40)
 end
 #Event.delete_all
 if (Event.all.size < 20)
-  11.times do
+  5.times do
     name = Faker::FunnyName.name
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_month)
@@ -60,7 +59,7 @@ if (Event.all.size < 20)
 end
 #Performnace.delete_all
 if (Performance.all.size < 30)
-  15.times do
+  11.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
@@ -70,12 +69,12 @@ if (Performance.all.size < 30)
   end
 end
 # fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
-if (PerformanceEvent.all.size < 20)
+if (PerformanceEvent.all.size < 10)
   count = 0
   5.times do |i|
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
-    count += 2
+    count +=2
   end
 end
 if (Ticket.all.size < 200)
@@ -83,12 +82,12 @@ if (Ticket.all.size < 200)
     arr = []
     10.times do |t|
       ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
-      ticket.validate_id += "D"+ticket.id.to_s
+      ticket.validate_id += "D" + ticket.id.to_s
       ticket.save
       arr.push(ticket.id)
     end
     arr.each do |t|
-      PerformanceTicket.create(performances_id: p.id, tickets_id: t)
+      PerformanceTicket.create(performance_id: p.id, ticket_id: t)
     end
   end
 
@@ -99,10 +98,37 @@ if (PerformanceLocation.all.size < 30)
   Performance.all.each do |per|
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count].id)
     PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 1].id)
-    PerformanceLocation.create(performance_id: per.id, location_id: loc[count + 2].id)
     count += 1
   end
 end
 if (!ApiClient.find_by_name("testi"))
   ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
+end
+
+if (Cart.all.size < 10)
+  10.times do |i|
+    this_cart = Cart.create(user_id: i + 1)
+    5.times do
+      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...10), count: rand(1...6))
+    end
+  end
+end
+
+if (Order.all.size < 10)
+  10.times do |i|
+    this_order = Order.create(user_id: i + 1)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i + 1)).each do |item|
+      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
+    end
+  end
+end
+if (DefaultInformation.all.empty?)
+  street = Faker::Address.street_name
+  number = Faker::Address.street_suffix
+  country = Faker::Address.country
+  city = Faker::Address.city
+  postcode = Faker::Address.postcode
+  name = Faker::Company.industry
+  website = Faker::FunnyName.name + ".net"
+  DefaultInformation.create(company: name, street: street, street_number: number.to_s, country: country, city: city, postcode: postcode.to_s, cellphone: Faker::PhoneNumber.cell_phone_with_country_code, website: website, email: Faker::Internet.unique.email(name), changed_by: 1)
 end

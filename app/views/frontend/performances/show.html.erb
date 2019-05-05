@@ -1,0 +1,34 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Events", root_path %>
+  </li>
+  <li class="breadcrumb-item active">
+    <%= link_to @performance.id, frontend_event_path %>
+  </li>
+</ol>
+
+<div class="container-fluid">
+  <h1><%= @performance.location.name%></h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Tickets </h3>
+      <table class="table">
+        <th>ID</th>
+        <tbody>
+        <% @performance.tickets.each do |ticket| %>
+          <tr>
+            <td><%= ticket.id%></td>
+            <td><a href=<%= frontend_add_to_cart_path(ticket.id)%>>Add to Cart</a></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+    $("tr[data-link]").click(function () {
+        window.location = $(this).data("link");
+    })
+</script>
