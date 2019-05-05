@@ -116,7 +116,7 @@ end
 
 if (Order.all.size < 10)
   10.times do |i|
-    this_order = Order.create(user_id: i + 1)
+    this_order = Order.create(user_id: i + 1, paid:false)
     PerformanceCart.where(cart_id: Cart.find_by_user_id(i + 1)).each do |item|
       GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
     end
