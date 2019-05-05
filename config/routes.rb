@@ -76,10 +76,17 @@ Rails.application.routes.draw do
         get "/", to: "performances#index"
       end
     end
+    resources :orders do
+      collection do
+        #get ":id/show", to: "orders#getDetailedInfo"
+        post ":id/setPaid", to: "orders#setPaid"
+        get "index", to: "orders#index"
+      end
+    end
 
     resources :settings, :except => [:show, :defaultInfo] do
       collection do
-        post "defaultInfo", to:"settings#defaultInfo"
+        post "defaultInfo", to: "settings#defaultInfo"
       end
     end
     resources :api_clients, :only => [:index,
@@ -108,18 +115,8 @@ Rails.application.routes.draw do
           post "signIn"
         end
       end
-      resources :orders, :except => [:show, :test1, :example, :order], :defaults => {:format => "pdf"} do
-        collection do
-          post ":id/show", to: "orders#show"
-          post "test1", to: "orders#test1"
-          post "order", to:"orders#order"
-          # get "order", to:"orders#order"
-          get "example", to: "orders#example"
-        end
-      end
     end
   end
-
 
 
   # Show events
@@ -137,7 +134,7 @@ Rails.application.routes.draw do
     get ":id/add", to: "carts#add_item", :as => :add_to_cart
     get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
     get "cart", to: "carts#list_items"
-    post "create_order", to:"carts#createOrder"
+    post "create_order", to: "carts#createOrder"
     get "/", to: "events#index"
 
   end
