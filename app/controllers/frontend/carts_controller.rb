@@ -4,7 +4,7 @@
 # TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
   def add_item
-    t = Ticket.find(params[:id])
+    t = Ticket.find(params[:id]).performance
     exist = false
     @cart.each do |element|
       if element[0] == t.id
@@ -17,11 +17,11 @@ class Frontend::CartsController < ApplicationController
     end
 
     unless current_user.nil?
-      if PerformanceCart.find_by(performance_id: t.performance.id)
-        p t.performance.id
-        PerformanceCart.find_by(performance_id: t.performance.id).update(count: PerformanceCart.find_by(performance_id: (t.performance.id)).count + 1)
+      pc = PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.id)
+      if pc
+        pc.update(count: pc.count + 1)
       else
-        PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.performance.id, count: 1)
+        PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: t.id, count: 1)
       end
     end
     redirect_to(frontend_cart_path)
@@ -31,25 +31,55 @@ class Frontend::CartsController < ApplicationController
     @items = []
     unless current_user.nil?
       PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        @items.push([item.performance_id, item.count])
+        @items.push([item.performance, item.count])
       end
     else
       @cart.each do |item|
-        @items.push(item)
+        @items.push([Performance.find(item[0]), item[1]])
       end
     end
   end
 
-  def remove_item
-    @cart.delete(params[:id].to_i)
+  def update
+    id = params[:id].to_i
+    count = params[:count].to_i
+
+    @cart.each do |element|
+      if element[0] == id
+        element[1] = count
+      end
+    end
     p @cart
+
+    unless current_user.nil?
+      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+    end
+    redirect_to(frontend_cart_path)
+  end
+
+  def remove_item
+    id = params[:id].to_i
+    @cart.each do |element|
+      if element[0] == id
+        @cart.delete(element)
+      end
+    end
+
+    unless current_user.nil?
+      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).delete
+    end
     redirect_to(frontend_cart_path)
   end
 
   def createOrder
-    this_order = Order.create(user_id: current_user.id)
-    PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+    unless current_user.nil?
+      this_order = Order.create(user_id: current_user.id)
+      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+        GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+      end
+    else
+      p "nö"
+      # TODO else direct to user login path
     end
     OrderMailer.entry_order(this_order).deliver
     redirect_to root_path
