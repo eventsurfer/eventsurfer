@@ -36,7 +36,9 @@ de:
       value: "Wert"
       new: "Neue Einstellung"
       general: "Allgemein"
+      add: "Einstellung hinzufügen"
     tickets:
+      tickets: "Tickets"
       id: "id"
       valid_id: "valid_id"
       valid: "valid"
@@ -62,9 +64,14 @@ de:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"
       add: "Bestellung hinzufügen"
+    cart:
+      add_to: "Zum Warenkorb hinzufügen"
+      order: "Bestellen"
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
+    add: "Hinzufügen"
+    save: "Speichern"
 
   activerecord:
     attributes:
@@ -165,6 +172,11 @@ de:
       month: Monat
       second: Sekunde
       year: Jahr
+    formats:
+      default: "%a %b %e %T %Y"
+  time:
+    formats:
+      default: "%d.%m.%Y %k:%M"
   number:
     currency:
       format:

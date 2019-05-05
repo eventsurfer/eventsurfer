@@ -8,24 +8,26 @@
 </ol>
 
 <div class="container-fluid">
-  <h1 ><%= @event.name %></h1>
+  <h1><%= @event.name %></h1>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Performances </h3>
+      <h3><%= t('admin.performances.performances') %></h3>
       <table class="table">
         <th><%= I18n.t (:location) %></th>
         <th>ID</th>
-        <th>Start</th>
-        <th>Stop</th>
+        <th><%= t('admin.performances.start') %></th>
+        <th><%= t('admin.performances.end') %></th>
         <tbody>
         <% @performances.each do |perform| %>
           <tr>
-            <td><%= perform.performance.location.name%></td>
-            <td><%= perform.performance.id%></td>
+            <td><%= perform.performance.location.name %></td>
+            <td><%= perform.performance.id %></td>
             <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
             <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
-            <td><%= perform.performance.tickets.size%></td>
-            <td><a href=<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id)%>>Performance</a></td>
+            <td><%= perform.performance.tickets.size %></td>
+            <td>
+              <a href=<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id) %>>Performance</a>
+            </td>
           </tr>
         <% end %>
         </tbody>

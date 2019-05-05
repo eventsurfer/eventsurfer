@@ -57,6 +57,10 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "jquery-rails"
 gem "bootstrap"
 
+# pdf
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
+
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -75,6 +79,7 @@ group :development do
   gem "spring-watcher-listen"
   gem "capistrano-rails"
   gem "capistrano-bundler"
+  gem "letter_opener"
 
 end
 

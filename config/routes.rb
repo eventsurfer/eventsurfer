@@ -77,7 +77,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :settings, :except => [:show]
+    resources :settings, :except => [:show, :defaultInfo] do
+      collection do
+        post "defaultInfo", to:"settings#defaultInfo"
+      end
+    end
     resources :api_clients, :only => [:index,
                                       :new,
                                       :create,
@@ -102,6 +106,15 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           post "signIn"
+        end
+      end
+      resources :orders, :except => [:show, :test1, :example, :order], :defaults => {:format => "pdf"} do
+        collection do
+          post ":id/show", to: "orders#show"
+          post "test1", to: "orders#test1"
+          post "order", to:"orders#order"
+          # get "order", to:"orders#order"
+          get "example", to: "orders#example"
         end
       end
     end
