@@ -61,8 +61,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'eventsurfer.online', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'webmail.eventsurfer.online',
-      port:                 25,
+      address:              'mail.eventsurfer.online',
+      port:                 465,
       domain:               'eventsurfer.com',
       user_name:            'no-reply@eventsurfer.online',
       password:             'MySickPw123_',
