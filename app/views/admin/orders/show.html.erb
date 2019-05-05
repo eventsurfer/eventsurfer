@@ -1,3 +1,11 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Orders", admin_orders_path %>
+  </li>
+  <li class="breadcrumb-item active">
+    <%= link_to @order.id, admin_order_path(@order.id) %>
+  </li>
+</ol>
 <h2>Order Nr.: <%= @order.id %></h2>
 
 <p><%= @user.name %><br><%= I18n.l(@order.created_at, format: :shortest) %></p>
