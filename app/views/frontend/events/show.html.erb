@@ -1,4 +1,4 @@
-<a href="<%= root_path %>" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> Events</a>
+<a href="<%= root_path %>" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> <%= t('admin.events.events') %></a>
 <h1><%= @event.name %></h1>
 <div class="row">
   <div class="col-sm-2"></div>
@@ -10,7 +10,7 @@
         <th><%= t('admin.locations.locations') %></th>
         <th><%= t('admin.performances.start') %></th>
         <th><%= t('admin.performances.end') %></th>
-        <th>Ticket Anzahl</th>
+        <th><%= t('admin.performances.number_of_tickets') %></th>
         <th></th>
       </tr>
       </thead>
@@ -23,7 +23,7 @@
           <td><%= perform.performance.tickets.size %></td>
           <td>
             <a href="<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id) %>" class="btn btn-info">
-              Tickets <i class="fas fa-ticket-alt"></i>
+              <%= t('admin.tickets.tickets') %> <i class="fas fa-ticket-alt"></i>
             </a>
           </td>
         </tr>

@@ -1,11 +1,11 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Performance</th>
+    <th><%= t('admin.performances.performances') %></th>
     <th>Location</th>
     <th>Beginning</th>
     <th>Price per ticket</th>
-    <th>Count</th>
+    <th><%= t('admin.performances.number_of_tickets') %></th>
     <th>Price</th>
     <th></th>
   </tr>
@@ -50,5 +50,6 @@
   <% end %>
 
   </tbody>
+
 </table>
-<a href="<%= frontend_create_order_path %>" class="btn btn-primary">ORDER <i class="far fa-credit-card"></i></a>
+<a href="<%= frontend_create_order_path %>" class="btn btn-primary"><% t('admin.cart.order') %> <i class="far fa-credit-card"></i></a>

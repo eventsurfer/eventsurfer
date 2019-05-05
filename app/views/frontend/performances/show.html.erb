@@ -1,12 +1,12 @@
 <a href="<%= frontend_event_path(@performance.event.id) %>" class="btn btn-outline-primary">
   <i class="fas fa-chevron-left"></i> <%= @performance.event.name %>
-  Übersicht
+  <%= t('admin.events.events') %>
 </a>
 <div class="container-fluid">
   <h1><%= @performance.location.name %></h1>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Tickets </h3>
+      <h3><%= t('admin.tickets.tickets') %></h3>
       <table class="table">
         <thead>
         <tr>
@@ -22,7 +22,7 @@
             <td><%= @performance.prize %> €</td>
             <td>
               <a href="<%= frontend_add_to_cart_path(ticket.id) %>" class="btn btn-primary"
-                 data-toggle="tooltip" data-placement="bottom" title="Add to cart">
+                 data-toggle="tooltip" data-placement="bottom" title="<%= t('admin.cart.add_to') %>">
                 <i class="fas fa-shopping-cart"></i>
               </a>
             </td>
