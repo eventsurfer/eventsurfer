@@ -20,6 +20,7 @@ class Admin::PerformancesController < ApplicationController
     @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
     @performance = Performance.new(performance_params.except(:location).except(:event_id))
     @locations = Location.getLocationsNames
+    @performance.changed_by = current_user.id
     if @performance.save
       eventPer = PerformanceEvent.new(event_id: session[:tmp_event_id], performance_id: @performance.id)
       @perLoc.performance_id = @performance.id

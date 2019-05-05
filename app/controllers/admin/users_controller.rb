@@ -34,6 +34,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.changed_by = current_user.id
     if @user.update(user_params)
       if @user.role == 0
         redirect_to costumer_admin_users_path
@@ -48,6 +49,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.changed_by = current_user.id
     if @user.save
       Cart.create(user_id: @user.id)
       redirect_to(admin_users_url)
@@ -58,6 +60,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    @user.changed_by = current_user.id
     if @user.destroy
       redirect_to admin_users_path
     end
