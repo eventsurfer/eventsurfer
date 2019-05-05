@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <%= link_to "Events", root_path %>
+    <%= link_to t('admin.events.events'), root_path %>
   </li>
   <li class="breadcrumb-item active">
     <%= link_to @performance.id, frontend_event_path %>
@@ -8,17 +8,17 @@
 </ol>
 
 <div class="container-fluid">
-  <h1><%= @performance.location.name%></h1>
+  <h1><%= @performance.location.name %></h1>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Tickets </h3>
+      <h3><%= t('admin.tickets.tickets') %></h3>
       <table class="table">
         <th>ID</th>
         <tbody>
         <% @performance.tickets.each do |ticket| %>
           <tr>
-            <td><%= ticket.id%></td>
-            <td><a href=<%= frontend_add_to_cart_path(ticket.id)%>>Add to Cart</a></td>
+            <td><%= ticket.id %></td>
+            <td><a href=<%= frontend_add_to_cart_path(ticket.id) %>><%= t('admin.cart.add_to') %></a></td>
           </tr>
         <% end %>
         </tbody>

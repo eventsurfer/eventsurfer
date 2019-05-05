@@ -67,7 +67,9 @@ en:
       value: "Value"
       new: "New Setting"
       general: "General"
+      add: "Add setting"
     tickets:
+      tickets: "Tickets"
       id: "id"
       valid_id: "valid_id"
       valid: "valid"
@@ -93,9 +95,14 @@ en:
       orders: "Orders"
       show_all: "Show all orders"
       add: "Add order"
+    cart:
+      add_to: "Add to cart"
+      order: "Order"
   common:
     delete: "Delete"
     edit: "Edit"
+    add: "Add"
+    save: "Save"
 
   location: "Location"
   admin_event_order: "Order"
