@@ -18,7 +18,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @groupTickets = GroupTicket.where(order_id: @order.id)
     @performances = Performance.all
-    @user  = User.find(@order.user_id)
+    @user = User.find(@order.user_id)
   end
 
   def destroy
@@ -32,17 +32,17 @@ class Admin::OrdersController < ApplicationController
 
   private
 
-  begin
-    def api_client_params
-      params.require(:order).permit()
-    end
+    begin
+      def api_client_params
+        params.require(:order).permit()
+      end
 
-    def checkPermission!
-      if current_user.rank >= 2
+      def checkPermission!
+        if current_user.rank >= 2
 
-      else
-        redirect_to admin_dashboards_path
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
-  end
 end
