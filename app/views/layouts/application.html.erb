@@ -24,13 +24,49 @@
 </head>
 
 <body>
-
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="<%= root_path %>">Eventsurfer</a>
+  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class=" nav-link" href="<%= frontend_cart_path %>">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+      <% if current_user.nil? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_user_session_path %>">
+            <i class="fas fa-sign-in-alt"></i>
+          </a>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= edit_user_registration_path %>">
+            <i class="fas fa-user-circle"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <%= form_tag(destroy_user_session_path, method: "post") do %>
+            <button class="nav-link" type="submit">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 <!-- Header -->
 <header class="bg-primary py-5 mb-5">
   <div class="container h-100">
@@ -45,6 +81,12 @@
 
 <!-- Page Content -->
 <div class="container">
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
   <%= yield %>
 </div>
 <!-- /.container -->
