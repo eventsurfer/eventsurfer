@@ -25,7 +25,7 @@
             <div class="input-group">
               <%= number_field_tag(:count, value = item[1], :min => 1, class: "form-control") %>
               <div class="input-group-append">
-                <%= submit_tag(value = "->", class: "btn btn-outline-secondary") %>
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-check"></i></button>
               </div>
             </div>
           <% end %>
