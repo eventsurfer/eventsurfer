@@ -24,6 +24,8 @@ class OrderMailer < ApplicationMailer
   def sendTickets(order)
     @order = order
     @groupTickets = GroupTicket.where(order_id: order.id)
+    @qr = RQRCode::QRCode.new(Ticket.first.validate_id.to_s)
     @user = User.find(@order.user_id)
+    mail(subject:  "Your tickets", to: @user.email,template_path: "layouts/mailer", template_name: "sendTickets")
   end
 end

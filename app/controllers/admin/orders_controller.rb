@@ -33,6 +33,7 @@ class Admin::OrdersController < ApplicationController
   def setPaid
     @order = Order.find(params[:id])
     @order.setPaid(current_user)
+    OrderMailer.sendTickets(@order).deliver
     redirect_to admin_orders_path
   end
 
