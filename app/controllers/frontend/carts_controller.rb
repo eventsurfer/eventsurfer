@@ -2,7 +2,7 @@
 
 class Frontend::CartsController < ApplicationController
   def add_item
-    t = Ticket.find(params[:id]).performance
+    t = Performance.find(params[:id])
     exist = false
     @cart.each do |element|
       if element[0] == t.id
