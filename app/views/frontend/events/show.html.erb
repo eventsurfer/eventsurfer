@@ -1,4 +1,6 @@
-<a href="<%= root_path %>" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> <%= t('admin.events.events') %></a>
+<a href="<%= root_path %>" class="btn btn-outline-primary">
+  <i class="fas fa-chevron-left"></i> <%= t('admin.events.events') %>
+</a>
 <h1><%= @event.name %></h1>
 <div class="row">
   <div class="col-sm-2"></div>
@@ -22,8 +24,9 @@
           <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
           <td><%= perform.performance.tickets.size %></td>
           <td>
-            <a href="<%= frontend_event_performance_path(perform.performance.event.id, perform.performance.id) %>" class="btn btn-info">
-              <%= t('admin.tickets.tickets') %> <i class="fas fa-ticket-alt"></i>
+            <a href="<%= frontend_add_to_cart_path(perform.id) %>" class="btn btn-primary"
+               data-toggle="tooltip" data-placement="bottom" title="<%= t('admin.cart.add_to') %>">
+              <i class="fas fa-shopping-cart"></i>
             </a>
           </td>
         </tr>
