@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_tag(frontend_create_order_path, method: "post") do %>
-  <%= select_tag :pay_method, options_for_select(Order.payment_methods) %>
+  <%= select_tag :pay_method, options_for_select(Order.payment_methods, disabled: [Order.payment_methods[:paypal], Order.payment_methods[:card]]) %>
   <%= submit_tag value = "ORDER" %>
 <% end %>
 
