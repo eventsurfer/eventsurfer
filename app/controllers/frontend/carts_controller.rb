@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: delete cart
-# TODO: session cart to performance with count
 class Frontend::CartsController < ApplicationController
   def add_item
     t = Ticket.find(params[:id]).performance
@@ -31,7 +29,7 @@ class Frontend::CartsController < ApplicationController
     @items = []
     unless current_user.nil?
       PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        @items.push([item.performance, item.count])
+        @items.push([Performance.find(item.performance_id), item.count])
       end
     else
       @cart.each do |item|
@@ -49,7 +47,6 @@ class Frontend::CartsController < ApplicationController
         element[1] = count
       end
     end
-    p @cart
 
     unless current_user.nil?
       PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
@@ -71,18 +68,67 @@ class Frontend::CartsController < ApplicationController
     redirect_to(frontend_cart_path)
   end
 
-  def createOrder
-    unless current_user.nil?
-      this_order = Order.create(user_id: current_user.id)
-      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
-      end
+  def checkout
+    if current_user.nil?
+      redirect_to new_user_session_path, alert: "Please log in"
     else
-      p "nö"
-      # TODO else direct to user login path
+      if PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).all.size > 0
+        not_free = []
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+          if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
+            not_free.append(item)
+          end
+        end
+        if not_free.size > 0
+          p "not free"
+          redirect_to frontend_path # TODO: not free msg
+        else
+          @items = []
+          PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+            @items.push([item.performance_id, item.count])
+          end
+        end
+      else
+        p "korb leer"
+        redirect_to frontend_path # TODO: wo anders hin und fehler msg
+      end
     end
-    OrderMailer.entry_order(this_order).deliver
-    redirect_to root_path
   end
 
+  def order
+    method = params[:pay_method].to_i
+    not_free = []
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+      if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
+        not_free.append(item)
+
+      else
+        item.count.to_i.times do
+          p item.performance_id
+          Performance.find(item.performance_id).tickets.where(reserved: 0).first.update(reserved: 1)
+        end
+      end
+
+      if not_free.size > 0
+        p "not free"
+        redirect_to frontend_path # TODO: not free msg
+
+      else
+        this_order = Order.create(user_id: current_user.id, payment_method: method)
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+          gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+          item.count.to_i.times do
+            Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
+          end
+        end
+        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
+        redirect_to frontend_success_path
+      end
+
+      def success
+        @order = Order.where(user_id: current_user.id).last
+      end
+
+    end
+  end
 end

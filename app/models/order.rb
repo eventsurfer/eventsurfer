@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
+  enum payment_method: [:bill, :paypal, :card]
   has_one :group_ticket
   has_one :user
   scope :paid, -> {where(paid: true)}
