@@ -20,7 +20,7 @@ class TicketsTest < ActiveSupport::TestCase
 
   test "create tickets for performance" do
     per = create(:performance)
-    Ticket.createTicketsForPerformance(per,@user_id, 20)
+    Ticket.createTicketsForPerformance(per, @user_id, 20)
     assert_equal 20, PerformanceTicket.where(performance_id: per.id).size
   end
 
