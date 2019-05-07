@@ -18,4 +18,8 @@
   td.white { border-color: #fff; }
 </style>
 irgendeinwitziger text
-<%= raw @qr.as_html %>
+
+<% @qrs.each do |qr| %>
+  <%= raw qr.as_html %>
+  <br>
+<% end %>
