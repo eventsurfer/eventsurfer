@@ -36,8 +36,10 @@
 
 <h2><%= t('admin.cart.payment_method') %></h2>
 <%= form_tag(frontend_create_order_path, method: "post") do %>
-  <div class="form-group">
-    <%= select_tag :pay_method, options_for_select(Order.payment_methods, disabled: [Order.payment_methods[:paypal], Order.payment_methods[:card]]), class: "form-control" %>
+  <div class="form-check">
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:bill])%>
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:paypal])%>
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:card])%>
   </div>
   <%= submit_tag(value = t('admin.cart.order'), class: "btn btn-primary") %>
 <% end %>
