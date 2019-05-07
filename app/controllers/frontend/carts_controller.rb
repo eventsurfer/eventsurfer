@@ -100,15 +100,13 @@ class Frontend::CartsController < ApplicationController
   end
 
   def order
-    method = params[:pay_method].to_i
+    method = params[:payment_method].to_i
     not_free = []
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
       if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
         not_free.append(item)
-
       else
         item.count.to_i.times do
-          p item.performance_id
           Performance.find(item.performance_id).tickets.where(reserved: 0).first.update(reserved: 1)
         end
       end
@@ -123,20 +121,20 @@ class Frontend::CartsController < ApplicationController
 
       else
         this_order = Order.create(user_id: current_user.id, payment_method: method)
-        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-          gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
-          item.count.to_i.times do
-            Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
-          end
+        gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+        item.count.to_i.times do
+          Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
         end
-        PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
-        redirect_to frontend_success_path
       end
-
-      def success
-        @order = Order.where(user_id: current_user.id).last
-      end
-
+      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
     end
+    redirect_to frontend_success_path
   end
+
+
+  def success
+    @order = Order.where(user_id: current_user.id).last
+  end
+
+
 end
