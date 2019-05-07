@@ -42,8 +42,12 @@
       <li class="nav-item">
         <a class=" nav-link" href="<%= frontend_cart_path %>">
           <i class="fas fa-shopping-cart"></i>
-          <span class="badge badge-light">9</span>
-          <span class="sr-only">Tickets in cart</span>
+          <% unless @cart.nil? %>
+            <% if @cart.size > 0 %>
+              <span class="badge badge-light"><%= @cart.size %></span>
+              <span class="sr-only">Tickets in cart</span>
+            <% end %>
+          <% end %>
         </a>
       </li>
       <% if current_user.nil? %>
