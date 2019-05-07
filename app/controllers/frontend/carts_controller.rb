@@ -102,6 +102,7 @@ class Frontend::CartsController < ApplicationController
   def order
     method = params[:payment_method].to_i
     not_free = []
+    this_order = nil
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
       if item.count.to_i > Performance.find(item.performance_id).tickets.where(reserved: 0).size
         not_free.append(item)
@@ -120,14 +121,16 @@ class Frontend::CartsController < ApplicationController
         redirect_to frontend_cart_path
 
       else
-        this_order = Order.create(user_id: current_user.id, payment_method: method)
+        if this_order.nil?
+          this_order = Order.create(user_id: current_user.id, payment_method: method)
+        end
         gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
         item.count.to_i.times do
           Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
         end
       end
-      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
     end
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
     redirect_to frontend_success_path
   end
 
