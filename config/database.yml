@@ -13,7 +13,7 @@ default: &default
   adapter: mysql2
   encoding: utf8
   username: "eventsystem" #TODO: change
-  password: "test1234" #TODO: change
+  password: "g9rHs0R9PXd6sWFc" #TODO: change
   host: "localhost" #TODO: change
 
 development:
@@ -26,8 +26,8 @@ development:
 test:
   <<: *default
   database: "eventsystem_test" #TODO: change
-  #username: travis
-  #password: ""
+  username: travis
+  password: ""
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

@@ -1,17 +1,57 @@
 <table class="table">
-  <th><%= t('admin.performances.performances') %></th>
-  <th><%= t('admin.performances.number_of_tickets') %></th>
+  <thead>
+  <tr>
+    <th><%= t('admin.performances.performances') %></th>
+    <th>Location</th>
+    <th>Beginning</th>
+    <th>Price per ticket</th>
+    <th><%= t('admin.performances.number_of_tickets') %></th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
   <tbody>
   <% if !@items.nil? %>
+    <% total = 0 %>
     <% @items.each do |item| %>
+      <% total += item[0].prize * item[1] %>
       <tr>
-        <td><%= item[0] %></td>
-        <td><%= item[1] %></td>
+        <td><%= item[0].event.name %></td>
+        <td><%= item[0].location.name %></td>
+        <td><%= I18n.l(item[0].start) %></td>
+        <td><%= item[0].prize %> €</td>
+        <td>
+          <%= form_tag(frontend_update_cart_path(item[0].id), method: "post") do %>
+            <div class="input-group">
+              <%= number_field_tag(:count, value = item[1], :min => 1, class: "form-control") %>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-check"></i></button>
+              </div>
+            </div>
+          <% end %>
+        </td>
+        <td><%= item[0].prize * item[1] %> €</td>
+        <td>
+          <a href="<%= frontend_remove_from_cart_path(item[0].id) %>" class="text-danger">
+            <i class="fas fa-minus"></i>
+          </a>
+        </td>
       </tr>
     <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= total %> €</td>
+      <td></td>
+    </tr>
   <% end %>
 
   </tbody>
-  <%= button_to t('admin.cart.order'), frontend_create_order_path, method: :post %>
 
 </table>
+<a href="<%= frontend_checkout_path %>" class="btn btn-primary">
+  <%= t('admin.cart.order') %> <i class="far fa-credit-card"></i>
+</a>

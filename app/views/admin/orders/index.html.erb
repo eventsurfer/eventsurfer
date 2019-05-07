@@ -4,43 +4,43 @@
 
   </li>
 </ol>
-<h2>Orders</h2>
+<h2><%= t('admin.orders.orders') %></h2>
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-6">
+    <div class="col-lg-6">
       <h3>Paid</h3>
-      <div class="panel-group">
+      <div class="accordion" id="accordionPaid">
         <% @paid.each do |userOrder| %>
-          <div class="panel panel-default hover">
-            <div class="panel-heading">
-              <h5 class="panel-title">
-                <div class="clearfix">
-                  <span data-toggle="collapse" href="#collapsepaid<%= userOrder[0].to_s %>"><%= @user.find(userOrder[0]).name %>
-                    <span class="float-right"><i class="fas fa-chevron-down"></i></span></span>
-                </div>
-              </h5>
-              <div class="panel-collapse collapse " id="collapsepaid<%= userOrder[0].to_s %>">
-                <div class="panel-body">
-                  <table class="table text-center table-hover table-sm">
+          <div class="card">
+            <div class="card-header" id="heading<%= userOrder[0].to_s %>">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= userOrder[0].to_s %>" aria-expanded="true" aria-controls="collapse<%= userOrder[0].to_s %>">
+                  <i class="fas fa-chevron-down"></i> <%= @user.find(userOrder[0]).name %>
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapse<%= userOrder[0].to_s %>" class="collapse" aria-labelledby="heading<%= userOrder[0].to_s %>" data-parent="#accordionPaid">
+              <div class="card-body">
+                <table class="table text-center table-hover">
+                  <thead>
+                  <tr>
                     <th><%= "Order Nr." %></th>
                     <th><%= "paid_at" %></th>
                     <th><%= "payment_method" %></th>
-                    <th></th>
-                    <th></th>
-                    <tbody>
-                    <% userOrder[1].each do |order| %>
-                      <tr data-link="<%= admin_order_path(order.id) %>">
-                        <td><%= order.id %></td>
-                        <td><%= I18n.l(order.paid_at.to_date, format: :shortest) %></td>
-                        <td><%= order.payment_method %></td>
-                        <td><%=  button_to "Set Unpaid", "/admin/orders/#{order.id}/setUnPaid", method: :post, class: "btn btn-warning"%></td>
-                        <td><%=  button_to "Delete", admin_order_path(order.id),method: :delete, class: "btn btn-danger"%></td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-                </div>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% userOrder[1].each do |order| %>
+                    <tr data-link="<%= admin_order_path(order.id) %>">
+                      <td><%= order.id %></td>
+                      <td><%= I18n.l(order.paid_at.to_date, format: :shortest) %></td>
+                      <td><%= order.payment_method %></td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -48,37 +48,39 @@
       </div>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-lg-6">
       <h3>Unpaid</h3>
-      <div class="panel-group">
+      <div class="accordion" id="accordionUnpaid">
         <% @unpaid.each do |userOrder| %>
-          <div class="panel panel-default hover">
-            <div class="panel-heading">
-              <h5 class="panel-title">
-                <div class="clearfix">
-                  <span data-toggle="collapse" href="#collapseun<%= userOrder[0].to_s %>"><%= @user.find(userOrder[0]).name %>
-                    <span class="float-right"><i class="fas fa-chevron-down"></i></span></span>
-                </div>
-              </h5>
-              <div class="panel-collapse collapse " id="collapseun<%= userOrder[0].to_s %>">
-                <div class="panel-body">
-                  <table class="table text-center table-hover">
-                    <tr>
-                      <th><%= "Order Nr." %></th>
-                      <th><%= "Created at" %></th>
-                      <th></th>
+          <div class="card">
+            <div class="card-header" id="heading<%= userOrder[0].to_s %>">
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= userOrder[0].to_s %>" aria-expanded="true" aria-controls="collapse<%= userOrder[0].to_s %>">
+                  <i class="fas fa-chevron-down"></i> <%= @user.find(userOrder[0]).name %>
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapse<%= userOrder[0].to_s %>" class="collapse" aria-labelledby="heading<%= userOrder[0].to_s %>" data-parent="#accordionUnpaid">
+              <div class="card-body">
+                <table class="table text-center table-hover">
+                  <thead>
+                  <tr>
+                    <th><%= "Order Nr." %></th>
+                    <th><%= "Created at" %></th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% userOrder[1].each do |order| %>
+                    <tr data-link="<%= admin_order_path(order.id) %>">
+                      <td><%= order.id %></td>
+                      <td><%= I18n.l(order.created_at.to_date, format: :shortest) %></td>
+                      <td><%= button_to "Set Paid", "/admin/orders/#{order.id}/setPaid", class: "btn btn-danger" %></span></td>
                     </tr>
-                    <tbody>
-                    <% userOrder[1].each do |order| %>
-                      <tr data-link="<%= admin_order_path(order.id) %>">
-                        <td><%= order.id %></td>
-                        <td><%= I18n.l(order.created_at.to_date, format: :shortest) %></td>
-                        <td><%=  button_to "Set Paid", "/admin/orders/#{order.id}/setPaid", class: "btn btn-danger"%></td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-                </div>
+                  <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
