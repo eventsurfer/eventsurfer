@@ -2,7 +2,7 @@
 
 class Frontend::CartsController < ApplicationController
   def add_item
-    t = Ticket.find(params[:id]).performance
+    t = Performance.find(params[:id])
     exist = false
     @cart.each do |element|
       if element[0] == t.id
@@ -80,8 +80,12 @@ class Frontend::CartsController < ApplicationController
           end
         end
         if not_free.size > 0
-          p "not free"
-          redirect_to frontend_path # TODO: not free msg
+          msg = " "
+          not_free.each do |p|
+            msg += Performance.find(p.performance_id).event.name.to_s + ": " + Performance.find(p.performance_id).location.name.to_s + "; "
+          end
+          flash[:alert] = "Some articles are not available:" + msg
+          redirect_to frontend_cart_path
         else
           @items = []
           PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
@@ -89,8 +93,8 @@ class Frontend::CartsController < ApplicationController
           end
         end
       else
-        p "korb leer"
-        redirect_to frontend_path # TODO: wo anders hin und fehler msg
+        flash[:alert] = "Your cart is empty!"
+        redirect_to frontend_cart_path
       end
     end
   end
@@ -110,8 +114,12 @@ class Frontend::CartsController < ApplicationController
       end
 
       if not_free.size > 0
-        p "not free"
-        redirect_to frontend_path # TODO: not free msg
+        msg = " "
+        not_free.each do |p|
+          msg += Performance.find(p.performance_id).event.name.to_s + ": " + Performance.find(p.performance_id).location.name.to_s + "; "
+        end
+        flash[:alert] = "Some articles are not available:" + msg
+        redirect_to frontend_cart_path
 
       else
         this_order = Order.create(user_id: current_user.id, payment_method: method)
