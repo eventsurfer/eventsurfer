@@ -24,16 +24,22 @@ class Admin::OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @groupeTicket = GroupTicket.where(order_id: params[:id])
-    if @groupeTicket.destroy && @order.destroy
+    if @groupeTicket.each {|order| order.destroy} && @order.destroy
       flash[:success] = "Order was destroyed successfull"
       redirect_to admin_orders_path
     end
   end
 
   def setPaid
-    p current_user
     @order = Order.find(params[:id])
     @order.setPaid(current_user)
+    OrderMailer.sendTickets(@order).deliver
+    redirect_to admin_orders_path
+  end
+
+  def setUnPaid
+    @order = Order.find(params[:id])
+    @order.setUnPaid(current_user)
     redirect_to admin_orders_path
   end
 

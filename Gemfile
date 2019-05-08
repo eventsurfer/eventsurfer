@@ -45,6 +45,7 @@ gem "country_select", "~> 4.0"
 # Charts
 gem "chartkick"
 
+gem "rqrcode"
 
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
