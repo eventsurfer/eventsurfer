@@ -97,6 +97,9 @@ en:
       orders: "Orders"
       show_all: "Show all orders"
       add: "Add order"
+      order_nr: "Order Nr"
+      created_at: "created at"
+      setPaid: "set paid"
     cart:
       add_to: "Add to cart"
       your_order: "Your order"
@@ -261,7 +264,9 @@ en:
   admin_event_hoster: "hoster"
   add: "add"
   delete: "delete"
-  admin_event_name: "event name"
+  admin_event_name: "event"
+  paid: "paid order"
+  unpaid: "unpaid order"
   hello: "Hello world"
   date:
     formats:
@@ -279,3 +284,7 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
+  errors:
+    messages:
+      login:
+        no_admin_rights: "You have no admin rights"
