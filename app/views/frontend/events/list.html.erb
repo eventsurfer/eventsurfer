@@ -1,0 +1,17 @@
+<div class="card-columns">
+  <% @events.each do |event| %>
+    <div class="card">
+      <img src="http://placehold.it/300x200" class="card-img-top" alt="<%= event.name %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= event.name %></h5>
+        <p class="card-text"><%= event.description %></p>
+        <p class="card-text">
+          <small class="text-muted">Last Updated: <%= l(event.updated_at) %></small>
+        </p>
+      </div>
+      <div class="card-footer">
+        <a href="<%= frontend_event_path(event.id) %>" class="btn btn-primary">Find Out More!</a>
+      </div>
+    </div>
+  <% end %>
+</div>

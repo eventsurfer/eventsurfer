@@ -31,14 +31,25 @@
   </button>
   <div class="navbar-collapse collapse" id="navbarCollapse" style="">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item
+        <% if current_page?(root_path) %>active
+        <% end %>">
+        <a class="nav-link" href="<%= root_path %>">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item
+        <% if current_page?(frontend_list_path) %>active
+        <% end %>">
+        <a class="nav-link" href="<%= frontend_list_path %>">Events</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
+      <% if current_user.admin? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= admin_dashboards_path %>">
+            <i class="fas fa-tools"></i>
+          </a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <a class=" nav-link" href="<%= frontend_cart_path %>">
           <i class="fas fa-shopping-cart"></i>
