@@ -23,17 +23,12 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-  <a class="navbar-brand mr-1" href="<%= admin_dashboards_path %>">Eventsurfer</a>
+  <a class="navbar-brand mr-1" href="<%= root_path %>">Eventsurfer</a>
 
   <!-- Navbar Search -->
   <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+
     </div>
   </form>
 
@@ -129,16 +124,6 @@
         </a>
         <a class="dropdown-item" href="<%= admin_api_clients_url %>"><i class="fas fa-code"></i> API Clients</a>
       </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-        <i class="fas fa-chart-area"></i>
-        <span>Charts</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
     </li>
   </ul>
   <div id="content-wrapper">

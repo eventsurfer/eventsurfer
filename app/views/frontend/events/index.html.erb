@@ -1,9 +1,8 @@
-<%= current_user.nil? ? "huhu" : current_user.attributes %>
 <div class="row">
-  <% @events.first(3).each do |event| %>
+  <% @events.each do |event| %>
     <div class="col-md-4 mb-5">
       <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+        <img class="card-img-top" src="http://placehold.it/300x200" alt="<%= event.name %>">
         <div class="card-body">
           <h4 class="card-title"><%= event.name %></h4>
           <p class="card-text"><%= event.description %></p>

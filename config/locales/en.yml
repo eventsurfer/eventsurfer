@@ -42,6 +42,7 @@ en:
     locations:
       edit: "Edit location"
       locations: "Locations"
+      location: "Location"
       name: "Name"
       street: "Street"
       street_number: "Street Number"
@@ -56,6 +57,7 @@ en:
       start: "Start"
       end: "End"
       price: "Price"
+      price_per_ticket: "Price per ticket"
       number_of_tickets: "Number of ticktes"
       create: "Create new performance"
       show_all: "Show all performances"
@@ -95,9 +97,15 @@ en:
       orders: "Orders"
       show_all: "Show all orders"
       add: "Add order"
+      order_nr: "Order Nr"
+      created_at: "created at"
+      setPaid: "set paid"
     cart:
       add_to: "Add to cart"
+      your_order: "Your order"
       order: "Order"
+      cart: "Cart"
+      payment_method: "Payment method"
   common:
     delete: "Delete"
     edit: "Edit"
@@ -256,7 +264,9 @@ en:
   admin_event_hoster: "hoster"
   add: "add"
   delete: "delete"
-  admin_event_name: "event name"
+  admin_event_name: "event"
+  paid: "paid order"
+  unpaid: "unpaid order"
   hello: "Hello world"
   date:
     formats:
@@ -274,3 +284,7 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
+  errors:
+    messages:
+      login:
+        no_admin_rights: "You have no admin rights"

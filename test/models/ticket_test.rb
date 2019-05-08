@@ -18,5 +18,10 @@ class TicketsTest < ActiveSupport::TestCase
     assert_equal(@user.id, @ticket.changed_by)
   end
 
+  test "create tickets for performance" do
+    per = create(:performance)
+    Ticket.createTicketsForPerformance(per, @user_id, 20)
+    assert_equal 20, PerformanceTicket.where(performance_id: per.id).size
+  end
 
 end

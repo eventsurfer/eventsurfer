@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users do
+  devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", confirmations: "users/confirmations", passwords: "users/passwords", unlocks: "users/unlocks"} do
 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -81,6 +81,7 @@ Rails.application.routes.draw do
         #get ":id/show", to: "orders#getDetailedInfo"
         post ":id/setPaid", to: "orders#setPaid"
         get "index", to: "orders#index"
+        post ":id/setUnPaid", to: "orders#setUnPaid"
       end
     end
 
@@ -136,9 +137,10 @@ Rails.application.routes.draw do
     post ":id/update", to: "carts#update", :as => :update_cart
     get "cart", to: "carts#list_items"
     post "create_order", to: "carts#order"
-    get"checkout", to: "carts#checkout"
-    get"success", to: "carts#success"
+    get "checkout", to: "carts#checkout"
+    get "success", to: "carts#success"
     get "/", to: "events#index"
+    get "list", to: "events#list"
 
   end
 

@@ -7,9 +7,8 @@
 <h2><%= t('admin.orders.orders') %></h2>
 <div class="container">
   <div class="row">
-
     <div class="col-lg-6">
-      <h3>Paid</h3>
+      <h3><%= t("paid") %></h3>
       <div class="accordion" id="accordionPaid">
         <% @paid.each do |userOrder| %>
           <div class="card">
@@ -47,27 +46,26 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-lg-6">
-      <h3>Unpaid</h3>
+      <h3><%= t("unpaid") %></h3>
       <div class="accordion" id="accordionUnpaid">
         <% @unpaid.each do |userOrder| %>
           <div class="card">
             <div class="card-header" id="heading<%= userOrder[0].to_s %>">
               <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<%= userOrder[0].to_s %>" aria-expanded="true" aria-controls="collapse<%= userOrder[0].to_s %>">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseUn<%= userOrder[0].to_s %>" aria-expanded="true" aria-controls="collapse<%= userOrder[0].to_s %>">
                   <i class="fas fa-chevron-down"></i> <%= @user.find(userOrder[0]).name %>
                 </button>
               </h2>
             </div>
 
-            <div id="collapse<%= userOrder[0].to_s %>" class="collapse" aria-labelledby="heading<%= userOrder[0].to_s %>" data-parent="#accordionUnpaid">
+            <div id="collapseUn<%= userOrder[0].to_s %>" class="collapse" aria-labelledby="heading<%= userOrder[0].to_s %>" data-parent="#accordionUnpaid">
               <div class="card-body">
                 <table class="table text-center table-hover">
                   <thead>
                   <tr>
-                    <th><%= "Order Nr." %></th>
-                    <th><%= "Created at" %></th>
+                    <th><%= t("admin.orders.order_nr") %></th>
+                    <th><%= t("admin.orders.created_at") %></th>
                     <th></th>
                   </tr>
                   </thead>
@@ -76,7 +74,7 @@
                     <tr data-link="<%= admin_order_path(order.id) %>">
                       <td><%= order.id %></td>
                       <td><%= I18n.l(order.created_at.to_date, format: :shortest) %></td>
-                      <td><%= button_to "Set Paid", "/admin/orders/#{order.id}/setPaid", class: "btn btn-danger" %></span></td>
+                      <td><%= button_to t("admin.orders.setPaid"), "/admin/orders/#{order.id}/setPaid", class: "btn btn-danger" %></span></td>
                     </tr>
                   <% end %>
                   </tbody>
@@ -86,6 +84,7 @@
           </div>
         <% end %>
       </div>
+
     </div>
   </div>
 </div>
