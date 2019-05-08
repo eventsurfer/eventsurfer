@@ -137,9 +137,10 @@ Rails.application.routes.draw do
     post ":id/update", to: "carts#update", :as => :update_cart
     get "cart", to: "carts#list_items"
     post "create_order", to: "carts#order"
-    get"checkout", to: "carts#checkout"
-    get"success", to: "carts#success"
+    get "checkout", to: "carts#checkout"
+    get "success", to: "carts#success"
     get "/", to: "events#index"
+    get "list", to: "events#list"
 
   end
 

@@ -2,6 +2,10 @@
 
 class Frontend::EventsController < ApplicationController
   def index # TODO: featured events(admin choosed top idk 6(?) events)
+    @events = Event.all.first(3)
+  end
+
+  def list
     @events = Event.all
   end
 
