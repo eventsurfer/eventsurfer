@@ -29,6 +29,6 @@ class OrderMailer < ApplicationMailer
     @tickets.each {|ticket| ticket[1].each {|tick| tmp.push(RQRCode::QRCode.new(tick.validate_id.to_s))}}
     @qrs = tmp
     @user = User.find(@order.user_id)
-    mail(subject: "Your tickets", to: @user.email, template_path: "layouts/mailer", template_name: "sendTickets")
+    mail(subject: "Your tickets", to: "<" + @user.email.to_s + ">", template_path: "layouts/mailer", template_name: "sendTickets")
   end
 end
