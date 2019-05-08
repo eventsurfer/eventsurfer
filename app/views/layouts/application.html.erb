@@ -43,6 +43,13 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
+      <% if current_user.admin? %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= admin_dashboards_path %>">
+            <i class="fas fa-tools"></i>
+          </a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <a class=" nav-link" href="<%= frontend_cart_path %>">
           <i class="fas fa-shopping-cart"></i>
