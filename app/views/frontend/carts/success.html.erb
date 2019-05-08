@@ -1,1 +1,6 @@
-<%= @order %>
+<% if not @order.nil? %>
+  <h1><%= t('admin.orders.successful') %></h1>
+<% else %>
+  <h1><%= t('admin.orders.failure') %></h1>
+<% end %>
+<a href="<%= root_path %>" class="btn btn-primary"><%= t('startpage') %></a>

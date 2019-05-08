@@ -34,7 +34,9 @@
       <li class="nav-item
         <% if current_page?(root_path) %>active
         <% end %>">
-        <a class="nav-link" href="<%= root_path %>">Home</a>
+        <a class="nav-link" href="<%= root_path %>">
+          <%= t('startpage') %>
+        </a>
       </li>
       <li class="nav-item
         <% if current_page?(frontend_list_path) %>active
@@ -116,9 +118,9 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-dark" style="margin-top: 3rem">
   <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    <p class="m-0 text-center text-white">Copyright &copy; Eventsurfer 2019</p>
   </div>
   <!-- /.container -->
 </footer>
