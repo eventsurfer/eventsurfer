@@ -66,12 +66,16 @@ de:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"
       add: "Bestellung hinzufügen"
+      order_nr: "Rechnungsnummer"
+      created_at: "Erstellt am"
+      setPaid: "Bezahlt setzen"
     cart:
       add_to: "Zum Warenkorb hinzufügen"
       your_order: "Deine Bestellung"
       order: "Bestellen"
       cart: "Warenkorb"
       payment_method: "Bezahlmethode"
+
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
@@ -328,3 +332,12 @@ de:
     messages:
       login:
         no_admin_rights: "Sie haben keine Admin Rechte"
+  admin_event_name: "Event"
+  admin_event_start_date: "Start des Events"
+  admin_event_end_date: "Ende des Events"
+  admin_event_hoster : "Veranstalter"
+  delete: "Löschen"
+  location: "Veranstaltungsort"
+  number_of_tickets: "Anzahl der verfügbaren Tickets"
+  paid: "Bezahlte Rechnungen"
+  unpaid: "Unbezahlte Rechnungen"
