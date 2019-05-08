@@ -1,6 +1,6 @@
 class UpdateOrderPaymentmethod < ActiveRecord::Migration[5.2]
   def up
-    change_column :orders, :payment_method, :integer, null: true
+    change_column :orders, :payment_method, :integer, using: 'payment_method::integer', null: true
   end
 
   def down

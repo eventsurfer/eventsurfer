@@ -43,7 +43,7 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <% if current_user.admin? %>
+      <% if current_user.nil? ? false : current_user.admin? %>
         <li class="nav-item">
           <a class="nav-link" href="<%= admin_dashboards_path %>">
             <i class="fas fa-tools"></i>
