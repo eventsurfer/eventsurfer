@@ -71,7 +71,7 @@ Rails.application.configure do
       port: 587,
       domain: 'example.com',
       user_name: 'eventsurfer004@gmail.com',
-      password: '',
+      password: 'WsdBwwdBs123_',
       authentication: 'plain',
       enable_starttls_auto: true}
 
