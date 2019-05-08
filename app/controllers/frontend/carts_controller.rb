@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Frontend::CartsController < ApplicationController
+  ##
+  # Add performance / ticket to cart
   def add_item
     t = Performance.find(params[:id])
     exist = false
@@ -25,6 +27,8 @@ class Frontend::CartsController < ApplicationController
     redirect_to(frontend_cart_path)
   end
 
+  ##
+  # Display all performances in the cart
   def list_items
     @items = []
     unless current_user.nil?
@@ -38,6 +42,8 @@ class Frontend::CartsController < ApplicationController
     end
   end
 
+  ##
+  # change ticket amount of an performance
   def update
     id = params[:id].to_i
     count = params[:count].to_i
@@ -54,6 +60,8 @@ class Frontend::CartsController < ApplicationController
     redirect_to(frontend_cart_path)
   end
 
+  ##
+  # Remove event from cart
   def remove_item
     id = params[:id].to_i
     @cart.each do |element|
@@ -135,7 +143,11 @@ class Frontend::CartsController < ApplicationController
   end
 
 
+  ##
+  # Payment success view
   def success
+    ##
+    # the made order
     @order = Order.where(user_id: current_user.id).last
   end
 

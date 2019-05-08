@@ -22,10 +22,8 @@ class ApplicationController < ActionController::Base
       logger.debug "* Locale set to '#{I18n.locale}'"
     end
 
-    def default_url_options
-      {locale: I18n.locale}
-    end
-
+    ##
+    # Is the logged in user admin
     def is_admin?
       if current_user.admin
 
@@ -45,6 +43,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+    ##
+    # Extract the preferred language from the browser request header
     def extract_locale_from_header
       if request.env["HTTP_ACCEPT_LANGUAGE"]
         request.env["HTTP_ACCEPT_LANGUAGE"].scan(/^[a-z]{2}/).first
