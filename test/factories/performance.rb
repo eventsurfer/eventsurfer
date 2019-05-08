@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :performance do
     prize {2.4}
-    start {DateTime.today}
-    stop {DateTime.today.next_month(2)}
-    stop_selling {DateTime.today.next_month}
+    start {DateTime.now}
+    stop {DateTime.now.next_month(2)}
+    stop_selling {DateTime.now.next_month}
     number_of_tickets {10}
   end
   factory :unallowed_sell_performance, parent: :performance do

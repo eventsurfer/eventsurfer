@@ -30,4 +30,12 @@ class Ticket < ApplicationRecord
     end
   end
 
+  def self.getAllOrderedTickets(groupTickets)
+    back = {}
+    groupTickets.each do |g|
+      back[g.id] = Ticket.where(group_id: g.id)
+    end
+    return back
+  end
+
 end
