@@ -12,8 +12,8 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  username: "falko" #TODO: change
-  password: "7614" #TODO: change
+  username: "eventsystem" #TODO: change
+  password: "g9rHs0R9PXd6sWFc" #TODO: change
   host: "localhost" #TODO: change
 
 development:
