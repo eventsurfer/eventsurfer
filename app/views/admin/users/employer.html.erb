@@ -1,0 +1,41 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Employee", employer_admin_users_path %>
+  </li>
+</ol>
+<table class="table text-center table-hover">
+  <thead>
+  <tr>
+    <th><%= t('admin.users.name') %></th>
+    <th><%= t('admin.users.email') %></th>
+    <th><%= t('admin.users.enabled') %></th>
+    <th><%= t('admin.users.admin') %></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @employer.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.enabled? %>
+          <i class="fas fa-fw fa-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-fw fa-times" style="color: red"></i>
+        <% end %>
+      </td>
+      <td>
+        <% if user.admin? %>
+          <i class="fas fa-fw fa-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-fw fa-times" style="color: red"></i>
+        <% end %>
+      </td>
+      <td>
+        <a href="<%= edit_admin_user_path(user) %>" class="btn btn-secondary"><i class="fas fa-fw fa-edit"></i></a>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -2,7 +2,10 @@
 
 class Admin::EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
+
   def index
     @events = Event.all
     @event_performances = PerformanceEvent.all
@@ -14,8 +17,10 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.changed_by = current_user.id
     if @event.save
-      redirect_to(admin_events_path)
+      session[:tmp_event_id] = @event.id
+      redirect_to(admin_event_path(@event.id))
     else
       render :new
     end
@@ -27,9 +32,11 @@ class Admin::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.changed_by = current_user.id
     if (@event.update(event_params))
       flash[:success] = "Event was edited successful"
-      redirect_to(admin_events_path)
+      session[:tmp_event_id] = @event.id
+      redirect_to(admin_event_path(@event.id))
     else
       flash[:danger] = "Something went wrong"
       # redirect_to(edit_admin_event_path(params[:id]))
@@ -38,9 +45,10 @@ class Admin::EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    @event.changed_by = current_user.id
     if (@event.destroy)
       flash[:success] = "Event was destroyed successful"
-      redirect_to admin_events_path
+      redirect_to admin_event_path
     else
       flash[:danger] = "Something went wrong "
     end
@@ -48,8 +56,9 @@ class Admin::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    session[:tmp_event_id] = @event.id
     @performances = PerformanceEvent.where(event_id: params[:id])
-    @locations = PerformanceLocation.all
+    @locationsPerformance = @event.getLocations(@performances)
   end
 
   private
@@ -65,6 +74,13 @@ class Admin::EventsController < ApplicationController
                                       :prize,
                                       :hotline
         )
+      end
+      def checkPermission!
+        if current_user.rank >= 2
+
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
 end

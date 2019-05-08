@@ -2,6 +2,8 @@
 
 class Admin::TicketsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
   def index
     @tickets = Ticket.all
@@ -17,6 +19,7 @@ class Admin::TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.changed_by = current_user.id
     if @ticket.save
       redirect_to(admin_tickets_path)
     else
@@ -64,6 +67,13 @@ class Admin::TicketsController < ApplicationController
         params.require(:ticket).permit(
 
         )
+      end
+      def checkPermission!
+        if current_user.rank >= 4
+
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
 end

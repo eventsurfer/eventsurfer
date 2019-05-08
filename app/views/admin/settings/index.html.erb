@@ -1,16 +1,21 @@
-<h1>Settings</h1>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <%= link_to "Settings", admin_settings_path %>
+  </li>
+</ol>
+<h1><%= t('admin.settings.settings') %></h1>
 
-<%= link_to('Add setting',
+<%= link_to(t('admin.settings.add'),
             new_admin_setting_path,
             class: "btn btn-primary") %>
-<table class="table">
+<table class="table text-center table-hover">
   <thead>
-
-    <th>Key</th>
-    <th>Value</th>
+  <tr>
+    <th><%= t('admin.settings.key') %></th>
+    <th><%= t('admin.settings.value') %></th>
     <th></th>
     <th></th>
-
+  </tr>
   </thead>
 
   <tbody>

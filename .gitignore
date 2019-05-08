@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-/config/database.yml
 /.idea
 /Gemfile.lock
 # Ignore all logfiles and tempfiles.
@@ -161,3 +160,4 @@ fabric.properties
 vednor/
 Gemfile.lock
 /db/schema.rb
+/config/environments/development.rb

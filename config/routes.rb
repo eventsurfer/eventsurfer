@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         get ":id/delete", to: "users#destroy"
         get ":id/show", to: "users#show"
         get "show", to: "users#show"
+        get "costumer", to: "users#costumer"
+        get "employer", to: "users#employer"
       end
     end
     resources :locations do
@@ -51,14 +53,14 @@ Rails.application.routes.draw do
     end
     resources :tickets do
       collection do
-        get "index", to:"tickets#index"
-        get ":id/edit", to:"tickets#edit"
-        post ":id/edit", to:"tickets#update"
-        get "new", to:"tickets#new"
-        post "new", to:"tickets#update"
-        get ":id/delete", to:"tickets#destroy"
-        get ":id/show", to:"tickets#show"
-        get "/", to:"tickets#index"
+        get "index", to: "tickets#index"
+        get ":id/edit", to: "tickets#edit"
+        post ":id/edit", to: "tickets#update"
+        get "new", to: "tickets#new"
+        post "new", to: "tickets#update"
+        get ":id/delete", to: "tickets#destroy"
+        #get ":id/show", to: "tickets#show"
+        get "/", to: "tickets#index"
       end
     end
 
@@ -74,25 +76,36 @@ Rails.application.routes.draw do
         get "/", to: "performances#index"
       end
     end
+    resources :orders do
+      collection do
+        #get ":id/show", to: "orders#getDetailedInfo"
+        post ":id/setPaid", to: "orders#setPaid"
+        get "index", to: "orders#index"
+      end
+    end
 
-    resources :settings, :except => [:show]
+    resources :settings, :except => [:show, :defaultInfo] do
+      collection do
+        post "defaultInfo", to: "settings#defaultInfo"
+      end
+    end
     resources :api_clients, :only => [:index,
                                       :new,
                                       :create,
                                       :edit,
                                       :update,
                                       :destroy]
-    get "/", to:"dashboards#index"
+    get "/", to: "dashboards#index"
   end
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :events do
+      resources :events, except: [:get] do
         collection do
           post "get"
         end
       end
-      resources :tickets do
+      resources :tickets, except: [:validate_ticket] do
         collection do
           post "validate_ticket"
         end
@@ -106,14 +119,29 @@ Rails.application.routes.draw do
   end
 
 
-
   # Show events
-  resources :events do
-    post 'punch'
-    get "events", to: "events#index"
+  namespace :frontend do
+    resources :events do
+      collection do
+        get ":id/show", to: "events#show", :shallow => true
+      end
+      resources :performances do
+        collection do
+          get ":id/show", to: "performances#show"
+        end
+      end
+    end
+    get ":id/add", to: "carts#add_item", :as => :add_to_cart
+    get ":id/remove", to: "carts#remove_item", :as => :remove_from_cart
+    post ":id/update", to: "carts#update", :as => :update_cart
+    get "cart", to: "carts#list_items"
+    post "create_order", to: "carts#order"
+    get"checkout", to: "carts#checkout"
+    get"success", to: "carts#success"
+    get "/", to: "events#index"
+
   end
 
-
   #Default page
-  root "events#index"
+  root "frontend/events#index"
 end

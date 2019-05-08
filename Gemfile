@@ -29,7 +29,6 @@ gem "bcrypt", "~> 3.1.7"
 
 gem "devise", ">= 4.6.0" # framework for user authentification
 gem "devise-security" # security plugin for devise
-gem "faker" # framework to generate test data
 gem "jquery-rails"
 gem "devise_zxcvbn" # plugin for devise
 gem "delayed_job_active_record" # for delayed jobs in ruby on rails
@@ -57,22 +56,30 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "jquery-rails"
 gem "bootstrap"
 
+# pdf
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
+
 group :development, :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "rubocop-rails", git: "https://github.com/eventsurfer/rubocop-rails.git", require: false
+  gem "faker" # framework to generate test data
+  gem "factory_bot"
+  gem "brakeman"
+  gem "rails_best_practices"
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
   gem "web-console", ">= 3.3.0"
-  gem "rubocop-rails", require: false
   gem "listen"
   gem "spring"
   gem "spring-watcher-listen"
-  gem "brakeman"
   gem "capistrano-rails"
   gem "capistrano-bundler"
+  gem "letter_opener"
 
 end
 
@@ -81,7 +88,8 @@ group :test do
   gem "capybara", ">= 2.15", "< 4.0"
   gem "selenium-webdriver"
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem "chromedriver-helper"
+  gem "chromedriver-helper", "1.2.0"
+  gem "simplecov", require: false
 end
 
 

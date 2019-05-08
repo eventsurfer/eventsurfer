@@ -2,7 +2,10 @@
 
 class Admin::LocationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_admin?
+  before_action :checkPermission!
   layout "adminDash"
+
   def index
     @locations = Location.all
   end
@@ -14,6 +17,7 @@ class Admin::LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    @location.changed_by = current_user.id
     if @location.save
       redirect_to(admin_locations_path)
     else
@@ -28,16 +32,18 @@ class Admin::LocationsController < ApplicationController
 
   def destroy
     @location = Location.find(params[:id])
+    @location.changed_by = current_user.id
     if (@location.destroy)
       flash[:success] = "Location was deleted successful"
       redirect_to(admin_locations_path)
     else
-      flash[:danger] = "Something went wrong"
+      flash[:alert] = "Something went wrong"
     end
   end
 
   def update
     @location = Location.find(params[:id])
+    @location.changed_by = current_user.id
     if (@location.update(location_params))
       flash[:success] = "Location was edited successful"
       redirect_to(admin_location_path)
@@ -57,13 +63,21 @@ class Admin::LocationsController < ApplicationController
     begin
       def location_params
         params.require(:location).permit(:street,
-                                     :postcode,
-                                     :country,
-                                     :city,
-                                     :street_number,
-                                     :changed_by,
-                                     :name
+                                         :postcode,
+                                         :country,
+                                         :city,
+                                         :street_number,
+                                         :changed_by,
+                                         :name
         )
+      end
+
+      def checkPermission!
+        if current_user.rank >= 2
+
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
 

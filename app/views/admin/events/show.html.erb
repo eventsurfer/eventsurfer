@@ -9,31 +9,37 @@
 </ol>
 
 <div class="container-fluid">
-  <h1 ><%= @event.name %></h1>
+  <h1><%= @event.name %></h1>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Performances <span> <%= link_to "",new_admin_performance_path, class:"fas fa-fw fa-plus", style:"color: green" %></span></h3>
-      <table class="table">
-        <th><%= I18n.t (:location) %></th>
-        <th>Start</th>
-        <th>Stop</th>
+      <h3>Performances
+        <span> <%= link_to "", new_admin_performance_path, class: "fas fa-fw fa-plus", style: "color: green" %></span>
+      </h3>
+      <table class="table text-center table-hover">
+        <thead>
+        <tr>
+          <th><%= I18n.t (:location) %></th>
+          <th>Start</th>
+          <th>Stop</th>
+          <th><%= "number of tickets" %></th>
+        </tr>
+        </thead>
         <tbody>
-          <% @performances.each do |perform| %>
-            <tr data-link="<%= edit_admin_performance_path(perform.performance.id) %>" >
-
-              <td><%= @locations.find_by(:performance_id => perform.performance.id).location.name%></td>
-              <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
-              <td><%=I18n.l(perform.performance.stop.to_date, format: :default) %></td>
-
-            </tr>
-          <% end %>
+        <% @locationsPerformance.each do |locPerform| %>
+          <tr data-link="<%= edit_admin_performance_path(locPerform.performance.id) %>" data-id="<%= locPerform.performance.id %>">
+            <td><%= locPerform.location.name %></td>
+            <td><%= I18n.l(locPerform.performance.start.to_date, format: :default) %></td>
+            <td><%= I18n.l(locPerform.performance.stop.to_date, format: :default) %></td>
+            <td><%= locPerform.performance.number_of_tickets %></td>
+          </tr>
+        <% end %>
 
         </tbody>
       </table>
     </div>
     <div class="col-sm-6">
-      <h3>Locations  <span class="badge badge-primary badge-pill"><%= @locations.size %> </span></h3>
-      <% @locations.each do |loc| %>
+      <h3>Locations <span class="badge badge-primary badge-pill"><%= @locationsPerformance.size %> </span></h3>
+      <% @locationsPerformance.each do |loc| %>
         <ul class="list-unstyled">
           <li><%= getFullAddress(loc.location) %></li>
         </ul>
