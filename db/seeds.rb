@@ -74,13 +74,13 @@ if (PerformanceEvent.all.size < 10)
   5.times do |i|
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count + 1].id)
-    count +=2
+    count += 2
   end
 end
 if (Ticket.all.size < 200)
   Performance.all.each do |p|
     arr = []
-    10.times do |t|
+    20.times do |t|
       ticket = Ticket.create(validate_id: Ticket.generateValidateId, valid_: true)
       ticket.validate_id += "D" + ticket.id.to_s
       ticket.save
@@ -106,22 +106,25 @@ if (!ApiClient.find_by_name("testi"))
 end
 
 if (Cart.all.size < 10)
+  arry = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
   10.times do |i|
     this_cart = Cart.create(user_id: i + 1)
-    5.times do
-      PerformanceCart.create(cart_id: this_cart.id, performance_id: rand(1...10), count: rand(1...6))
+    3.times do
+      PerformanceCart.create(cart_id: this_cart.id, performance_id: arry.delete_at(rand(arry.length)), count: rand(1..3))
     end
   end
 end
 
 if (Order.all.size < 10)
   10.times do |i|
-    this_order = Order.create(user_id: i + 1, paid:false)
-    PerformanceCart.where(cart_id: Cart.find_by_user_id(i + 1)).each do |item|
-      GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
+    this_order = Order.create(user_id: i+1, paid: false)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i+1)).each do |item|
+      x = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
+      x.count.to_i.times do
+        Performance.find(x.performance_id).tickets.where(reserved: 0).first.update(reserved: 1, group_id: x.id)
+      end
     end
   end
-  this_order = Order.create(user_id:1, paid:false)
 end
 if (DefaultInformation.all.empty?)
   street = Faker::Address.street_name

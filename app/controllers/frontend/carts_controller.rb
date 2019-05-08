@@ -89,7 +89,7 @@ class Frontend::CartsController < ApplicationController
         else
           @items = []
           PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-            @items.push([item.performance_id, item.count])
+            @items.push([Performance.find(item.performance_id), item.count])
           end
         end
       else

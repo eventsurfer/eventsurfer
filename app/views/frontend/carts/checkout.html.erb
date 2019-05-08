@@ -1,15 +1,59 @@
-<p> Your order:</p>
-<% @items.each do |item| %>
+<h2><%= t('admin.cart.your_order') %>:</h2>
+<table class="table">
+  <thead>
   <tr>
-    <td><%= item[0] %></td>
+    <th><%= t('admin.performances.performances') %></th>
+    <th><%= t('admin.locations.location') %></th>
+    <th><%= t('admin.performances.start') %></th>
+    <th><%= t('admin.performances.price_per_ticket') %></th>
+    <th><%= t('admin.performances.number_of_tickets') %></th>
+    <th><%= t('admin.performances.price') %></th>
   </tr>
+  </thead>
+  <tbody>
+  <% total = 0 %>
+  <% @items.each do |item| %>
+    <% total += item[0].prize * item[1] %>
+    <tr>
+      <td><%= item[0].event.name %></td>
+      <td><%= item[0].location.name %></td>
+      <td><%= I18n.l(item[0].start) %></td>
+      <td><%= item[0].prize %> €</td>
+      <td><%= item[1] %></td>
+      <td><%= item[0].prize * item[1] %> €</td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= total %> €</td>
+  </tr>
+  </tbody>
+</table>
 
-<% end %>
-
+<h2><%= t('admin.cart.payment_method') %></h2>
 <%= form_tag(frontend_create_order_path, method: "post") do %>
-  <%= radio_button_tag(:payment_method, Order.payment_methods[:bill])%>
-  <%= radio_button_tag(:payment_method, Order.payment_methods[:paypal])%>
-  <%= radio_button_tag(:payment_method, Order.payment_methods[:card])%>
-  <%= submit_tag value = "ORDER" %>
+  <div class="form-check">
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:bill], true, {class: "form-check-input"}) %>
+    <label for="<%= :payment_method.to_s + "_" + Order.payment_methods[:bill].to_s %>" class="form-check-label">
+      Bill <i class="fas fa-money-bill"></i>
+    </label>
+  </div>
+  <div class="form-check">
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:paypal], false, {disabled: true, class: "form-check-input"}) %>
+    <label for="<%= :payment_method.to_s + "_" + Order.payment_methods[:paypal].to_s %>" class="form-check-label">
+      PayPal <i class="fab fa-paypal"></i>
+    </label>
+  </div>
+  <div class="form-check">
+    <%= radio_button_tag(:payment_method, Order.payment_methods[:card], false, {disabled: true, class: "form-check-input"}) %>
+    <label for="<%= :payment_method.to_s + "_" + Order.payment_methods[:card].to_s %>" class="form-check-label">
+      Card <i class="fas fa-credit-card"></i>
+    </label>
+  </div>
+  <%= submit_tag(value = t('admin.cart.order'), class: "btn btn-primary") %>
 <% end %>
 
