@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  startpage: "Startpage"
   admin:
     api_clients:
       add: "Add API-Client"
@@ -100,6 +101,8 @@ en:
       order_nr: "Order Nr"
       created_at: "created at"
       setPaid: "set paid"
+      successful: "Order successful"
+      failure: "Order failed"
     cart:
       add_to: "Add to cart"
       your_order: "Your order"

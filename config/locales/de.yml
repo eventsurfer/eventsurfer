@@ -1,4 +1,5 @@
 de:
+  startpage: "Startseite"
   admin:
     api_clients:
       add: "API-Client hinzufügen"
@@ -69,6 +70,8 @@ de:
       order_nr: "Rechnungsnummer"
       created_at: "Erstellt am"
       setPaid: "Bezahlt setzen"
+      successful: "Bestellung erfolgreich"
+      failure: "Bestellung fehlgeschlagen"
     cart:
       add_to: "Zum Warenkorb hinzufügen"
       your_order: "Deine Bestellung"
