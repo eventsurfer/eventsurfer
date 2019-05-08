@@ -42,6 +42,7 @@ en:
     locations:
       edit: "Edit location"
       locations: "Locations"
+      location: "Location"
       name: "Name"
       street: "Street"
       street_number: "Street Number"
@@ -56,6 +57,7 @@ en:
       start: "Start"
       end: "End"
       price: "Price"
+      price_per_ticket: "Price per ticket"
       number_of_tickets: "Number of ticktes"
       create: "Create new performance"
       show_all: "Show all performances"
@@ -97,7 +99,10 @@ en:
       add: "Add order"
     cart:
       add_to: "Add to cart"
+      your_order: "Your order"
       order: "Order"
+      cart: "Cart"
+      payment_method: "Payment method"
   common:
     delete: "Delete"
     edit: "Edit"

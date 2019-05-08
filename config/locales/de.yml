@@ -11,6 +11,7 @@ de:
     locations:
       edit: "Ort bearbeiten"
       locations: "Orte"
+      location: "Ort"
       name: "Name"
       street: "Straße"
       street_number: "Hausnummer"
@@ -25,6 +26,7 @@ de:
       start: "Beginn"
       end: "Ende"
       price: "Preis"
+      price_per_ticket: "Preis pro Ticket"
       number_of_tickets: "Anzahl der Tickets"
       create: "Neue Aufführung erstellen"
       show_all: "Alle Aufführungen anzeigen"
@@ -66,7 +68,10 @@ de:
       add: "Bestellung hinzufügen"
     cart:
       add_to: "Zum Warenkorb hinzufügen"
+      your_order: "Deine Bestellung"
       order: "Bestellen"
+      cart: "Warenkorb"
+      payment_method: "Bezahlmethode"
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
