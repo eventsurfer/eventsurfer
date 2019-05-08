@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     get "checkout", to: "carts#checkout"
     get "success", to: "carts#success"
     get "/", to: "events#index"
+    get "list", to: "events#list"
 
   end
 
