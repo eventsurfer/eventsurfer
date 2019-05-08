@@ -279,3 +279,7 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
+  errors:
+    messages:
+      login:
+        no_admin_rights: "You have no admin rights"

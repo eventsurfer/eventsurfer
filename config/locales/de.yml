@@ -236,16 +236,16 @@ de:
       send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.
       send_paranoid_instructions: Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.
       unlocked: Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren.
-  errors:
-    messages:
-      already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
-      confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
-      expired: ist abgelaufen, bitte neu anfordern
-      not_found: nicht gefunden
-      not_locked: ist nicht gesperrt
-      not_saved:
-        one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
-        other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
+    errors:
+      messages:
+        already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
+        confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
+        expired: ist abgelaufen, bitte neu anfordern
+        not_found: nicht gefunden
+        not_locked: ist nicht gesperrt
+        not_saved:
+          one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
+          other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
   date:
     abbr_day_names:
       - So
@@ -324,3 +324,7 @@ de:
     currency:
       format:
         delimiter: "."
+  errors:
+    messages:
+      login:
+        no_admin_rights: "Sie haben keine Admin Rechte"

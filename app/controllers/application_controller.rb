@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       if current_user.admin
 
       else
-        flash[:alert] = "You have no admin rights"
+        flash[:alert] = t("errors.messages.login.no_admin_rights")
         redirect_to root_path
       end
     end
