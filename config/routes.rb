@@ -78,7 +78,6 @@ Rails.application.routes.draw do
     end
     resources :orders do
       collection do
-        #get ":id/show", to: "orders#getDetailedInfo"
         post ":id/setPaid", to: "orders#setPaid"
         get "index", to: "orders#index"
         post ":id/setUnPaid", to: "orders#setUnPaid"

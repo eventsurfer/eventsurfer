@@ -60,9 +60,10 @@ de:
       admin: "Administrator"
       customer: "Kunde"
       show_all_customers: "Alle Kunden anzeigen"
-      employer: "Arbeitgeber"
-      show_all_employer: "Alle Arbeitgeber anzeigen"
-      add_employer: "Arbeitgeber hinzufügen"
+      employer: "Arbeitnehmer"
+      show_all_employer: "Alle Arbeitnehmer anzeigen"
+      add_employer: "Arbeitnehmer hinzufügen"
+      confirmed: "Bestätigt"
     orders:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"
