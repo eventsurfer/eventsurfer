@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if (!User.find_by_name("admin"))
-  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, enabled: true, confirmed_at: Date.today, role: "employer", rank: 4)
+  User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, confirmed_at: Date.today, role: "employer", rank: 4)
 end
 
 def fake_name()
@@ -29,7 +29,7 @@ if (User.all.size < 20)
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, enabled: true, role: 1)
+    User.create(name: name, email: Faker::Internet.unique.email(name), password: psswd, role: 1)
   end
 end
 #Location.delete_all

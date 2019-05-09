@@ -63,6 +63,7 @@ de:
       employer: "Arbeitgeber"
       show_all_employer: "Alle Arbeitgeber anzeigen"
       add_employer: "Arbeitgeber hinzufügen"
+      confirmed: "Bestätigt"
     orders:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"

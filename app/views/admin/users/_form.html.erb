@@ -13,41 +13,11 @@
 
   </div>
   <div class="form-group form-check">
-    <%= form.label(:enabled, class: "form-check-label") do %>
-      <%= form.check_box(:enabled, class: "form-check-input") %>
-      User ist aktiviert
-    <% end %>
-  </div>
-  <div class="form-group form-check">
     <%= form.label(:admin, class: "form-check-label") do %>
       <%= form.check_box(:admin, class: "form-check-input") %>
       User ist Admin
     <% end %>
   </div>
-  <% if user.role == "costumer" %>
-    <div class="form-group">
-      <%= form.label :street %>
-      <%= form.text_field(:street, class: "form-control", :minlength => 1, :placeholder => "street", :require => true) %>
-    </div>
-    <div class="form-group">
-      <%= form.label :street_number %>
-      <%= form.text_field :street_number, class: "form-control", :minlength => 1, :placeholder => "street number", :require => true %>
-    </div>
-    <div class="form-inline">
-      <div class="form-group">
-        <%= form.label :postcode %>
-        <%= form.text_field(:postcode, class: "form-control", :minlength => 1, placeholder: "postcode", :require => true) %>
-      </div>
-      <div class="form-group">
-        <%= form.label :city %>
-        <%= form.text_field :city, class: "form-control", :minlength => 1, :placeholder => "city", :require => true %>
-      </div>
-      <div class="form-group">
-        <%= form.label :country %>
-        <%= form.country_select(:country, {priority_countries: ["GB", "FR", "DE", "US"], include_blank: false, selected: "GB"}, {class: "form-control", data: {attribute: "value"}}, :require => true) %>
-      </div>
-    </div>
-  <% end %>
   <div>
     <%= form.submit("change", class: "btn btn-primary") %>
   </div>
