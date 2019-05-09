@@ -92,9 +92,9 @@ en:
       admin: "Administrator"
       customer: "Customer"
       show_all_customers: "Show all costumer"
-      employer: "Employer"
-      show_all_employer: "Show all employer"
-      add_employer: "Add employer"
+      employer: "Employee"
+      show_all_employer: "Show all employee"
+      add_employer: "Add employee"
     orders:
       orders: "Orders"
       show_all: "Show all orders"
