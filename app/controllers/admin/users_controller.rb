@@ -68,22 +68,22 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  begin
-    def user_params
-      params.require(:user).permit(:name,
-                                   :email,
-                                   :rank,
-                                   :admin,
-                                   :password,
-                                   :password_confirmation
-      )
-    end
+    begin
+      def user_params
+        params.require(:user).permit(:name,
+                                     :email,
+                                     :rank,
+                                     :admin,
+                                     :password,
+                                     :password_confirmation
+        )
+      end
 
-    def checkPermission!
-      if current_user.rank >= 4
-      else
-        redirect_to admin_dashboards_path
+      def checkPermission!
+        if current_user.rank >= 4
+        else
+          redirect_to admin_dashboards_path
+        end
       end
     end
-  end
 end
