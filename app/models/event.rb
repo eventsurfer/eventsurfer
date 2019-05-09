@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  has_many :performances
+  has_many :performance_events
   has_many :performances, through: :performance_events
 
   def getLocations(performances)

@@ -22,9 +22,9 @@
           <td><%= perform.performance.location.name %></td>
           <td><%= I18n.l(perform.performance.start.to_date, format: :default) %></td>
           <td><%= I18n.l(perform.performance.stop.to_date, format: :default) %></td>
-          <td><%= perform.performance.tickets.size %></td>
+          <td><%= perform.performance.tickets.where(reserved: 0).size %></td>
           <td>
-            <a href="<%= frontend_add_to_cart_path(perform.id) %>" class="btn btn-primary"
+            <a href="<%= frontend_add_to_cart_path(perform.performance.id) %>" class="btn btn-primary"
                data-toggle="tooltip" data-placement="bottom" title="<%= t('admin.cart.add_to') %>">
               <i class="fas fa-shopping-cart"></i>
             </a>
