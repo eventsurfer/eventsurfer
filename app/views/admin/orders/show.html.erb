@@ -46,9 +46,9 @@
 </div>
 <div class="btn-group">
   <% if @order.paid? %>
-    <%= button_to "Set Unpaid", "/admin/orders/#{@order.id}/setUnPaid", method: :post, class: "btn btn-warning" %>
+    <%= button_to t("admin.orders.setUnPaid"), "/admin/orders/#{@order.id}/setUnPaid", method: :post, class: "btn btn-warning" %>
   <% else %>
-    <%= button_to "Set Paid", "/admin/orders/#{@order.id}/setPaid", method: :post, class: "btn btn-warning" %>
+    <%= button_to t("admin.orders.setPaid"), "/admin/orders/#{@order.id}/setPaid", method: :post, class: "btn btn-warning" %>
   <% end %>
-  <%= button_to "Delete", admin_order_path(@order.id), method: :delete, class: "btn btn-danger" %>
+  <%= button_to t("delete"), admin_order_path(@order.id), method: :delete, class: "btn btn-danger" %>
 </div>

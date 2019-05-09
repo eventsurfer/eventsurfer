@@ -103,6 +103,7 @@ en:
       setPaid: "set paid"
       successful: "Order successful"
       failure: "Order failed"
+      setUnPaid: "set unpaid"
     cart:
       add_to: "Add to cart"
       your_order: "Your order"
