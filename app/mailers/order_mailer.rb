@@ -2,7 +2,7 @@
 
 class OrderMailer < ApplicationMailer
   add_template_helper(ApplicationHelper)
-  default from: "<no-reply@eventsurfer.online>"
+  default from: "no-reply@eventsurfer.online"
 
   def entry_order(order)
     @info = DefaultInformation.first
