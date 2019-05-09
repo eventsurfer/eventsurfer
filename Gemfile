@@ -94,7 +94,6 @@ group :test do
 end
 
 
-
 # Some stuff for Evensystem
 
 
@@ -102,6 +101,6 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
-  gem 'pg'
-  gem 'unicorn'
+  gem "pg"
+  gem "unicorn"
 end
