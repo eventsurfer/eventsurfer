@@ -59,7 +59,7 @@ if (Event.all.size < 20)
 end
 #Performnace.delete_all
 if (Performance.all.size < 30)
-  11.times do
+  10.times do
     prize = Random.rand(1..5).to_f
     start = Faker::Date.between(Date.today, Date.today.next_month)
     stop = Faker::Date.between(start, Date.today.next_year)
