@@ -9,35 +9,37 @@
 </ol>
 
 <div class="container-fluid">
-  <h1><%= @event.name %></h1>
+  <h1><%= @event.name %>
+    <a class="btn btn-secondary" href="<%= edit_admin_event_path(@event.id) %>"><i class="fas fa-edit"></i></a>
+  </h1>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-xl-6">
       <h3>Performances
         <span> <%= link_to "", new_admin_performance_path, class: "fas fa-fw fa-plus", style: "color: green" %></span>
       </h3>
       <table class="table text-center table-hover">
         <thead>
         <tr>
-          <th><%= I18n.t (:location) %></th>
+          <th><%= I18n.t(:location) %></th>
           <th><%= t("admin_event_start_date") %></th>
           <th><%= t("admin_event_end_date") %></th>
           <th><%= t("number_of_tickets") %></th>
         </tr>
         </thead>
         <tbody>
-        <% @locationsPerformance.each do |locPerform| %>
-          <tr data-link="<%= edit_admin_performance_path(locPerform.performance.id) %>" data-id="<%= locPerform.performance.id %>">
+        <% @event.performances.each do |locPerform| %>
+          <tr data-link="<%= edit_admin_performance_path(locPerform.id) %>" data-id="<%= locPerform.id %>">
             <td><%= locPerform.location.name %></td>
-            <td><%= I18n.l(locPerform.performance.start.to_date, format: :default) %></td>
-            <td><%= I18n.l(locPerform.performance.stop.to_date, format: :default) %></td>
-            <td><%= locPerform.performance.number_of_tickets %></td>
+            <td><%= I18n.l(locPerform.start.to_date, format: :default) %></td>
+            <td><%= I18n.l(locPerform.stop.to_date, format: :default) %></td>
+            <td><%= locPerform.tickets.where(reserved: 0).size %></td>
           </tr>
         <% end %>
 
         </tbody>
       </table>
     </div>
-    <div class="col-sm-6">
+    <div class="col-xl-6">
       <h3>Locations <span class="badge badge-primary badge-pill"><%= @locationsPerformance.size %> </span></h3>
       <% @locationsPerformance.each do |loc| %>
         <ul class="list-unstyled">
