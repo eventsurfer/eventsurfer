@@ -160,4 +160,5 @@ vednor/
 Gemfile.lock
 /db/schema.rb
 /config/environments/development.rb
+/config/environments/production.rb
 /config/deploy.rb
