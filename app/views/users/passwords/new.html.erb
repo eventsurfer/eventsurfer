@@ -3,8 +3,8 @@
   <div class="col-sm-4">
     <div class="container-fluid rounded">
       <h1>Eventsurfer</h1>
-      <p><%= t("devise.passwords.new.forgot_your_password") %></p>
-      <%= image_tag("business-779542_960_720.jpg", class: "rounded mx-auto d-block", width:"200px") %>
+      <%= image_tag("pengu_logo.png", class: "rounded mx-auto d-block", width:"200px") %>
+      <br>
     </div>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
