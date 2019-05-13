@@ -19,7 +19,10 @@ class ApplicationController < ActionController::Base
 
     def set_locale
       I18n.locale = params[:locale] || extract_locale_from_header || I18n.default_locale
-      logger.debug "* Locale set to '#{I18n.locale}'"
+    end
+
+    def default_url_options
+      {locale: I18n.locale}
     end
 
     ##
