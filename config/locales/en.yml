@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  startpage: "Startpage"
   admin:
     api_clients:
       add: "Add API-Client"
@@ -84,19 +85,26 @@ en:
       email: "E-mail"
       enabled: "Enabled"
       registration: "Registration"
+      confirmed: "Confirmed"
       passsword: "Password"
       customers: "View of all Costumers"
       edit: "edit"
       admin: "Administrator"
       customer: "Customer"
       show_all_customers: "Show all costumer"
-      employer: "Employer"
-      show_all_employer: "Show all employer"
-      add_employer: "Add employer"
+      employer: "Employee"
+      show_all_employer: "Show all employee"
+      add_employer: "Add employee"
     orders:
       orders: "Orders"
       show_all: "Show all orders"
       add: "Add order"
+      order_nr: "Order Nr"
+      created_at: "created at"
+      setPaid: "set paid"
+      successful: "Order successful"
+      failure: "Order failed"
+      setUnPaid: "set unpaid"
     cart:
       add_to: "Add to cart"
       your_order: "Your order"
@@ -261,7 +269,9 @@ en:
   admin_event_hoster: "hoster"
   add: "add"
   delete: "delete"
-  admin_event_name: "event name"
+  admin_event_name: "event"
+  paid: "paid order"
+  unpaid: "unpaid order"
   hello: "Hello world"
   date:
     formats:
@@ -279,3 +289,7 @@ en:
   time:
     formats:
       shortest: "%d-%m-%y"
+  errors:
+    messages:
+      login:
+        no_admin_rights: "You have no admin rights"

@@ -5,7 +5,6 @@ FactoryBot.define do
     name {Faker::Name.name}
     email {Faker::Internet.safe_email}
     password {"testtest"}
-    enabled {true}
     admin {false}
     rank {0}
     confirmed_at {DateTime.now}

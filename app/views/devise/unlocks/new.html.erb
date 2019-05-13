@@ -3,8 +3,8 @@
   <div class="col-sm-4">
     <div class="container-fluid rounded">
       <h1>Eventsurfer</h1>
-      <p>Resend unlock instructions</p>
-      <%= image_tag("business-779542_960_720.jpg", class: "rounded mx-auto d-block", width:"200px") %>
+      <p><%= t("devise.unlocks.new.resend_unlock_instructions") %></p>
+      <%= image_tag("pengu_logo.png", class: "rounded mx-auto d-block", width:"200px") %>
     </div>
     <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="actions form-group">
-        <%= f.submit "Resend unlock instructions",
+        <%= f.submit t("devise.unlocks.new.resend_unlock_instructions"),
                      class: "btn btn-primary btn-block" %>
       </div>
       </form>

@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.changed_by = current_user.id
     if @user.update(user_params)
-      if @user.role == 0
+      if @user.role == "costumer"
         redirect_to costumer_admin_users_path
       else
         redirect_to employer_admin_users_path
@@ -72,16 +72,13 @@ class Admin::UsersController < ApplicationController
       def user_params
         params.require(:user).permit(:name,
                                      :email,
-                                     :enabled,
                                      :rank,
                                      :admin,
-                                     :street,
-                                     :postcode,
-                                     :country,
-                                     :city,
-                                     :street_number,
+                                     :password,
+                                     :password_confirmation
         )
       end
+
       def checkPermission!
         if current_user.rank >= 4
         else

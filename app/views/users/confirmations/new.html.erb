@@ -1,16 +1,29 @@
-<h2>Resend confirmation instructions</h2>
+<div class="row" >
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="container-fluid rounded">
+      <h1>Eventsurfer</h1>
+      <%= image_tag("pengu_logo.png", class: "rounded mx-auto d-block", width:"200px") %>
+      <br>
+    </div>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">
+                <i class="far fa-envelope"></i>
+              </span>
+        </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :placeholder => "e-mail",value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="actions form-group">
+        <%= f.submit t("devise.confirmations.new.resend_confirmation_instructions") , class: "btn btn-primary btn-block" %>
+      </div>
+      </form>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

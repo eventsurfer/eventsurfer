@@ -132,13 +132,14 @@ class Frontend::CartsController < ApplicationController
         if this_order.nil?
           this_order = Order.create(user_id: current_user.id, payment_method: method)
         end
-        gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id)
+        gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
         item.count.to_i.times do
           Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
         end
       end
     end
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
+    OrderMailer.entry_order(this_order).deliver
     redirect_to frontend_success_path
   end
 

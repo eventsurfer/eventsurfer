@@ -1,4 +1,5 @@
 de:
+  startpage: "Startseite"
   admin:
     api_clients:
       add: "API-Client hinzufügen"
@@ -59,19 +60,27 @@ de:
       admin: "Administrator"
       customer: "Kunde"
       show_all_customers: "Alle Kunden anzeigen"
-      employer: "Arbeitgeber"
-      show_all_employer: "Alle Arbeitgeber anzeigen"
-      add_employer: "Arbeitgeber hinzufügen"
+      employer: "Arbeitnehmer"
+      show_all_employer: "Alle Arbeitnehmer anzeigen"
+      add_employer: "Arbeitnehmer hinzufügen"
+      confirmed: "Bestätigt"
     orders:
       orders: "Bestellungen"
       show_all: "Alle Bestellungen anzeigen"
       add: "Bestellung hinzufügen"
+      order_nr: "Rechnungsnummer"
+      created_at: "Erstellt am"
+      setPaid: "Bezahlt setzen"
+      successful: "Bestellung erfolgreich"
+      failure: "Bestellung fehlgeschlagen"
+      setUnPaid: "Auf unbezahlt setzten"
     cart:
       add_to: "Zum Warenkorb hinzufügen"
       your_order: "Deine Bestellung"
       order: "Bestellen"
       cart: "Warenkorb"
       payment_method: "Bezahlmethode"
+
   common:
     delete: "Löschen"
     edit: "Bearbeiten"
@@ -236,16 +245,16 @@ de:
       send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.
       send_paranoid_instructions: Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.
       unlocked: Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren.
-  errors:
-    messages:
-      already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
-      confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
-      expired: ist abgelaufen, bitte neu anfordern
-      not_found: nicht gefunden
-      not_locked: ist nicht gesperrt
-      not_saved:
-        one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
-        other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
+    errors:
+      messages:
+        already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
+        confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
+        expired: ist abgelaufen, bitte neu anfordern
+        not_found: nicht gefunden
+        not_locked: ist nicht gesperrt
+        not_saved:
+          one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
+          other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
   date:
     abbr_day_names:
       - So
@@ -324,3 +333,16 @@ de:
     currency:
       format:
         delimiter: "."
+  errors:
+    messages:
+      login:
+        no_admin_rights: "Sie haben keine Admin Rechte"
+  admin_event_name: "Event"
+  admin_event_start_date: "Start des Events"
+  admin_event_end_date: "Ende des Events"
+  admin_event_hoster : "Veranstalter"
+  delete: "Löschen"
+  location: "Veranstaltungsort"
+  number_of_tickets: "Anzahl der verfügbaren Tickets"
+  paid: "Bezahlte Rechnungen"
+  unpaid: "Unbezahlte Rechnungen"
