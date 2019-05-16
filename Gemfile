@@ -81,7 +81,7 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-bundler"
   gem "letter_opener"
-
+  gem "rails_real_favicon"
 end
 
 group :test do
