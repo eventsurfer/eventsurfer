@@ -78,7 +78,7 @@
         </li>
         <li class="nav-item">
           <%= form_tag(destroy_user_session_path, method: "delete") do %>
-            <button class="nav-link" type="submit">
+            <button class="nav-link" type="submit" style="background-color: transparent; border:none">
               <i class="fas fa-sign-out-alt"></i>
             </button>
           <% end %>
@@ -100,7 +100,7 @@
 </header>
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" style="min-height: 50vh">
   <% if notice or alert %>
     <% if notice %>
       <p class="alert alert-success alert-dismissible fade show" role="alert">
