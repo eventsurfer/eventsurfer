@@ -5,6 +5,8 @@ class Frontend::EventsController < ApplicationController
     @events = Event.all.first(3)
   end
 
+  ##
+  # Get all events for displaying
   def list
     @events = Event.all
   end
