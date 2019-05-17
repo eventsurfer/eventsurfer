@@ -40,7 +40,6 @@ class Frontend::CartsController < ApplicationController
         @items.push([Performance.find(item[0]), item[1]])
       end
     end
-    session[:cart] = @cart = @items
   end
 
   ##
@@ -105,7 +104,6 @@ class Frontend::CartsController < ApplicationController
           PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
             @items.push([Performance.find(item.performance_id), item.count])
           end
-          session[:cart] = @cart = @items
         end
       else
         flash[:alert] = "Your cart is empty!"
