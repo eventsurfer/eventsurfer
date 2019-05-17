@@ -46,18 +46,21 @@ class Frontend::CartsController < ApplicationController
   # change ticket amount of an performance
   def update
     id = params[:id].to_i
-    count = params[:count].to_i
-    p id
+    count = params[:count].to_i.abs
+
     @cart.each do |element|
       if element[0] == id
-        p element[0]
-        p element[1]
         element[1] = count
       end
     end
 
     unless current_user.nil?
-      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+      available = Performance.find_by(id: id).tickets.where(reserved: 0).size
+      if count <= available
+        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+      else
+        flash[:alert] = "You can't buy " + count.to_s + " tickets if only " + available.to_s + " available"
+      end
     end
     redirect_to(frontend_cart_path)
   end
