@@ -7,7 +7,7 @@ class Users::SessionsController < Devise::SessionsController
     @cart.each do |element|
       x = PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: element[0])
       if x.size > 0
-        x.update(count: x.count + element[1])
+        x.update(count: x.first.count + element[1])
       else
         PerformanceCart.create(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: element[0], count: element[1])
       end
