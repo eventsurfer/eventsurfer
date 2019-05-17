@@ -145,6 +145,7 @@ class Frontend::CartsController < ApplicationController
     end
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
     OrderMailer.entry_order(this_order).deliver
+    @cart.clear
     redirect_to frontend_success_path
   end
 
