@@ -40,14 +40,13 @@ class Frontend::CartsController < ApplicationController
         @items.push([Performance.find(item[0]), item[1]])
       end
     end
-    session[:cart] = @cart = @items
   end
 
   ##
   # change ticket amount of an performance
   def update
     id = params[:id].to_i
-    count = params[:count].to_i
+    count = params[:count].to_i.abs
 
     @cart.each do |element|
       if element[0] == id
@@ -56,7 +55,12 @@ class Frontend::CartsController < ApplicationController
     end
 
     unless current_user.nil?
-      PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+      available = Performance.find_by(id: id).tickets.where(reserved: 0).size
+      if count <= available
+        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+      else
+        flash[:alert] = "You can't buy " + count.to_s + " tickets if only " + available.to_s + " available"
+      end
     end
     redirect_to(frontend_cart_path)
   end
@@ -100,7 +104,6 @@ class Frontend::CartsController < ApplicationController
           PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
             @items.push([Performance.find(item.performance_id), item.count])
           end
-          session[:cart] = @cart = @items
         end
       else
         flash[:alert] = "Your cart is empty!"
@@ -142,6 +145,7 @@ class Frontend::CartsController < ApplicationController
     end
     PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).delete_all
     OrderMailer.entry_order(this_order).deliver
+    @cart.clear
     redirect_to frontend_success_path
   end
 
