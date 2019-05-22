@@ -25,4 +25,5 @@ class Location < ApplicationRecord
     loc.each{|l|tmp.push(l.name)}
     return tmp
   end
+
 end
