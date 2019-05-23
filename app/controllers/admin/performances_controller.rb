@@ -49,13 +49,14 @@ class Admin::PerformancesController < ApplicationController
         number = performance_params[:number_of_tickets].to_i - @performance.number_of_tickets
         Ticket.createTicketsForPerformance(@performance, current_user.id, number)
         flash[:success] = "performances was edited successful"
-        redirect_to(admin_event_path(session[:tmp_event_id]))
+        redirect_to(admin_events_path)
       else
-        flash[:danger] = "Something went wrong"
+        flash[:alert] = "Something went wrong"
+
         # redirect_to(edit_admin_performance_path(params[:id]))
       end
     else
-      flash[:danger] = "You reduce the number of tickets. This can do problems"
+      flash[:alert] = "You reduce the number of tickets. This can do problems"
       # redirect_to(admin_event_path(session[:tmp_event_id]))
     end
   end
