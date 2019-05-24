@@ -25,7 +25,7 @@ bundle install --path=vendor/bundle
 
 Change file *yourpath\Eventsystem\config\database.yml*
 
-Starten des Servers über die Konsole:
+Starting the server through the console:
 
 ```
 bundle exec rails server
@@ -37,19 +37,19 @@ Start the rails console:
 bundle exec rails console
 ```
 
-Generieren einer Migration:
+Generate a migration:
 
 ```
 bundle exec rails generate migration nameofmigration
 ```
 
-Migrieren von Änderungen:
+Migrate changes:
 
 ```
 bundle exec rails db:migrate
 ```
 
-Rubocop ausführen:
+Run Rubocop:
 
 ```
 bundle exec rubocop
