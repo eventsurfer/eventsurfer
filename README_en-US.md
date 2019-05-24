@@ -40,7 +40,7 @@ bundle exec rails console
 Generate a migration:
 
 ```
-bundle exec rails generate migration nameofmigration
+bundle exec rails generate migration *nameofmigration*
 ```
 
 Migrate changes:
