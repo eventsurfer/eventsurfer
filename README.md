@@ -1,5 +1,5 @@
 # Eventsystem
-P5-Arbeiten
+Event-Management-System
 
 Staging: [![Build Status](https://travis-ci.com/eventsurfer/eventsurfer.svg?branch=staging)](https://travis-ci.com/eventsurfer/eventsurfer)
 
