@@ -19,7 +19,7 @@ gem install bundle
 Install project
 
 ```
-git clone hhttps://github.com/eventsurfer/eventsurfer.git
+git clone https://github.com/eventsurfer/eventsurfer.git
 bundle install --path=vendor/bundle
 ```
 
