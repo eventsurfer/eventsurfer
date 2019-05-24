@@ -17,7 +17,7 @@ gem install bundle
 
 Initialisieren des Programms:
 ```
-git clone https://github.com/florianfynnweber/menschenmachenmenschensachen.git
+git clone hhttps://github.com/eventsurfer/eventsurfer.git
 bundle install --path=vendor/bundle
 ```
 
