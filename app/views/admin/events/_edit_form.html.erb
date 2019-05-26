@@ -10,11 +10,13 @@
   <div class="form-inline">
     <div class="form-group">
       <%= form.label(:start) %>
-      <%= form.time_select(:start, class: "form-control", placeholder: "start of event") %>
+      <%= form.datetime_select(:start, {}, class: "form-control") %>
     </div>
+  </div>
+  <div class="form-inline">
     <div class="form-group">
       <%= form.label(:stop) %>
-      <%= form.time_select(:stop, class: "form-control", placeholder: "stop of event") %>
+      <%= form.datetime_select(:stop, {}, class: "form-control") %>
     </div>
   </div>
   <div class="form-group">
