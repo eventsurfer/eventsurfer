@@ -1,5 +1,5 @@
 # Eventsystem
-P5-Arbeiten
+Event-Management-System
 
 Staging: [![Build Status](https://travis-ci.com/eventsurfer/eventsurfer.svg?branch=staging)](https://travis-ci.com/eventsurfer/eventsurfer)
 
@@ -17,7 +17,7 @@ gem install bundle
 
 Initialisieren des Programms:
 ```
-git clone https://github.com/florianfynnweber/menschenmachenmenschensachen.git
+git clone hhttps://github.com/eventsurfer/eventsurfer.git
 bundle install --path=vendor/bundle
 ```
 
