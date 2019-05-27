@@ -44,7 +44,7 @@ class Admin::PerformancesController < ApplicationController
     @perLoc = PerformanceLocation.find_by(performance_id: params[:id])
     @perLoc.location_id = Location.find_by_name(performance_params[:location]).id
     @performance = Performance.find(params[:id])
-    if @performance.number_of_tickets < performance_params[:number_of_tickets].to_i
+    if @performance.number_of_tickets <= performance_params[:number_of_tickets].to_i
       if @performance.update(performance_params.except(:location).except(:event_id)) && @perLoc.save
         number = performance_params[:number_of_tickets].to_i - @performance.number_of_tickets
         Ticket.createTicketsForPerformance(@performance, current_user.id, number)
