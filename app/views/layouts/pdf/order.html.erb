@@ -88,7 +88,7 @@
       <div class="row">
         <div class="col-sm-8"></div>
         <div class="col-sm-4">
-          <p>Total: <%= total.inject(0){|sum,x| sum + x } %> €</p>
+          <p>Total: <%= total.inject(0, &:+) %> €</p>
         </div>
       </div>
     </div>
