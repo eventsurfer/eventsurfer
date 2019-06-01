@@ -3,6 +3,7 @@
 class Event < ApplicationRecord
   has_many :performance_events
   has_many :performances, through: :performance_events
+  has_one_attached :logo
 
   def getLocations(performances)
     tmp_id = []

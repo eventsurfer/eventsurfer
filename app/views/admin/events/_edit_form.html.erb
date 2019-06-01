@@ -32,6 +32,10 @@
     <%= form.text_field(:hotline, class: "form-control", placeholder: "hotline") %>
   </div>
   <div class="form-group">
+    <%= form.label :logo %>
+    <%= form.file_field :logo %>
+  </div>
+  <div class="form-group">
     <div>
       <%= form.submit("change", class: "btn btn-primary") %>
     </div>

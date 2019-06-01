@@ -33,7 +33,8 @@ class Admin::EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @event.changed_by = current_user.id
-    if (@event.update(event_params))
+    if @event.update(event_params)
+      @event.logo.attach(params[:logo])
       flash[:success] = "Event was edited successful"
       session[:tmp_event_id] = @event.id
       redirect_to(admin_event_path(@event.id))
