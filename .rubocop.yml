@@ -32,6 +32,3 @@ Layout/EmptyLinesAroundClassBody:
 
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
-
-Layout/IndentFirstArgument:
-  Enabled: false
