@@ -29,7 +29,6 @@ gem "bcrypt", "~> 3.1.7"
 
 gem "devise", ">= 4.6.0" # framework for user authentification
 gem "devise-security" # security plugin for devise
-gem "jquery-rails"
 gem "devise_zxcvbn" # plugin for devise
 gem "delayed_job_active_record" # for delayed jobs in ruby on rails
 # gem "two_factor_authentication"
@@ -65,7 +64,8 @@ group :development, :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem "rubocop-rails", git: "https://github.com/eventsurfer/rubocop-rails.git", require: false
+  gem "rubocop"
+  gem "rubocop-rails_config", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot"
   gem "brakeman"
   gem "rails_best_practices"
