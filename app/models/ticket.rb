@@ -15,7 +15,7 @@ class Ticket < ApplicationRecord
   end
 
   def self.generateValidateId
-    validate_id = SecureRandom.urlsafe_base64(32)
+    SecureRandom.urlsafe_base64(32)
   end
 
   def self.createTicketsForPerformance(performance, user_id, numberTickets)

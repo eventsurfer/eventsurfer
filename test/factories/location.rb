@@ -9,5 +9,4 @@ FactoryBot.define do
     postcode {Faker::Address.postcode.to_s}
     name {Faker::Company.name}
   end
-
 end
