@@ -89,7 +89,7 @@ group :test do
   gem "capybara", ">= 2.15", "< 4.0"
   gem "selenium-webdriver"
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem "chromedriver-helper", "1.2.0"
+  gem "chromedriver-helper", "2.1.1"
   gem "simplecov", require: false
 end
 
