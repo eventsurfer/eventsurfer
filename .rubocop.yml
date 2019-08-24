@@ -1,5 +1,5 @@
 inherit_gem:
-  rubocop-rails:
+  rubocop-rails_config:
   - config/rails.yml
 
 AllCops:
@@ -31,7 +31,4 @@ Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 Layout/SpaceInsideHashLiteralBraces:
-  Enabled: false
-
-Layout/IndentFirstArgument:
   Enabled: false

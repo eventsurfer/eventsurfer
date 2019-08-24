@@ -14,5 +14,4 @@ FactoryBot.define do
   factory :allowed_sell_performance, parent: :performance do
     sell_allowed{true}
   end
-
 end
