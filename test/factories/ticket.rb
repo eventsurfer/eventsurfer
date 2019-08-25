@@ -6,5 +6,4 @@ FactoryBot.define do
     created_at {DateTime.now}
     valid_ {true}
   end
-
 end

@@ -33,7 +33,7 @@ class Admin::TicketsController < ApplicationController
 
   def destroy
     @ticket = Ticket.find(params[:id])
-    if (@ticket.destroy)
+    if @ticket.destroy
       flash[:success] = "Ticket was deleted successful"
       redirect_to(admin_tickets_path)
     else
@@ -43,7 +43,7 @@ class Admin::TicketsController < ApplicationController
 
   def update
     @ticket = Ticket.find(params[:id])
-    if (@ticket.update(ticket_params))
+    if @ticket.update(ticket_params)
       flash[:success] = "Ticket was edited successful"
       redirect_to(admin_tickets_path)
     else
@@ -54,7 +54,7 @@ class Admin::TicketsController < ApplicationController
 
   def destroy
     @ticket = Ticket.find(params[:id])
-    if (@ticket.destroy)
+    if @ticket.destroy
       redirect_to(admin_tickets_path)
     end
   end
