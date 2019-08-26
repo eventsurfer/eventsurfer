@@ -144,9 +144,8 @@ GEM
     i18n_data (0.8.0)
     io-like (0.3.0)
     jaro_winkler (1.5.3)
-    jbuilder (2.8.0)
+    jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -170,18 +169,17 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
     mimemagic (0.3.3)
-    mini_mime (1.0.1)
+    mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.10)
     msgpack (1.2.10-x64-mingw32)
-    multi_json (1.13.1)
     mysql2 (0.5.2)
     mysql2 (0.5.2-x64-mingw32)
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
-    nio4r (2.3.1)
+    nio4r (2.4.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.4-x64-mingw32)
@@ -226,9 +224,9 @@ GEM
       json
       require_all (~> 2.0)
       ruby-progressbar
-    rails_real_favicon (0.0.12)
+    rails_real_favicon (0.0.13)
       json (>= 1.7, < 3)
-      rails (>= 3.1)
+      rails
       rubyzip (~> 1)
     railties (5.2.3)
       actionpack (= 5.2.3)
@@ -333,10 +331,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    websocket-driver (0.7.0)
+    websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
-    wicked_pdf (1.2.2)
+    websocket-extensions (0.1.4)
+    wicked_pdf (1.4.0)
       activesupport
     wkhtmltopdf-binary (0.12.4)
     xpath (3.2.0)
@@ -369,7 +367,7 @@ DEPENDENCIES
   factory_bot
   faker
   font-awesome-sass
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.9)
   jquery-rails
   letter_opener
   listen
