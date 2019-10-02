@@ -31,13 +31,13 @@ class Frontend::CartsController < ApplicationController
   # Display all performances in the cart
   def list_items
     @items = []
-    unless current_user.nil?
-      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
-        @items.push([Performance.find(item.performance_id), item.count])
-      end
-    else
+    if current_user.nil?
       @cart.each do |item|
         @items.push([Performance.find(item[0]), item[1]])
+      end
+    else
+      PerformanceCart.where(cart_id: Cart.find_by_user_id(current_user.id)).each do |item|
+        @items.push([Performance.find(item.performance_id), item.count])
       end
     end
   end

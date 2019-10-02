@@ -47,7 +47,7 @@ class Admin::OrdersController < ApplicationController
 
     begin
       def api_client_params
-        params.require(:order).permit()
+        params.require(:order).permit
       end
 
       def checkPermission!

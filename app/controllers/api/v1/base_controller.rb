@@ -15,28 +15,28 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def invalid_resource
-    return api_error(status: 422, error: "Invalid resource")
+    api_error(status: 422, error: "Invalid resource")
   end
 
   def not_found
-    return api_error(status: 404, error: "Not found")
+    api_error(status: 404, error: "Not found")
   end
 
   def unauthenticated
-    return api_error(status: 401, error: "Unauthorized")
+    api_error(status: 401, error: "Unauthorized")
   end
 
   def forbidden
-    return api_error(status: 403, error: "Forbidden")
+    api_error(status: 403, error: "Forbidden")
   end
 
   def bad_request
-    return api_error(status: 400, error: "Bad request. Parameter missing?")
+    api_error(status: 400, error: "Bad request. Parameter missing?")
   end
 
   def paginate(resource)
     resource = resource.page(params[:page] || 1)
-    return resource
+    resource
   end
 
   def meta_attributes(object)
@@ -50,7 +50,7 @@ class Api::V1::BaseController < ApplicationController
     key = key.blank? ? nil : key
     if key && ApiClient.exists?(auth_key: key)
     else
-      return unauthenticated
+      unauthenticated
     end
   end
 
@@ -61,7 +61,7 @@ class Api::V1::BaseController < ApplicationController
         if error.is_a? String
           return {error: error}
         end
-        return error.to_json()
+        error.to_json
       end
     end
 end

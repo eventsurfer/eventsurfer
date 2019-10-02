@@ -24,14 +24,14 @@ class Api::V1::TicketsController < Api::V1::BaseController
             if @ticket.save
               render json: {ticket: @ticket, action: "used"}
             else
-              return api_error()
+              return api_error
             end
           else
             return api_error(status: 422, error: "validate id false")
           end
         end
       rescue
-        return api_error()
+        api_error
       end
 
     else

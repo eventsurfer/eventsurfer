@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-if (!User.find_by_name("admin"))
+unless User.find_by_name("admin")
   User.create!(name: "admin", email: 'admin@example.net', password: 'adminadmin', admin: true, confirmed_at: Date.today, role: "employer", rank: 4)
 end
 
-def fake_name()
+def fake_name
   i = rand(0..2)
   case i
   when 0
@@ -25,15 +25,15 @@ end
 
 
 #User
-if (User.all.size < 20)
+if User.all.size < 20
   10.times do
     name = fake_name
     psswd = "password"
-    User.create(name: name, email: name.to_s.gsub(/\s+/, "")+"@example.net", password: psswd, role: 1)
+    User.create(name: name, email: name.to_s.gsub(/\s+/, "") + "@example.net", password: psswd, role: 1)
   end
 end
 #Location.delete_all
-if (Location.all.size < 40)
+if Location.all.size < 40
   20.times do
     street = Faker::Address.street_name
     number = Faker::Address.street_suffix
@@ -45,11 +45,11 @@ if (Location.all.size < 40)
   end
 end
 #Event.delete_all
-if (Event.all.size < 20)
+if Event.all.size < 20
   5.times do
     name = Faker::FunnyName.name
-    start = Faker::Date.between(Date.today, Date.today.next_month)
-    stop = Faker::Date.between(start, Date.today.next_month)
+    start = Faker::Date.between(from: Date.today, to: Date.today.next_month)
+    stop = Faker::Date.between(from: start, to: Date.today.next_month)
     hoster_name = Faker::Name.name
     website = Faker::FunnyName.name + ".net"
     hotline = Faker::PhoneNumber.cell_phone_with_country_code
@@ -58,18 +58,18 @@ if (Event.all.size < 20)
   end
 end
 #Performnace.delete_all
-if (Performance.all.size < 30)
+if Performance.all.size < 30
   10.times do
     prize = Random.rand(1..5).to_f
-    start = Faker::Date.between(Date.today, Date.today.next_month)
-    stop = Faker::Date.between(start, Date.today.next_year)
-    stop_selling = Faker::Date.between(start, stop)
+    start = Faker::Date.between(from: Date.today, to: Date.today.next_month)
+    stop = Faker::Date.between(from: start, to: Date.today.next_year)
+    stop_selling = Faker::Date.between(from: start, to: stop)
     number_of_tickets = Random.rand(50..100)
     Performance.create(prize: prize, start: start, stop: stop, stop_selling: stop_selling, number_of_tickets: number_of_tickets)
   end
 end
 # fix performancelocatin zeigen auf die gleiche performance und unterschiedliche locations
-if (PerformanceEvent.all.size < 10)
+if PerformanceEvent.all.size < 10
   count = 0
   5.times do |i|
     PerformanceEvent.create(event_id: Event.all[i].id, performance_id: Performance.all[count].id)
@@ -77,7 +77,7 @@ if (PerformanceEvent.all.size < 10)
     count += 2
   end
 end
-if (Ticket.all.size < 200)
+if Ticket.all.size < 200
   Performance.all.each do |p|
     arr = []
     20.times do |t|
@@ -92,7 +92,7 @@ if (Ticket.all.size < 200)
   end
 
 end
-if (PerformanceLocation.all.size < 30)
+if PerformanceLocation.all.size < 30
   loc = Location.all
   count = 0
   Performance.all.each do |per|
@@ -101,12 +101,12 @@ if (PerformanceLocation.all.size < 30)
     count += 1
   end
 end
-if (!ApiClient.find_by_name("testi"))
+unless ApiClient.find_by_name("testi")
   ApiClient.create(name: "testi", auth_key: "welovetoentertainyou")
 end
 
-if (Cart.all.size < 10)
-  arry = [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10]
+if Cart.all.size < 10
+  arry = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10]
   10.times do |i|
     this_cart = Cart.create(user_id: i + 1)
     3.times do
@@ -115,10 +115,10 @@ if (Cart.all.size < 10)
   end
 end
 
-if (Order.all.size < 10)
+if Order.all.size < 10
   10.times do |i|
-    this_order = Order.create(user_id: i+1, paid: false)
-    PerformanceCart.where(cart_id: Cart.find_by_user_id(i+1)).each do |item|
+    this_order = Order.create(user_id: i + 1, paid: false)
+    PerformanceCart.where(cart_id: Cart.find_by_user_id(i + 1)).each do |item|
       x = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
       x.count.to_i.times do
         Performance.find(x.performance_id).tickets.where(reserved: 0).first.update(reserved: 1, group_id: x.id)
@@ -126,7 +126,7 @@ if (Order.all.size < 10)
     end
   end
 end
-if (DefaultInformation.all.empty?)
+if DefaultInformation.all.empty?
   street = Faker::Address.street_name
   number = Faker::Address.street_suffix
   country = Faker::Address.country

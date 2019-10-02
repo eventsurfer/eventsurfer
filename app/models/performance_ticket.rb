@@ -5,8 +5,7 @@ class PerformanceTicket < ApplicationRecord
   belongs_to :performance
 
   def getAllTicketsOfPerformance(id)
-    performanceTicket = PerformanceTicket.where("performance_id=?", id)
-    return performanceTicket
+    PerformanceTicket.where("performance_id=?", id)
   end
 
 

@@ -16,7 +16,7 @@ class Api::V1::UsersController < Api::V1::BaseController
         end
       end
     else
-      return bad_request
+      bad_request
     end
   end
 end

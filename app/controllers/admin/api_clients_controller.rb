@@ -39,7 +39,7 @@ class Admin::ApiClientsController < ApplicationController
   def destroy
     @api_client = ApiClient.find(params[:id])
     @api_client.destroy
-    redirect_to admin_api_clients_url()
+    redirect_to admin_api_clients_url
   end
 
   private
