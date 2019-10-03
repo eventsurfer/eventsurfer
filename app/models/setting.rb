@@ -2,7 +2,7 @@
 
 class Setting < ApplicationRecord
   def self.getSetting_as_list(name)
-    if s = Setting.find_by_key(name)
+    if (s = Setting.find_by_key(name))
       v = s.value.gsub(/\s+/, "")
       l = v.split(",")
       return l

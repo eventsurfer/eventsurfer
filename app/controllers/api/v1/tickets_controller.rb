@@ -31,7 +31,7 @@ class Api::V1::TicketsController < Api::V1::BaseController
           end
         end
       rescue
-        return api_error()
+        api_error()
       end
 
     else

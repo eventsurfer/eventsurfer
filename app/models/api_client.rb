@@ -15,7 +15,7 @@ class ApiClient < ActiveRecord::Base
     if self.auth_key == key
       return true
     end
-    return false
+    false
   end
 
 end
