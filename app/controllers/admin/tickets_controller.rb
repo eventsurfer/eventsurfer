@@ -64,7 +64,7 @@ class Admin::TicketsController < ApplicationController
 
     begin
       def ticket_params
-        params.require(:ticket).permit
+        params.require(:ticket).permit()
       end
       def checkPermission!
         if current_user.rank >= 4

@@ -35,8 +35,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def paginate(resource)
-    resource = resource.page(params[:page] || 1)
-    resource
+    resource.page(params[:page] || 1)
   end
 
   def meta_attributes(object)
@@ -61,7 +60,7 @@ class Api::V1::BaseController < ApplicationController
         if error.is_a? String
           return {error: error}
         end
-        error.to_json
+        error.to_json()
       end
     end
 end
