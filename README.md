@@ -25,7 +25,7 @@ Verändern der Datei *yourpath\Eventsystem\config\database.yml*
 
 Starten des Servers über die Konsole:
 ```
-bundle exec rails server
+bundle exec rails s
 ```
 
 
