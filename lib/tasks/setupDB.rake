@@ -2,7 +2,7 @@
 
 namespace :db do
   desc "DB drop, create, migrate, seed"
-  task doSth: :environment do
+  task rebuild: :environment do
     p "drop databases"
     Rake::Task["db:drop"].invoke
     p "create databases"
