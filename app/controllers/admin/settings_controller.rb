@@ -62,21 +62,22 @@ class Admin::SettingsController < ApplicationController
 
   private
 
-    begin
-      def setting_params
-        if params.key?(:default_information)
-          params.require(:default_information).permit(:company, :street, :country, :city, :postcode, :street_number, :cellphone, :email, :website)
-        else
-          params.require(:setting).permit(:key, :value)
-        end
-        end
-
-      def checkPermission!
-        if current_user.rank >= 3
-
-        else
-          redirect_to admin_dashboards_path
-        end
+  begin
+    def setting_params
+      if params.key?(:default_information)
+        params.require(:default_information).permit(:company, :street, :country, :city, :postcode, :street_number,
+                                                    :cellphone, :email, :website)
+      else
+        params.require(:setting).permit(:key, :value)
       end
     end
+
+    def checkPermission!
+      if current_user.rank >= 3
+
+      else
+        redirect_to admin_dashboards_path
+      end
+    end
+  end
 end

@@ -57,7 +57,8 @@ class Frontend::CartsController < ApplicationController
     unless current_user.nil?
       available = Performance.find_by(id: id).tickets.where(reserved: 0).size
       if count <= available
-        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).
+            update(count: count)
       else
         flash[:alert] = "You can't buy " + count.to_s + " tickets if only " + available.to_s + " available"
       end
@@ -95,7 +96,8 @@ class Frontend::CartsController < ApplicationController
         if not_free.size > 0
           msg = " "
           not_free.each do |p|
-            msg += Performance.find(p.performance_id).event.name.to_s + ": " + Performance.find(p.performance_id).location.name.to_s + "; "
+            msg += Performance.find(p.performance_id).event.name.to_s + ": " +
+                Performance.find(p.performance_id).location.name.to_s + "; "
           end
           flash[:alert] = "Some articles are not available:" + msg
           redirect_to frontend_cart_path
@@ -128,7 +130,8 @@ class Frontend::CartsController < ApplicationController
       if not_free.size > 0
         msg = " "
         not_free.each do |p|
-          msg += Performance.find(p.performance_id).event.name.to_s + ": " + Performance.find(p.performance_id).location.name.to_s + "; "
+          msg += Performance.find(p.performance_id).event.name.to_s + ": " +
+              Performance.find(p.performance_id).location.name.to_s + "; "
         end
         flash[:alert] = "Some articles are not available:" + msg
         redirect_to frontend_cart_path
@@ -137,9 +140,11 @@ class Frontend::CartsController < ApplicationController
         if this_order.nil?
           this_order = Order.create(user_id: current_user.id, payment_method: method)
         end
-        gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id, single_price: Performance.find(item.performance_id).prize)
+        gp = GroupTicket.create(performance_id: item.performance_id, count: item.count, order_id: this_order.id,
+                                single_price: Performance.find(item.performance_id).prize)
         item.count.to_i.times do
-          Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.update(group_id: gp.id)
+          Performance.find(item.performance_id).tickets.where(reserved: 1, group_id: 0).first.
+              update(group_id: gp.id)
         end
       end
     end

@@ -4,18 +4,24 @@ inherit_gem:
 
 AllCops:
   Exclude:
-  - 'db/**/*'
-  - 'config/**/*'
-  - 'bin/**/*'
-  - 'vendor/**/*'
-  - 'vednor/**/*'
-  - 'public/**/*'
-  - 'tmp/**/*'
-  - 'coverage/**/*'
-  - 'config.ru'
-  - 'Rakefile'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'coverage/**/*'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+
+Metrics/LineLength:
+  Max: 116
 
 Style/RedundantReturn:
+  Enabled: false
+
+Style/RedundantBegin:
   Enabled: false
 
 Style/StringLiterals:
@@ -31,4 +37,16 @@ Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 Layout/SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+Style/ParenthesesAroundCondition:
+  Enabled: false
+
+Layout/IndentFirstArgument:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Layout/IndentationWidth:
   Enabled: false
