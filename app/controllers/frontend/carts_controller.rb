@@ -57,7 +57,8 @@ class Frontend::CartsController < ApplicationController
     unless current_user.nil?
       available = Performance.find_by(id: id).tickets.where(reserved: 0).size
       if count <= available
-        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).update(count: count)
+        PerformanceCart.find_by(cart_id: Cart.find_by_user_id(current_user.id).id, performance_id: id).
+            update(count: count)
       else
         flash[:alert] = "You can't buy " + count.to_s + " tickets if only " + available.to_s + " available"
       end
