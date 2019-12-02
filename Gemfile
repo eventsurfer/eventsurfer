@@ -42,7 +42,7 @@ gem "country_select", "~> 4.0"
 # gem "mini_magick", "~> 4.8"
 
 # Charts
-gem "chartkick"
+gem "chartkick", ">= 3.3.0"
 
 gem "rqrcode"
 
